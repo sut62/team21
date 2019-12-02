@@ -1,8 +1,9 @@
 <template>
   <v-app>
+
     <v-app-bar app >
       <v-toolbar-title class="headline text-uppercase">
-        <span>System</span>
+        <span>System - </span>
         <span class="font-weight-light">SE-G21</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -37,15 +38,6 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    icons: [
-      "fab fa-facebook",
-      "fab fa-twitter",
-      "fab fa-google-plus",
-      "fab fa-linkedin",
-      "fab fa-instagram"
-    ]
-  }),
   methods: {
     Home() {
       this.$router.push("/");
