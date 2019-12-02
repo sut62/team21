@@ -1,5 +1,6 @@
 <template>
   <v-app>
+
     <v-app-bar app >
       <v-toolbar-title class="headline text-uppercase">
         <span>System - </span>
