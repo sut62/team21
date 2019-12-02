@@ -1,0 +1,56 @@
+<template>
+  <v-container fluid>
+    <v-hover v-slot:default="{ hover }">
+      <v-card width="600" :elevation="hover ? 12 : 5" style="margin: auto; margin-top: 50px;">
+        <v-app-bar dark color="light-blue lighten-1">
+          <v-btn icon>
+            <v-icon large>mdi-label</v-icon>
+          </v-btn>
+
+          <v-toolbar-title>Course Register</v-toolbar-title>
+
+          <v-spacer></v-spacer>
+
+          <v-btn icon>
+            <v-icon>mdi-dialpad</v-icon>
+          </v-btn>
+        </v-app-bar>
+
+        <v-container style="margin-top: 50px;">
+          <v-row>
+            <v-col class="d-flex" cols="8" style="margin: auto;">
+              <v-select :items="items1" label="Outlined style" outlined></v-select>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col class="d-flex" cols="8" style="margin: auto;">
+              <v-select :items="items2" label="Outlined style" outlined></v-select>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col class="d-flex" cols="8" style="margin: auto;">
+              <v-select :items="items3" label="Outlined style" outlined></v-select>
+            </v-col>
+          </v-row>
+
+          <v-row>       
+              <v-btn style="margin: auto;" large color="light-blue lighten-1" dark>Register</v-btn>
+          </v-row>
+
+        </v-container>
+      </v-card>
+    </v-hover>
+  </v-container>
+</template>
+<script>
+export default {
+  data: () => ({
+    items1: ["Foo", "Bar", "Fizz", "Buzz"],
+    items2: ["Foo", "Bar", "Fizz", "Buzz"],
+    items3: ["Foo", "Bar", "Fizz", "Buzz"]
+  })
+};
+</script>
+
