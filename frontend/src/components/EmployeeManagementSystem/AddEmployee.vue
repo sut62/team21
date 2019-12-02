@@ -53,15 +53,15 @@
 </template>
 <script>
 export default {
+  name: 'StudentExpenses',
+  
   data: () => ({
-    items1: ["Foo", "Bar", "Fizz", "Buzz"],
-    items2: ["Foo", "Bar", "Fizz", "Buzz"],
-    items3: ["Foo", "Bar", "Fizz", "Buzz"]
-  },{
+      items1: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      items2: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      items3: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       snackbar: false,
       text: 'OK !,Data has been saved successfully.',
-    }
-  )
+  }),
 };
 </script>
 
