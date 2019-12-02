@@ -14,7 +14,7 @@
 - http://localhost:9000/db
 ```
 
-# Fronend RUN
+# Frontend RUN
 ```
 - cd frontend
 - npm install
