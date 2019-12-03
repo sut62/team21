@@ -1,10 +1,12 @@
-package com.cpe.backend.StudentManagemenSystem.entity;
+package se.g21.blackend.MainClass.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
 
 import java.util.Collection;
+
+import se.g21.blackend.StudentManagemenSystem.entity.StudentEntity;
 
 @Data
 @Entity
@@ -18,7 +20,6 @@ public class GenderEntity {
 	private @NonNull Long id;
 	private @NonNull String name;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	// mappedBy  = "addlevel"
+	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<StudentEntity> student;
 }

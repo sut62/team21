@@ -1,4 +1,4 @@
-package com.cpe.backend.StudentManagemenSystem.entity;
+package se.g21.blackend.StudentManagemenSystem.entity;
 
 import lombok.*;
 
@@ -19,7 +19,6 @@ public class MajorEntity {
 
     private @NonNull String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
-	// mappedBy  = "addlevel"
+    @OneToMany(fetch = FetchType.LAZY)
 	private Collection<StudentEntity> student;
 }
