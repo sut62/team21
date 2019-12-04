@@ -23,14 +23,5 @@
 - http://localhost:8080/
 ```
 
-# System app
-```
-- StudentManagemenSystem
-- EmployeeManagementSystem
-- CourseManagementSystem
-- CourseRegistrationManagementSystem
-- ExpensesManagementSystem
-- ReviewsManagementSystem
-```
 
 
