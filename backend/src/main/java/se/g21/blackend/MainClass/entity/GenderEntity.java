@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 import se.g21.blackend.StudentManagemenSystem.entity.StudentEntity;
+import se.g21.blackend.EmployeeManagementSystem.entity.EmployeeEntity;
 
 @Data
 @Entity
@@ -22,4 +23,7 @@ public class GenderEntity {
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<StudentEntity> student;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private Collection<EmployeeEntity> employee;
 }
