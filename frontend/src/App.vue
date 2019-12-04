@@ -1,10 +1,9 @@
 <template>
   <v-app>
-
-    <v-app-bar app >
+    <v-app-bar app class>
       <v-toolbar-title class="headline text-uppercase">
-        <span>System - </span>
-        <span class="font-weight-light">SE-G21</span>
+        <span class="display-2 font-weight-black">THE Tutor &nbsp;&nbsp;</span>
+        <span class="font-weight-light body-2">Tutoring institute</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn @click="Home">
@@ -20,24 +19,36 @@
         <span class="mr-2">Course</span>
       </v-btn>
       <v-btn @click="CourseRegistration">
-        <span class="mr-2">CourseRegistration</span>
+        <span class="mr-2">Course Register</span>
       </v-btn>
       <v-btn @click="Expenses">
-        <span class="mr-2">ExpensesManagement</span>
+        <span class="mr-2">Expenses</span>
       </v-btn>
       <v-btn @click="Reviews">
         <span class="mr-2">Reviews</span>
       </v-btn>
     </v-app-bar>
-
-    <v-content>
-      <router-view />
-    </v-content>
-
+    <v-row>
+      <v-col cols="">
+        <v-content class="">
+          <router-view />
+        </v-content>
+      </v-col>
+    </v-row>
   </v-app>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      items: [
+        { title: "Dashboard", icon: "mdi-view-dashboard" },
+        { title: "Photos", icon: "mdi-image" },
+        { title: "About", icon: "mdi-help-box" }
+      ],
+      right: null
+    };
+  },
   methods: {
     Home() {
       this.$router.push("/");
