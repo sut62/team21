@@ -7,7 +7,7 @@
             <v-icon large>mdi-label</v-icon>
           </v-btn>
 
-          <v-toolbar-title>Course Register</v-toolbar-title>
+          <v-toolbar-title>System From</v-toolbar-title>
 
           <v-spacer></v-spacer>
 
@@ -19,7 +19,7 @@
         <v-container style="margin-top: 50px; padding-bottom: 30px;">
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-select :items="items1" label="Outlined style" outlined></v-select>
+              <v-text-field label="Outlined" outlined dense></v-text-field>
             </v-col>
           </v-row>
 
@@ -36,7 +36,19 @@
           </v-row>
 
           <v-row>
-            <v-btn style="margin: auto;" large color="light-blue lighten-1" dark @click="snackbar = true">Register</v-btn>
+            <v-col cols="8" style="margin: auto;">
+              <v-select :items="items3" label="Outlined style" outlined></v-select>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-btn
+              style="margin: auto;"
+              large
+              color="light-blue lighten-1"
+              dark
+              @click="snackbar = true"
+            > SAVE FROM</v-btn>
           </v-row>
         </v-container>
       </v-card>
@@ -48,20 +60,18 @@
         <v-btn color="pink" text @click="snackbar = false">Close</v-btn>
       </v-snackbar>
     </v-row>
-
   </v-container>
 </template>
 <script>
 export default {
-  name: 'StudentExpenses',
-  
+  name: "AddReviews",
   data: () => ({
-      items1: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      items2: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      items3: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      snackbar: false,
-      text: 'OK !,Data has been saved successfully.',
-  }),
+    items1: ["Foo", "Bar", "Fizz", "Buzz"],
+    items2: ["Foo", "Bar", "Fizz", "Buzz"],
+    items3: ["Foo", "Bar", "Fizz", "Buzz"],
+    snackbar: false,
+    text: "OK !,Data has been saved successfully."
+  })
 };
 </script>
 
