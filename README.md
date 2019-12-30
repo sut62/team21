@@ -21,8 +21,6 @@
 - yarn install
 - yarn serve
 - http://localhost:8080/
-
-afsaf
 ```
 
 
