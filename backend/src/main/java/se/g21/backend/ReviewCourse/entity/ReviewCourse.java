@@ -22,7 +22,7 @@ import javax.persistence.FetchType;
 @ToString
 @EqualsAndHashCode
 @Table(name = "REVIEW_COURSE")
-public class Review {
+public class ReviewCourse {
     @Id
     @SequenceGenerator(name = "REVIEW_SEQ", sequenceName = "REVIEW_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REVIEW_SEQ")
@@ -35,4 +35,13 @@ public class Review {
     @Column(name = "REVIEW_COMMENT", nullable = true)
     private String comment;
 
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Rating.class)
+    @JoinColumn(name = "RATING_ID", insertable = true)
+    private Rating rating;
+
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Improvement.class)
+    @JoinColumn(name = "IMPROVEMENT_ID", insertable = true)
+    private Improvement improvement;
+
+    
 }
