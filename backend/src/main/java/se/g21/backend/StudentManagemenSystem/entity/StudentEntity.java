@@ -12,10 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+
+import se.g21.backend.employeesystem.entities.Nametitle;
+import se.g21.backend.employeesystem.entities.Gender;
+import se.g21.backend.employeesystem.entities.Province;
 
 @Data
 @Entity
@@ -28,29 +33,42 @@ public class StudentEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="student_seq")
     @Column(name = "STUDENT_ID", unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull String name;
+    
+    @Column(name = "Fullname")
+    private @NonNull String fullname;
+
+    @Column(name = "Tel")
+    private @NonNull String tel;
+
+    @Column(name = "Email")
+    private @NonNull String email;
+
+    @Column(name = "Old")
     private @NonNull Long old;
-    @Column(name="RENT_DATE")
-    private @NonNull Date rentDate;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Gender.class)
-    @JoinColumn(name = "GENDER_ID", insertable = true)
-    private Gender gender;
+    @JoinColumn(name = "Gender_ID", insertable = true)
+    private @NonNull Gender gender;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Province.class)
-    @JoinColumn(name = "PROVINCE_ID", insertable = true)
-    private Province province;
+    @JoinColumn(name = "Province_ID", insertable = true)
+    private @NonNull Province province;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Titlename.class)
-    @JoinColumn(name = "TITLENAME_ID", insertable = true)
-    private Titlename titlename;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Nametitle.class)
+    @JoinColumn(name = "Nametitle_ID", insertable = true)
+    private @NonNull Nametitle nametitle;
 
-    public void setName(String name){
-        this.name=name;
-    }
+    @Column(name = "Username")
+    private @NonNull String username;
 
-    public void setOld(Long old){
-        this.old=old;
-    }
+    @Column(name = "Password")
+    private @NonNull String password;
+
+    @Column(name = "Address")
+    private @NonNull String address;
     
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name="REG_DATE")
+    private @NonNull Date regDate;
+
 }
