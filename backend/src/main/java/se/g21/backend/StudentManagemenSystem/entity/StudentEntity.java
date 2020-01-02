@@ -34,17 +34,22 @@ public class StudentEntity {
     @Column(name = "STUDENT_ID", unique = true, nullable = true)
     private @NonNull Long id;
     
-    @Column(name = "Fullname")
-    private @NonNull String fullname;
+    
+    public void setFullname(String fullname){
+        this.fullname=fullname;
+    }
 
-    @Column(name = "Tel")
-    private @NonNull String tel;
+    public void setTel(String tel){
+        this.tel=tel;
+    }
 
-    @Column(name = "Email")
-    private @NonNull String email;
+    public void setEmail(String email){
+        this.email=email;
+    }
 
-    @Column(name = "Old")
-    private @NonNull Long old;
+    public void setOld(Long old){
+        this.old=old;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Gender.class)
     @JoinColumn(name = "Gender_ID", insertable = true)
@@ -58,17 +63,19 @@ public class StudentEntity {
     @JoinColumn(name = "Nametitle_ID", insertable = true)
     private @NonNull Nametitle nametitle;
 
-    @Column(name = "Username")
-    private @NonNull String username;
+    public void setUsername(String username){
+        this.username=username;
+    }
 
-    @Column(name = "Password")
-    private @NonNull String password;
+    public void setPassword(String password){
+        this.password=password;
+    }    
 
-    @Column(name = "Address")
-    private @NonNull String address;
+    public void setAddress(String address){
+        this.address=address;
+    }
     
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name="REG_DATE")
-    private @NonNull Date regDate;
-
+     public void setRegDate(Date date){
+        this.date=date;
+    }
 }
