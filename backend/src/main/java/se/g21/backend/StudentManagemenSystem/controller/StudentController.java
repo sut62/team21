@@ -66,13 +66,13 @@ public class StudentController {
     @PathVariable long gender_id,
     @PathVariable long province_id,
     @PathVariable long nametitle_id,
-    @PathVariable long fullname,
+    @PathVariable String fullname,
     @PathVariable long old,
-    @PathVariable long address,
-    @PathVariable long tel,
-    @PathVariable long email,
-    @PathVariable long username,
-    @PathVariable long password) {
+    @PathVariable String address,
+    @PathVariable String tel,
+    @PathVariable String email,
+    @PathVariable String username,
+    @PathVariable String password) {
 
     Gender     gender    = genderRepository.findById(gender_id);
     Province   province  = provinceRepository.findById(province_id);
