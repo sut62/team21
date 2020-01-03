@@ -28,12 +28,10 @@ public class ReviewCourse {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REVIEW_SEQ")
     @Column(name = "REVIEW_ID", unique = true, nullable = true)
     private @NonNull Long id;
-
-    @Column(name = "REVIEW_DATE")
-    private @NonNull Date reviewDate;
-
-    @Column(name = "REVIEW_COMMENT", nullable = true)
-    private String comment;
+    
+    //wait for EnrollCourse Entity
+    @Column(name = "EnrollCourse_ID", nullable = true)
+    private String enrollCourse;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Rating.class)
     @JoinColumn(name = "RATING_ID", insertable = true)
@@ -43,5 +41,9 @@ public class ReviewCourse {
     @JoinColumn(name = "IMPROVEMENT_ID", insertable = true)
     private Improvement improvement;
 
-    
+    @Column(name = "REVIEW_COMMENT", nullable = true)
+    private String comment;
+
+    @Column(name = "REVIEW_DATE")
+    private @NonNull Date reviewDate;
 }
