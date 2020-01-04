@@ -60,7 +60,7 @@ public class StudentController {
         return studentRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/student/{nametitle_id}/{gender_id}/{fullname}/{province_id}/{address}/{username}/{password}")
+    @PostMapping("/student/{nametitle_id}/{gender_id}/{fullname}/{province_id}/{address}/{username}/{password}/{old}/{tel}/{email}")
     public Student newStudent(Student newStudent,
     @PathVariable long nametitle_id,
     @PathVariable long gender_id,
@@ -68,7 +68,10 @@ public class StudentController {
     @PathVariable long province_id,
     @PathVariable String address,
     @PathVariable String username,
-    @PathVariable String password) {
+    @PathVariable String password,
+    @PathVariable long old,
+    @PathVariable long tel,
+    @PathVariable String email) {
 
 
     Nametitle  nametitle = nametitleRepository.findById(nametitle_id);
@@ -82,6 +85,12 @@ public class StudentController {
     Province   province  = provinceRepository.findById(province_id);
     newStudent.setProvince(province);
 
+    newStudent.setOld(old);
+
+    newStudent.setTel(tel);
+
+    newStudent.setEmail(email);
+    
     newStudent.setAddress(address);
 
     newStudent.setUsername(username);
