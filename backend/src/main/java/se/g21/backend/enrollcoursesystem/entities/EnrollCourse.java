@@ -15,6 +15,8 @@ import se.g21.backend.studentsystem.entities.Student;
 
 import se.g21.backend.coursesystem.entities.Course;
 
+import java.util.Collection;
+import se.g21.backend.reviewcourse.entity.ReviewCourse;
 
 @Data
 @Entity
@@ -43,5 +45,6 @@ public class EnrollCourse {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
     private @NonNull LocalDateTime date;
 
-
+    @OneToMany(fetch = FetchType.LAZY)
+	private Collection<ReviewCourse> reviewCourse;
 }

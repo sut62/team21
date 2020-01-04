@@ -1,4 +1,4 @@
-package se.g21.backend.ReviewCourse.entity;
+package se.g21.backend.reviewcourse.entity;
 
 import lombok.*;
 import javax.persistence.Id;
@@ -13,6 +13,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+
+import se.g21.backend.enrollcoursesystem.entities.EnrollCourse;
 
 @Data
 @Entity
@@ -29,9 +31,9 @@ public class ReviewCourse {
     @Column(name = "REVIEW_ID", unique = true, nullable = true)
     private @NonNull Long id;
     
-    //wait for EnrollCourse Entity
-    @Column(name = "EnrollCourse_ID", nullable = true)
-    private String enrollCourse;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = EnrollCourse.class)
+    @JoinColumn(name = "EnrollCourse_ID", nullable = true)
+    private EnrollCourse enrollCourse;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Rating.class)
     @JoinColumn(name = "RATING_ID", insertable = true)

@@ -1,4 +1,4 @@
-package se.g21.backend.ReviewCourse.entity;
+package se.g21.backend.reviewcourse.entity;
 import lombok.*;
 import javax.persistence.Id;
 
@@ -30,7 +30,6 @@ public class Improvement {
 
     private @NonNull String improvementType;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    //mappedBy  = improvement"
+    @OneToMany(fetch = FetchType.LAZY)
     private Collection<ReviewCourse> reviewCourse;
 }
