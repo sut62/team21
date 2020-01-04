@@ -39,6 +39,18 @@ public class Student {
     @Column(name = "password")
     private @NonNull String password;
 
+    @Column(name = "Address")
+    private @NonNull String address;
+
+    @Column(name = "Old")
+    private @NonNull long old;
+
+    @Column(name = "Tel")
+    private @NonNull long tel;
+
+    @Column(name = "Email")
+    private @NonNull String email;
+
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Province.class)
     @JoinColumn(name = "Province_ID", insertable = true)
     private @NonNull Province province;
