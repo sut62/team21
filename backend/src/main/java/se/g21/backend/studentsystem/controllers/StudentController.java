@@ -1,4 +1,4 @@
-package se.g21.backend.StudentManagemenSystem.controller;
+package se.g21.backend.studentsystem.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,15 +21,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.net.URLDecoder;
 
-import se.g21.backend.StudentManagemenSystem.entity.StudentEntity;
-import se.g21.backend.employeesystem.entities.Nametitle;
-import se.g21.backend.employeesystem.entities.Gender;
-import se.g21.backend.employeesystem.entities.Province;
 
-import se.g21.backend.StudentManagemenSystem.repository.StudentRepository;
-import se.g21.backend.employeesystem.repository.GenderRepository;
-import se.g21.backend.employeesystem.repository.NametitleRepository;
-import se.g21.backend.employeesystem.repository.ProvinceRepository;
+import se.g21.backend.studentsystem.entities.*;
+import se.g21.backend.studentsystem.repository.*;
+
+import se.g21.backend.employeesystem.entities.*;
+import se.g21.backend.employeesystem.repository.*;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -46,8 +43,10 @@ public class StudentController {
     private NametitleRepository nametitleRepository;
 
 
-    StudentController(StudentRepository studentRepository, NametitleRepository nametitleRepository,
-                     GenderRepository genderRepository, ProvinceRepository provinceRepository) {
+    StudentController(StudentRepository studentRepository,
+                     NametitleRepository nametitleRepository,
+                     GenderRepository genderRepository,
+                     ProvinceRepository provinceRepository) {
 
         this.studentRepository = studentRepository;
         this.nametitleRepository = nametitleRepository;
@@ -56,41 +55,40 @@ public class StudentController {
 
     }
 
-    @GetMapping("/student")
-    public Collection<StudentEntity> Students() {
+    @GetMapping("/student/")
+    public Collection<Student> Students() {
         return studentRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/student/{nametitle_id}/{fullname}/{gender_id}/{old}/{province_id}/{address}/{tel}/{email}/{username}/{password}")
-    public StudentEntity newStudent(StudentEntity newStudent,
-    @PathVariable long gender_id,
-    @PathVariable long province_id,
+    @PostMapping("/student/{nametitle_id}/{gender_id}/{fullname}/{province_id}/{address}/{username}/{password}")
+    public Student newStudent(Student newStudent,
     @PathVariable long nametitle_id,
+    @PathVariable long gender_id,
     @PathVariable String fullname,
-    @PathVariable long old,
+    @PathVariable long province_id,
     @PathVariable String address,
-    @PathVariable String tel,
-    @PathVariable String email,
     @PathVariable String username,
     @PathVariable String password) {
 
-    Gender     gender    = genderRepository.findById(gender_id);
-    Province   province  = provinceRepository.findById(province_id);
-    Nametitle  nametitle = nametitleRepository.findById(nametitle_id);
 
-    newStudent.setGender(gender);
-    newStudent.setProvince(province);
+    Nametitle  nametitle = nametitleRepository.findById(nametitle_id);
     newStudent.setNametitle(nametitle);
+
+    Gender     gender    = genderRepository.findById(gender_id);
+    newStudent.setGender(gender);
+
     newStudent.setFullname(fullname);
-    newStudent.setOld(old);
+
+    Province   province  = provinceRepository.findById(province_id);
+    newStudent.setProvince(province);
+
     newStudent.setAddress(address);
-    newStudent.setTel(tel);
-    newStudent.setEmail(email);
+
     newStudent.setUsername(username);
+    
     newStudent.setPassword(password);
-    newStudent.setRegDate(new Date());
-    
-    return studentRepository.save(newStudent); 
-    
+
+    return studentRepository.save(newStudent);
+
     }
 }
