@@ -1,4 +1,4 @@
-package se.g21.backend.reviewcourse.entity;
+package se.g21.backend.reviewcourse.entities;
 import lombok.*;
 import javax.persistence.Id;
 
