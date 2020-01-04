@@ -48,7 +48,7 @@ public class Student {
     @Column(name = "Tel")
     private @NonNull long tel;
 
-    @Column(name = "Email")
+    @Column(name = "E-mail")
     private @NonNull String email;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Province.class)
