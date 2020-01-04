@@ -4,6 +4,7 @@ import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
@@ -12,9 +13,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import java.util.Date;
-import java.util.Optional;
 
+import java.util.Collection;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import se.g21.backend.coursesystem.entities.Course;
+import se.g21.backend.studentsystem.entities.Student;
+import se.g21.backend.enrollcoursesystem.entities.EnrollCourse;
 
 @Data
 @Entity
@@ -59,4 +63,12 @@ public class Employee {
 	@Column(name = "RecordDate")
 	private @NonNull Date recorddate;
 
+	@OneToMany(fetch = FetchType.LAZY)
+	private Collection<Course> course;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private Collection<Student> student;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private Collection<EnrollCourse> enrollCourse;
 }
