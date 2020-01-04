@@ -16,7 +16,7 @@ import se.g21.backend.studentsystem.entities.Student;
 import se.g21.backend.coursesystem.entities.Course;
 
 import java.util.Collection;
-import se.g21.backend.reviewcourse.entities.ReviewCourse;
+import se.g21.backend.reviewcoursesystem.entities.ReviewCourse;
 
 @Data
 @Entity
