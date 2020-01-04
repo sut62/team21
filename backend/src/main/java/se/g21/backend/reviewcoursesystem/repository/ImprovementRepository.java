@@ -1,5 +1,5 @@
-package se.g21.backend.reviewcourse.repository;
-import se.g21.backend.reviewcourse.entities.Improvement;
+package se.g21.backend.reviewcoursesystem.repository;
+import se.g21.backend.reviewcoursesystem.entities.Improvement;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
