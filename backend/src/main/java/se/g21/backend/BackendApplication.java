@@ -1,8 +1,13 @@
-package se.g21.backend;
+﻿package se.g21.backend;
 
 import se.g21.backend.employeesystem.controllers.*;
 import se.g21.backend.employeesystem.entities.*;
 import se.g21.backend.employeesystem.repository.*;
+
+//RecordExpense System
+import se.g21.backend.recordexpensesystem.controllers.*;
+import se.g21.backend.recordexpensesystem.entities.*;
+import se.g21.backend.recordexpensesystem.repository.*;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
@@ -35,9 +40,13 @@ public class BackendApplication {
 	}
 
 	@Bean
-	ApplicationRunner init(EmployeeRepository employeeRepository, PositionRepository positionRepository,
-			ProvinceRepository provinceRepository, GenderRepository genderRepository,
-			NametitleRepository nametitleRepository) {
+	ApplicationRunner init(EmployeeRepository employeeRepository, 
+				PositionRepository positionRepository,
+				ProvinceRepository provinceRepository, 
+				GenderRepository genderRepository,
+				NametitleRepository nametitleRepository,
+				RecordExpenseRepository recordexpenseRepository,
+				ExpenseTypeRepository expenseTypeRepository) {
 		return args -> {
 
 			Stream.of("นาย", "นางสาว", "นาง", "เด็กชาย", "เด็กหญิง").forEach(newnametitle -> {
@@ -96,6 +105,18 @@ public class BackendApplication {
 				employee.setRecorddate(new Date());
 				employeeRepository.save(employee);
 			}
+//RecordExpense System
+			String[] dataExpenseType = new String[]{
+				"รับเงินจากนักเรียน",
+				"จ่ายเงินให้พนักงาน"
+			};
+		 	for (int i = 0; i < dataExpenseType.length; i++){
+				ExpenseType expenseType = new ExpenseType();
+				expenseType.setType(dataExpenseType[0]);	
+				expenseTypeRepository.save(expenseType);		
+		 	}
+//End RecordExpense System
+
 		};
 	}
 
