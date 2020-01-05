@@ -26,7 +26,7 @@ public class Nametitle {
     @Column(name = "Nametitle")
     private @NonNull String nametitle;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private Collection<Employee> rec;
 
 }

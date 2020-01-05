@@ -29,7 +29,7 @@ public class Position {
     @Column(name = "Salary")
     private @NonNull Double salary;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private Collection<Employee> rec;
 
 }
