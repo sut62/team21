@@ -26,7 +26,7 @@ public class Gender {
     @Column(name = "Gender")
     private @NonNull String gender;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private Collection<Employee> rec;
 
 }
