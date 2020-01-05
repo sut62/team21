@@ -51,12 +51,15 @@ public class CourseController {
         return courseRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/course/{subjects_id}/{room_id}/{time_id}/{employee_id}")
+    @PostMapping("/course/{subjects_id}/{room_id}/{time_id}/{employee_id}/{price}/{course_name}")
     public Course newCourse(Course newCourse,
     @PathVariable long subjects_id,
     @PathVariable long room_id,
     @PathVariable long time_id,
-    @PathVariable long employee_id) {
+    @PathVariable long employee_id,
+    @PathVariable double price,
+    @PathVariable String course_name
+    ) {
 
     Subjects subjects = subjectsRepository.findById((int) subjects_id);
     newCourse.setSubjects(subjects);
@@ -69,6 +72,9 @@ public class CourseController {
 
     Employee employee = employeeRepository.findById((int) employee_id);
     newCourse.setEmployee(employee);
+    
+    newCourse.setPrice(price);
+    newCourse.setCourseName(course_name);
      
     return courseRepository.save(newCourse); 
     }
