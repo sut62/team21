@@ -16,7 +16,7 @@ public class Subjects {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Subjects_seq")
 	@Column(name="Subjects_ID",unique = true, nullable = true)
 	private @NonNull Long id;
-	private @NonNull String name;
+	private @NonNull String subjectsName;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<Course> course;

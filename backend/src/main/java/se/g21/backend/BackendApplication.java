@@ -208,7 +208,7 @@ public class BackendApplication {
 			};
 			for (int i = 0; i < dataRoom.length; i++){
 				Room room = new Room();
-				room.setName((String)dataRoom[i]);
+				room.setRoom((String)dataRoom[i]);
 				roomRepository.save(room);
 			}
 
@@ -219,7 +219,7 @@ public class BackendApplication {
 			};
 			for (int i = 0; i < dataSubjects.length; i++){
 				Subjects subjects = new Subjects();
-				subjects.setName((String)dataSubjects[i]);
+				subjects.setSubjectsName((String)dataSubjects[i]);
 				subjectsRepository.save(subjects);
 			}
 
@@ -275,35 +275,35 @@ public class BackendApplication {
 				courseRepository.save(course);
 			}
 
-			//EnrollCourse System
-			Object[][] dataEnrollCourse = new Object[][]{
-				{1,1,"2019-08-12 10:12:56",1},
-				{1,2,"2019-08-13 11:30:20",2},
-				{2,1,"2019-08-14 10:12:56",1},
-				{2,4,"2019-09-02 11:30:20",2},
-				{3,2,"2019-09-12 10:12:56",1},
-				{3,5,"2019-09-21 11:30:20",2}
-			};
+			// //EnrollCourse System
+			// Object[][] dataEnrollCourse = new Object[][]{
+			// 	{1,1,"2019-08-12 10:12:56",1},
+			// 	{1,2,"2019-08-13 11:30:20",2},
+			// 	{2,1,"2019-08-14 10:12:56",1},
+			// 	{2,4,"2019-09-02 11:30:20",2},
+			// 	{3,2,"2019-09-12 10:12:56",1},
+			// 	{3,5,"2019-09-21 11:30:20",2}
+			// };
 
-			for (int i = 0; i < dataEnrollCourse.length; i++){
-				EnrollCourse enrollCourse = new EnrollCourse();
+			// for (int i = 0; i < dataEnrollCourse.length; i++){
+			// 	EnrollCourse enrollCourse = new EnrollCourse();
 
-				Student student = studentRepository.findById((int) dataEnrollCourse[i][0]);
-				enrollCourse.setStudent(student);
+			// 	Student student = studentRepository.findById((int) dataEnrollCourse[i][0]);
+			// 	enrollCourse.setStudent(student);
 
-				Course course = courseRepository.findById((int) dataEnrollCourse[i][1]);
-				enrollCourse.setCourse(course);
+			// 	Course course = courseRepository.findById((int) dataEnrollCourse[i][1]);
+			// 	enrollCourse.setCourse(course);
 
 
-				DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-				LocalDateTime dataDate = LocalDateTime.parse((String)dataEnrollCourse[i][2],dateFormat);
-				enrollCourse.setDate(dataDate);
+			// 	DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			// 	LocalDateTime dataDate = LocalDateTime.parse((String)dataEnrollCourse[i][2],dateFormat);
+			// 	enrollCourse.setDate(dataDate);
 
-				Employee employee = employeeRepository.findById((int) dataEnrollCourse[i][3]);
-				enrollCourse.setEmployee(employee);
-				enrollCourseRepository.save(enrollCourse);
+			// 	Employee employee = employeeRepository.findById((int) dataEnrollCourse[i][3]);
+			// 	enrollCourse.setEmployee(employee);
+			// 	enrollCourseRepository.save(enrollCourse);
 
-			}
+			// }
 
 
 			//RecordExpense System

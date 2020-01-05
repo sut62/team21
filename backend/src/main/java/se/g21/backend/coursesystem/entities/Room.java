@@ -16,8 +16,9 @@ public class Room {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Room_seq")
 	@Column(name="Room_ID",unique = true, nullable = true)
 	private @NonNull Long id;
-	private @NonNull String name;
+	private @NonNull String room;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<Course> course;
+	
 }
