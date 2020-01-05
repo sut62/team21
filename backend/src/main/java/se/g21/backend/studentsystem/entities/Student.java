@@ -46,7 +46,7 @@ public class Student {
     private @NonNull long old;
 
     @Column(name = "Tel")
-    private @NonNull long tel;
+    private @NonNull String tel;
 
     @Column(name = "E-mail")
     private @NonNull String email;
