@@ -70,7 +70,7 @@ public class StudentController {
     @PathVariable String username,
     @PathVariable String password,
     @PathVariable long old,
-    @PathVariable long tel,
+    @PathVariable String tel,
     @PathVariable String email) {
 
 
