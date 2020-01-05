@@ -43,6 +43,10 @@ public class ReviewCourseController {
         this.improvementRepository = improvementRepository;
     }
 
+    @GetMapping("/reviewCourse/")
+    public Collection<ReviewCourse> ReviewCourse() {
+        return reviewCourseRepository.findAll().stream().collect(Collectors.toList());
+    }
 
     @PostMapping("/reviewCourse/{enrollCourse_id}/{rating_id}/{improvement_id}/{comment}")
     public ReviewCourse newReviewCourse(ReviewCourse newReviewCourse,
