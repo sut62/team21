@@ -85,7 +85,7 @@ public class StudentController {
     Province   province  = provinceRepository.findById(province_id);
     newStudent.setProvince(province);
 
-    newStudent.setOld(old);
+    newStudent.setOld((int)old);
 
     newStudent.setTel(tel);
 
