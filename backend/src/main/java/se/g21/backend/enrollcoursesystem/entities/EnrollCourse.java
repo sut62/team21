@@ -17,6 +17,7 @@ import se.g21.backend.coursesystem.entities.Course;
 
 import java.util.Collection;
 import se.g21.backend.reviewcoursesystem.entities.ReviewCourse;
+import se.g21.backend.recordexpensesystem.entities.RecordExpense;
 
 @Data
 @Entity
@@ -47,4 +48,7 @@ public class EnrollCourse {
 
     @OneToMany(fetch = FetchType.LAZY)
 	private Collection<ReviewCourse> reviewCourse;
+
+    @OneToMany(fetch = FetchType.LAZY)
+	private Collection<RecordExpense> recordExpense;
 }

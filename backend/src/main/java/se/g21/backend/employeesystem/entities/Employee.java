@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import se.g21.backend.coursesystem.entities.Course;
 import se.g21.backend.studentsystem.entities.Student;
 import se.g21.backend.enrollcoursesystem.entities.EnrollCourse;
+import se.g21.backend.recordexpensesystem.entities.RecordExpense;
 
 @Data
 @Entity
@@ -71,4 +72,7 @@ public class Employee {
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<EnrollCourse> enrollCourse;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private Collection<RecordExpense> recordExpense;
 }
