@@ -1,54 +1,131 @@
 <template>
   <v-container fluid>
     <v-hover v-slot:default="{ hover }">
-      <v-card width="600" :elevation="hover ? 12 : 5" style="margin: auto; margin-top: 50px;">
+      <v-card width="800" :elevation="hover ? 12 : 5" style="margin: auto; margin-top: 50px;">
         <v-app-bar dark color="light-blue lighten-1">
           <v-btn icon>
             <v-icon large>mdi-label</v-icon>
           </v-btn>
 
-          <v-toolbar-title>System From</v-toolbar-title>
+          <v-toolbar-title>ระบบจัดเก็บข้อมูลพนักงาน</v-toolbar-title>
 
           <v-spacer></v-spacer>
-
-          <v-btn icon>
-            <v-icon>mdi-dialpad</v-icon>
-          </v-btn>
         </v-app-bar>
 
-        <v-container style="margin-top: 50px; padding-bottom: 30px;">
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-text-field label="Outlined" outlined dense></v-text-field>
+        <v-container style>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col cols="4" style>
+              <v-select
+                item-text="nametitle"
+                item-value="id"
+                v-model="employee.nametitle"
+                :items="nametitle"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+                required
+                label="เลือกคำนำหน้าชื่อ"
+                outlined
+              ></v-select>
+            </v-col>
+            <v-col cols="8" style>
+              <v-text-field
+                v-model="employee.fullname"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="ชื่อ-นามสกุล"
+                outlined
+                dense
+              ></v-text-field>
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select :items="items2" label="Outlined style" outlined></v-select>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col cols="4">
+              <v-select
+                item-text="gender"
+                item-value="id"
+                v-model="employee.gender"
+                :items="gender"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+                required
+                label="เลือกเพศ"
+                outlined
+              ></v-select>
+            </v-col>
+            <v-col cols="8">
+              <v-select
+                item-text="position"
+                item-value="id"
+                v-model="employee.position"
+                :items="position"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+                required
+                label="เลือกตำแหน่งงาน"
+                outlined
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-text-field
+                v-model="employee.username"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="๊กรอก Username"
+                outlined
+                dense
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-text-field
+                v-model="employee.password"
+                :type="'password'"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="๊กรอก Password"
+                outlined
+                dense
+              ></v-text-field>
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select :items="items3" label="Outlined style" outlined></v-select>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-select
+                item-text="province"
+                item-value="id"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+                required
+                v-model="employee.province"
+                :items="province"
+                label="เลือกจังหวัด"
+                outlined
+              ></v-select>
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select :items="items3" label="Outlined style" outlined></v-select>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col cols style>
+              <v-text-field
+                v-model="employee.address"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="๊กรอกที่อยู่"
+                outlined
+                dense
+              ></v-text-field>
             </v-col>
           </v-row>
-
           <v-row>
             <v-btn
               style="margin: auto;"
               large
               color="light-blue lighten-1"
+              width="300"
               dark
-              @click="snackbar = true"
-            > SAVE FROM</v-btn>
+              @click="saveEmployee"
+            >บันทึก</v-btn>
           </v-row>
         </v-container>
       </v-card>
@@ -63,15 +140,114 @@
   </v-container>
 </template>
 <script>
+import http from "../../http-common";
 export default {
   name: "AddEmployee",
   data: () => ({
-    items1: ["Foo", "Bar", "Fizz", "Buzz"],
-    items2: ["Foo", "Bar", "Fizz", "Buzz"],
-    items3: ["Foo", "Bar", "Fizz", "Buzz"],
+    employee: {
+      nametitle: "",
+      fullname: "",
+      gender: "",
+      position: "",
+      province: "",
+      address: "",
+      username: "",
+      password: ""
+    },
+    nametitle: [],
+    gender: [],
+    position: [],
+    province: [],
     snackbar: false,
-    text: "OK !,Data has been saved successfully."
-  })
+    text: ""
+  }),
+  /* eslint-disable no-console */
+  methods: {
+    getNametitle() {
+      http
+        .get("/nametitle")
+        .then(response => {
+          this.nametitle = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    getGender() {
+      http
+        .get("/gender")
+        .then(response => {
+          this.gender = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    getProvince() {
+      http
+        .get("/province")
+        .then(response => {
+          this.province = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    getPosition() {
+      http
+        .get("/position")
+        .then(response => {
+          this.position = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    saveEmployee() {
+      // @PostMapping("/employee/{nametitle_id}/{fullname}/{gender_id}/{position_id}/{province_id}/{address}/{username}/{password}")
+      http
+        .post(
+          "/employee/" +
+            this.employee.nametitle +
+            "/" +
+            this.employee.fullname +
+            "/" +
+            this.employee.gender +
+            "/" +
+            this.employee.position +
+            "/" +
+            this.employee.province +
+            "/" +
+            this.employee.address +
+            "/" +
+            this.employee.username +
+            "/" +
+            this.employee.password,
+          this.employee
+        )
+        .then(response => {
+          console.log(response);
+          this.text = "บันทึกข้อมูลเสร็จสิ้น";
+          this.snackbar = true;
+          location.reload();
+        })
+        .catch(e => {
+          console.log(e);
+          this.text = "กรุณาป้อนข้อมูลให้ครบ";
+          this.snackbar = true;
+        });
+    }
+  },
+  mounted() {
+    this.getNametitle();
+    this.getGender();
+    this.getProvince();
+    this.getPosition();
+  }
 };
 </script>
 
