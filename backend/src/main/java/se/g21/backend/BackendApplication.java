@@ -1,14 +1,5 @@
 ﻿package se.g21.backend;
 
-import se.g21.backend.employeesystem.controllers.*;
-import se.g21.backend.employeesystem.entities.*;
-import se.g21.backend.employeesystem.repository.*;
-
-//RecordExpense System
-import se.g21.backend.recordexpensesystem.controllers.*;
-import se.g21.backend.recordexpensesystem.entities.*;
-import se.g21.backend.recordexpensesystem.repository.*;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import lombok.*;
 import java.util.stream.Stream;
 import java.util.Arrays;
 
@@ -28,9 +20,34 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import java.util.Collections;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import java.util.Date;
 import java.util.Optional;
+
+// import Employee system
+import se.g21.backend.employeesystem.entities.*;
+import se.g21.backend.employeesystem.repository.*;
+
+// import Student system
+import se.g21.backend.studentsystem.entities.*;
+import se.g21.backend.studentsystem.repository.*;
+
+// import Course system
+import se.g21.backend.coursesystem.entities.*;
+import se.g21.backend.coursesystem.repository.*;
+
+//EnrollCourse System
+import se.g21.backend.enrollcoursesystem.entities.*;
+import se.g21.backend.enrollcoursesystem.repository.*;
+
+//RecordExpense System
+import se.g21.backend.recordexpensesystem.entities.*;
+import se.g21.backend.recordexpensesystem.repository.*;
+
 
 @SpringBootApplication
 public class BackendApplication {
@@ -40,15 +57,23 @@ public class BackendApplication {
 	}
 
 	@Bean
-	ApplicationRunner init(EmployeeRepository employeeRepository, 
-				PositionRepository positionRepository,
-				ProvinceRepository provinceRepository, 
-				GenderRepository genderRepository,
-				NametitleRepository nametitleRepository,
-				RecordExpenseRepository recordexpenseRepository,
-				ExpenseTypeRepository expenseTypeRepository) {
+	ApplicationRunner init(
+		EmployeeRepository employeeRepository, // Employee system
+			PositionRepository positionRepository,
+			ProvinceRepository provinceRepository,
+			GenderRepository genderRepository,
+			NametitleRepository nametitleRepository,
+			StudentRepository studentRepository, // Student system
+			CourseRepository courseRepository, // Course system
+			RoomRepository roomRepository,
+			SubjectsRepository subjectsRepository,
+			TimeRepository timeRepository,
+			EnrollCourseRepository enrollCourseRepository, // EnrollCourse System
+			RecordExpenseRepository recordexpenseRepository,// RecordExpense System
+			ExpenseTypeRepository expenseTypeRepository) {
 		return args -> {
 
+			//Employee system
 			Stream.of("นาย", "นางสาว", "นาง", "เด็กชาย", "เด็กหญิง").forEach(newnametitle -> {
 				Nametitle nametitle = new Nametitle();
 				nametitle.setNametitle(newnametitle);
@@ -61,8 +86,12 @@ public class BackendApplication {
 				genderRepository.save(gender);
 			});
 
-			Object[][] positions = new Object[][] { { "พนักงานทำความสะอาด", 12000.01 },
-					{ "พนักงานเคาท์เตอร์", 18000.05 }, { "ผู้จัดการ", 36000.99 } };
+			Object[][] positions = new Object[][] {
+				{ "พนักงานทำความสะอาด", 12000.01 },
+				{ "พนักงานเคาท์เตอร์", 18000.05 },
+				{ "ผู้จัดการ", 36000.99 },
+				{ "ติวเตอร์", 25000.00 } };
+
 
 			for (int i = 0; i < positions.length; i++) {
 				Position position = new Position();
@@ -86,36 +115,198 @@ public class BackendApplication {
 						provinceRepository.save(province);
 					});
 
-			Object[][] user = new Object[][] { { 1, "พงศกร มาประโคน", 1, 3, 16, "อำเภอบ้านกรวด", "leo", "leo" }, };
+			Object[][] user = new Object[][] {
+				{ 1, 1,"emp001","emp001","123" ,3, 16, "อำเภอบ้านกรวด"},
+				{ 2, 2,"emp002","emp002","123",3, 18, "อำเภอโนนสูง" },
+				{ 1, 1,"tutor001","tutor001","123",4,  51 , "อำเภอบ้านบิน",  },
+				{ 2, 2,"tutor002", "tutor002","123",4, 45, "อำเภอบ้านอีสานนอก",},
+				{ 1, 1,"tutor003", "tutor003","123",4,  23, "อำเภอบ้านอีสานนอก" }
+			};
 
 			for (int i = 0; i < user.length; i++) {
+
 				Employee employee = new Employee();
+
 				Nametitle titleusing = nametitleRepository.findById((int) user[i][0]);
 				employee.setNametitle(titleusing);
-				employee.setFullname((String) user[i][1]);
-				Gender genderusing = genderRepository.findById((int) user[i][2]);
+
+				Gender genderusing = genderRepository.findById((int) user[i][1]);
 				employee.setGender(genderusing);
-				Position positionusing = positionRepository.findById((int) user[i][3]);
+
+
+				employee.setFullname((String) user[i][2]);
+
+				employee.setUsername((String) user[i][3]);
+
+				employee.setPassword((String) user[i][4]);
+
+				Position positionusing = positionRepository.findById((int) user[i][5]);
 				employee.setPosition(positionusing);
-				Province provinceusing = provinceRepository.findById((int) user[i][4]);
+
+				Province provinceusing = provinceRepository.findById((int) user[i][6]);
 				employee.setProvince(provinceusing);
-				employee.setAddress((String) user[i][5]);
-				employee.setUsername((String) user[i][6]);
-				employee.setPassword((String) user[i][7]);
+
+				employee.setAddress((String) user[i][7]);
+
 				employee.setRecorddate(new Date());
+
 				employeeRepository.save(employee);
 			}
-//RecordExpense System
+
+
+			//Student syatem
+			Object[][] dataStudent = new Object[][]{
+				{1,1,"Ornthiwa Jaruensuk","stu001","123","279 หอหัก KP Place หมู่10 ต.ลำเลียง อ.เวียงอิง  85110",19,"0902654562","newler53@gmail.com",23,1},
+				{1,1,"Wanchanachai Thiamphak","stu002","123","9 หอหัก QQplace หมู่3 ต.เวียงสาน อ.วานนา 30000",19,"0902654562","newsada53@gmail.com",55,1},
+				{1,1,"Woravit Kaewkongkat","stu003","123","13/2 หอหัก KD link หมู่9 ต.มหาหิง อ.กว 95810",19,"0902654562","g23ewwq@gmail.com",14,1}
+			};
+			for (int i = 0; i < dataStudent.length; i++){
+				Student student = new Student();
+
+				Nametitle nametitle = nametitleRepository.findById((int)dataStudent[i][0]);
+				student.setNametitle(nametitle);
+
+				Gender gender = genderRepository.findById((int) dataStudent[i][1]);
+				student.setGender(gender);
+
+				student.setFullname((String)dataStudent[i][2]);
+
+				student.setUsername((String)dataStudent[i][3]);
+
+				student.setPassword((String)dataStudent[i][4]);
+
+				student.setAddress((String)dataStudent[i][5]);
+
+				student.setOld((int)dataStudent[i][6]);
+
+				student.setTel((String)dataStudent[i][7]);
+
+				student.setEmail((String)dataStudent[i][8]);
+
+				Province province = provinceRepository.findById((int) dataStudent[i][9]);
+				student.setProvince(province);
+
+				Employee emp = employeeRepository.findById((int) dataStudent[i][10]);
+				student.setEmployee(emp);
+
+				studentRepository.save(student);
+			}
+
+
+			//Course system
+			Object[] dataRoom = new Object[]{
+				"R001","R002","R003","R004"
+			};
+			for (int i = 0; i < dataRoom.length; i++){
+				Room room = new Room();
+				room.setName((String)dataRoom[i]);
+				roomRepository.save(room);
+			}
+
+			Object[] dataSubjects = new Object[]{
+				"ภาษาไทย","สังคม","สุขศึกษา",
+				"ฟิสิกส์","เคมี","ชีววิทยา",
+				"คณิตศาสตร์","ภาษาอังกฤษ",
+			};
+			for (int i = 0; i < dataSubjects.length; i++){
+				Subjects subjects = new Subjects();
+				subjects.setName((String)dataSubjects[i]);
+				subjectsRepository.save(subjects);
+			}
+
+			Object[][] dataTime = new Object[][]{
+				{"จันทร์","16:00","18:00"},{"จันทร์","18:00","20:00"},{"จันทร์","20:00","22:00"},
+				{"อังคาร","16:00","18:00"},{"อังคาร","18:00","20:00"},{"อังคาร","20:00","22:00"},
+				{"พุธ","16:00","18:00"},{"พุธ","18:00","20:00"},{"พุธ","20:00","22:00"},
+				{"พฤหัสบดี","16:00","18:00"},{"พฤหัสบดี","18:00","20:00"},{"พฤหัสบดี","20:00","22:00"},
+				{"คุกร์","16:00","18:00"},{"คุกร์","18:00","20:00"},{"คุกร์","20:00","22:00"},
+				{"เสาร์","16:00","18:00"},{"เสาร์","18:00","20:00"},{"เสาร์","20:00","22:00"},
+				{"อาทิตย์","16:00","18:00"},{"อาทิตย์","18:00","20:00"},{"อาทิตย์","20:00","22:00"}
+
+			};
+			for (int i = 0; i < dataTime.length; i++){
+				Time time = new Time();
+				time.setDay((String)dataTime[i][0]);
+
+				LocalTime start_time =  LocalTime.parse((String)dataTime[i][1]);
+				LocalTime end_time =  LocalTime.parse((String)dataTime[i][2]);
+
+				time.setStart_time(start_time);
+				time.setEnd_time(end_time);
+
+				timeRepository.save(time);
+			}
+
+			Object[][] dataCourse = new Object[][]{
+				{"Course A",450.00,6,1,1,1},
+				{"Course B",500.00,1,1,5,1},
+				{"Course C",700.00,2,2,3,2},
+				{"Course D",900.00,3,2,4,3},
+				{"Course E",1000.00,4,3,6,2},
+				{"Course F",2000.00,5,4,10,1},
+			};
+			for (int i = 0; i < dataCourse.length; i++){
+				Course course = new Course();
+
+				course.setCourseName((String)dataCourse[i][0]);
+				course.setPrice((Double)dataCourse[i][1]);
+
+				Subjects subjects = subjectsRepository.findById((int) dataCourse[i][2]);
+				course.setSubjects(subjects);
+
+				Room room = roomRepository.findById((int) dataCourse[i][3]);
+				course.setRoom(room);
+
+				Time time = timeRepository.findById((int) dataCourse[i][4]);
+				course.setTime(time);
+
+				Employee employee = employeeRepository.findById((int) dataCourse[i][5]);
+				course.setEmployee(employee);
+
+				courseRepository.save(course);
+			}
+
+			//EnrollCourse System
+			Object[][] dataEnrollCourse = new Object[][]{
+				{1,1,"2019-08-12 10:12:56",1},
+				{1,2,"2019-08-13 11:30:20",2},
+				{2,1,"2019-08-14 10:12:56",1},
+				{2,4,"2019-09-02 11:30:20",2},
+				{3,2,"2019-09-12 10:12:56",1},
+				{3,5,"2019-09-21 11:30:20",2}
+			};
+
+			for (int i = 0; i < dataEnrollCourse.length; i++){
+				EnrollCourse enrollCourse = new EnrollCourse();
+
+				Student student = studentRepository.findById((int) dataEnrollCourse[i][0]);
+				enrollCourse.setStudent(student);
+
+				Course course = courseRepository.findById((int) dataEnrollCourse[i][1]);
+				enrollCourse.setCourse(course);
+
+
+				DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+				LocalDateTime dataDate = LocalDateTime.parse((String)dataEnrollCourse[i][2],dateFormat);
+				enrollCourse.setDate(dataDate);
+
+				Employee employee = employeeRepository.findById((int) dataEnrollCourse[i][3]);
+				enrollCourse.setEmployee(employee);
+				enrollCourseRepository.save(enrollCourse);
+
+			}
+
+
+			//RecordExpense System
 			String[] dataExpenseType = new String[]{
 				"รับเงินจากนักเรียน",
 				"จ่ายเงินให้พนักงาน"
 			};
 		 	for (int i = 0; i < dataExpenseType.length; i++){
 				ExpenseType expenseType = new ExpenseType();
-				expenseType.setType(dataExpenseType[0]);	
-				expenseTypeRepository.save(expenseType);		
+				expenseType.setType(dataExpenseType[0]);
+				expenseTypeRepository.save(expenseType);
 		 	}
-//End RecordExpense System
 
 		};
 	}
