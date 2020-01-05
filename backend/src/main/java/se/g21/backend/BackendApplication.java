@@ -1,4 +1,4 @@
-﻿package se.g21.backend;
+package se.g21.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
@@ -24,6 +24,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;  
 
 import java.util.Date;
 import java.util.Optional;
@@ -48,6 +49,10 @@ import se.g21.backend.enrollcoursesystem.repository.*;
 import se.g21.backend.recordexpensesystem.entities.*;
 import se.g21.backend.recordexpensesystem.repository.*;
 
+//Reviewcourse System
+import se.g21.backend.reviewcoursesystem.entities.*;
+import se.g21.backend.reviewcoursesystem.repository.*;
+
 
 @SpringBootApplication
 public class BackendApplication {
@@ -70,7 +75,11 @@ public class BackendApplication {
 			TimeRepository timeRepository,
 			EnrollCourseRepository enrollCourseRepository, // EnrollCourse System
 			RecordExpenseRepository recordexpenseRepository,// RecordExpense System
-			ExpenseTypeRepository expenseTypeRepository) {
+			ExpenseTypeRepository expenseTypeRepository,
+			RatingRepository ratingRepository, //ReviewCourse
+			ImprovementRepository improvementRepository,
+			ReviewCourseRepository reviewCourseRepository)
+			{
 		return args -> {
 
 			//Employee system
@@ -306,7 +315,60 @@ public class BackendApplication {
 				ExpenseType expenseType = new ExpenseType();
 				expenseType.setType(dataExpenseType[0]);
 				expenseTypeRepository.save(expenseType);
-		 	}
+			 }
+			 
+			 //ReviewCoursRepositorySystem
+			//Rating Entity
+			Object [] dataRating = new Object[]{
+				"มากที่สุด", "มาก", "ปานกลาง", "น้อย","น้อยที่สุด"
+			};
+			for (int i = 0; i < dataRating.length; i++){
+				Rating rating = new Rating();
+				rating.setRatingType((String)dataRating[i]);
+				ratingRepository.save(rating);
+			}
+
+			//Improvement Entity
+			Object [] dataImprovement = new Object[]{
+				"วิธีการสอน","หลักสูตรการสอน","ครูผู้สอน","สื่อที่ใช้ในกาเรียนการสอน"
+			};
+			for (int i = 0; i < dataImprovement.length; i++){
+				Improvement improvement =new Improvement();
+				improvement.setImprovementType((String)dataImprovement[i]);
+				improvementRepository.save(improvement);
+			}
+
+			//ReviewCourse Entiry
+			Object[][] dataReviewCourse = new Object[][]{
+				{1,1,1,"คนสอนหล่อมาก","2018-02-01 06:07:59"},
+				{2,2,2,"สอนอิหยังหนิ","2018-02-01 06:07:59"},
+				{3,3,3,"เดอะเบส","2018-02-01 06:07:59"}
+			};
+			for (int i =0;i < dataReviewCourse.length ; i++){
+				ReviewCourse reviewcourse = new ReviewCourse();
+
+				EnrollCourse enrollCourse = enrollCourseRepository.findById((int) dataReviewCourse[i][0]);
+				reviewcourse.setEnrollCourse(enrollCourse);
+
+				Rating rating = ratingRepository.findById((int) dataReviewCourse[i][1]);
+				reviewcourse.setRating(rating);
+				
+				Improvement improvement = improvementRepository.findById((int) dataReviewCourse[i][2]);
+				reviewcourse.setImprovement(improvement);
+
+				reviewcourse.setComment((String) dataReviewCourse[i][3]);
+
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date dateRec = new Date();
+                try {
+                    dateRec = formatter.parse((String)dataReviewCourse[i][4]);
+
+				} catch (Exception e) {}
+
+				reviewcourse.setReviewDate(dateRec);
+
+				reviewCourseRepository.save(reviewcourse);
+			}
 
 		};
 	}
