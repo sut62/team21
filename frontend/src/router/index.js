@@ -5,7 +5,7 @@ import Home from '../components/HomePages/Home';
 import AddEmployee from '../components/EmployeeManagementSystem/AddEmployee';
 import AddStudent from '../components/StudentManagemenSystem/AddStudent';
 import AddCourse from '../components/CourseManagementSystem/AddCourse';
-import CourseRegister from '../components/CourseRegistrationManagementSystem/CourseRegister';
+import AddEnrollCourse from '../components/EnrollCourseManagementSystem/AddEnrollCourse';  
 import StudentExpenses from '../components/ExpensesManagementSystem/StudentExpenses';
 import AddReviews from '../components/ReviewsManagementSystem/AddReviews';
 
@@ -31,8 +31,8 @@ export default new Router({
             component: AddCourse
         },
         {
-            path: '/CourseRegister',
-            component: CourseRegister
+            path: '/AddEnrollCourse',
+            component: AddEnrollCourse
         },
         {
             path: '/StudentExpenses',
