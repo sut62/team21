@@ -28,13 +28,9 @@
         <span class="mr-2">Reviews</span>
       </v-btn>
     </v-app-bar>
-    <v-row>
-      <v-col cols="">
         <v-content class="">
           <router-view />
         </v-content>
-      </v-col>
-    </v-row>
   </v-app>
 </template>
 <script>

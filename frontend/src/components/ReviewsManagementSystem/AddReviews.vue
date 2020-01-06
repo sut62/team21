@@ -1,89 +1,108 @@
-<template >
-  <v-container fluid class="background">
-    <v-hover v-slot:default="{ hover }" >
-      <v-card width="800" :elevation="hover ? 12 : 5" style="margin: auto;" >
-        <v-app-bar dark color="light-blue lighten-1" >
-          <v-icon large color="green darken-2" dark>mdi-message-text</v-icon>
-          <v-spacer></v-spacer>
+<template>
+  <div>
+    <v-container fluid class="background">
+      <v-hover v-slot:default="{ hover }" >
+        <v-card width="800" :elevation="hover ? 12 : 5" style="margin: auto;" >
+          <v-app-bar dark color="blue darken-2" >
+            <v-icon large color="white" dark>mdi-comment-plus</v-icon>
+            <v-spacer></v-spacer>
 
-          <v-toolbar-title>
-             <h1 class="font-weight-bold display-1 basil--text">รีวิวคอร์สเรียน</h1>
-          </v-toolbar-title>
+            <v-toolbar-title>
+              <h1 class="font-weight-bold display-1 basil--text">รีวิวคอร์สเรียน</h1>
+            </v-toolbar-title>
 
-          <v-spacer></v-spacer>
-          <v-icon large color="green darken-2" dark>mdi-message-text</v-icon>
-        </v-app-bar>
+            <v-spacer></v-spacer>
+            <v-icon large color="white" dark>mdi-message-text</v-icon>
+          </v-app-bar>
 
-        <v-container style="margin-top: 50px; padding-bottom: 30px;" >
+          <v-container style="margin-top: 30px; padding-bottom: 20px;" >
 
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select 
-              item-text="course.courseName"
-              item-value="id"
-              v-model="reviewCourse.enrollCourse"
-              :items="enrollCourses"
-              :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
-              required
-              label="เลือกคอร์สที่ท่านลงทะเบียนแล้ว เพื่อรีวิว" outlined></v-select>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select 
-              item-text="ratingType"
-              item-value="id"
-              v-model="reviewCourse.rating"
-              :items="ratings"
-              :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
-              required
-              label="เลือกระดับความพึงพอใจของท่าน" outlined></v-select>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select 
-              item-text="improvementType"
-              item-value="id"
-              v-model="reviewCourse.improvement"
-              :items="improvements"
-              :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
-              required
-              label="เลือกประเภทสิ่งที่อยากให้ปรับปรุง" outlined></v-select>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col md="8" style="margin: auto;">
-              <v-textarea
-                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+            <v-row>
+              <v-col cols="8" style="margin: auto;">
+                <v-select 
+                item-text="course.courseName"
+                item-value="id"
+                v-model="reviewCourse.enrollCourse"
+                :items="enrollCourses"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
                 required
-                v-model="reviewCourse.comment"
-                outlined
-                label="แสดงความคิดเห็นเพิ่มเติม"
-                dense
-              ></v-textarea>
-            </v-col>
+                label="เลือกคอร์สที่ท่านลงทะเบียนแล้ว เพื่อรีวิว" outlined></v-select>
+              </v-col>
+            </v-row>
 
-          </v-row>  
+            <v-row>
+              <v-col cols="8" style="margin: auto;">
+                <v-select 
+                item-text="ratingType"
+                item-value="id"
+                v-model="reviewCourse.rating"
+                :items="ratings"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+                required
+                label="เลือกระดับความพึงพอใจของท่าน" outlined></v-select>
+              </v-col>
+            </v-row>
 
-          <v-row>
-            <v-btn
-              style="margin: auto;"
-              large
-              color="orange darken-2"
-              dark
-              @click="saveReviewCourse"
-            > บันทึกการรีวิว</v-btn>
-          </v-row>
+            <v-row>
+              <v-col cols="8" style="margin: auto;">
+                <v-select 
+                item-text="improvementType"
+                item-value="id"
+                v-model="reviewCourse.improvement"
+                :items="improvements"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+                required
+                label="เลือกประเภทสิ่งที่อยากให้ปรับปรุง" outlined></v-select>
+              </v-col>
+            </v-row>
 
-          
-        </v-container>
-      </v-card>
-    </v-hover>
-  </v-container>
+            <v-row>
+              <v-col md="8" style="margin: auto;">
+                <v-textarea
+                  :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                  required
+                  v-model="reviewCourse.comment"
+                  outlined
+                  label="แสดงความคิดเห็นเพิ่มเติม"
+                  dense
+                ></v-textarea>
+              </v-col>
+
+            </v-row>  
+
+            <v-row>
+              <v-btn
+                style="margin: auto;"
+                large
+                color="orange darken-2"
+                dark
+                @click="saveReviewCourse"
+              > บันทึกการรีวิว</v-btn>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-hover>  
+    </v-container>
+    <!-- footer -->
+    <v-footer
+      padless
+    >
+      <v-row
+        justify="center"
+        no-gutters
+      >
+        <v-col
+          class="primary lighten-2 py-4 text-center white--text"
+          cols="blue darken-2"
+        >
+          <v-icon color="white" dark>mdi-email</v-icon> 
+          <strong> Contact Us : thetutor.contact@mono.co.th </strong>
+          <v-icon color="white" dark>mdi-phone</v-icon>
+          <strong> Call : 061-098-6644 </strong>
+        </v-col>
+      </v-row>
+    </v-footer>
+  </div>
 </template>
 
 
@@ -167,21 +186,17 @@ export default {
     this.getEnrollCourses();
     this.getRatings();
     this.getImprovements();
-
-
   }
 };
 </script>
 
 <style scoped lang="scss">
 .background {
-  height: 100%;
   background-image: url('image1.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 100%;
+  margin: 0px;
   background-size: cover;
-  top: 0;
-  left: 0;
+  background-attachment: fixed;
 }
 </style>
 
