@@ -260,8 +260,8 @@ export default {
       for (let elem in this.courses) {
           if(this.courses[elem].id == this.enroll.course_id){
             this.courseDetail.tutur = this.courses[elem].employee.fullname;
-            this.courseDetail.subjects = this.courses[elem].subjects.name;
-            this.courseDetail.room = this.courses[elem].room.name;
+            this.courseDetail.subjects = this.courses[elem].subjects.subjectsName;
+            this.courseDetail.room = this.courses[elem].room.room;
             this.courseDetail.studyTime = 
                                   this.courses[elem].time.day + " " +
                                   this.courses[elem].time.start_time+" - "+

@@ -250,12 +250,12 @@ public class BackendApplication {
 			}
 
 			Object[][] dataCourse = new Object[][]{
-				{"Course A",450.00,6,1,1,1},
-				{"Course B",500.00,1,1,5,1},
-				{"Course C",700.00,2,2,3,2},
-				{"Course D",900.00,3,2,4,3},
-				{"Course E",1000.00,4,3,6,2},
-				{"Course F",2000.00,5,4,10,1},
+				{"Course A",450.00,6,1,1,6},
+				{"Course B",500.00,1,1,5,6},
+				{"Course C",700.00,2,2,3,7},
+				{"Course D",900.00,3,2,4,7},
+				{"Course E",1000.00,4,3,6,8},
+				{"Course F",2000.00,5,4,10,8},
 			};
 			for (int i = 0; i < dataCourse.length; i++){
 				Course course = new Course();
