@@ -23,10 +23,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//import se.g21.backend.employeesystem.entities.Employee;
-//import se.g21.backend.employeesystem.repository.EmployeeRepository;
-//import se.g21.backend.EnrollCourseSystem.entities.EnrollCourse;
-//import se.g21.backend.EnrollCourseSystem.repository.EnrollCourseRepository;
+import java.time.LocalDateTime; 
+import java.time.format.DateTimeFormatter;
+
+import se.g21.backend.employeesystem.entities.Employee;
+import se.g21.backend.employeesystem.repository.EmployeeRepository;
+import se.g21.backend.enrollcoursesystem.entities.EnrollCourse;
+import se.g21.backend.enrollcoursesystem.repository.EnrollCourseRepository;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -36,20 +39,20 @@ public class RecordExpenseController{
     private final RecordExpenseRepository recordExpenseRepository;
     @Autowired
     private ExpenseTypeRepository expenseTypeRepository;
-    // @Autowired
-    // private employeeRepository employeeRepository;
-    // @Autowired
-    // private EnrollCourseRepository enrollCourseRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private EnrollCourseRepository enrollCourseRepository;
 
-    RecordExpenseController(RecordExpenseRepository recordExpenseRepository,
-                                //employeeRepository employeeRepository,
-                                ExpenseTypeRepository expenseTypeRepository
-                                //EnrollCourseRepository enrollCourseRepository
+    RecordExpenseController(RecordExpenseRepository recordExpenseRepository,                            
+                                ExpenseTypeRepository expenseTypeRepository,
+                                EmployeeRepository employeeRepository,
+                                EnrollCourseRepository enrollCourseRepository
                                 ) {
         this.recordExpenseRepository = recordExpenseRepository;
-        //this.employeeRepository = employeeRepository;
         this.expenseTypeRepository = expenseTypeRepository;
-        //this.enrollCourseRepository = enrollCourseRepository;
+        this.employeeRepository = employeeRepository;
+        this.enrollCourseRepository = enrollCourseRepository;
     }
 
     @GetMapping("/recordExpense")
@@ -57,22 +60,58 @@ public class RecordExpenseController{
         return recordExpenseRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/recordExpense/{budget}/{expenseType_id}")
-    public RecordExpense SaveRecordExpense(RecordExpense newRecordExpense,
+    @PostMapping("/recordExpenseStudent/{expenseType_id}/{enrollCourse_id}/{budget}/{createdDate}/{createdBy_id}")
+    public RecordExpense SaveRecordExpenseStudent(RecordExpense newRecordExpense,
+                                            @PathVariable long expenseType_id,
+                                            @PathVariable long enrollCourse_id,
                                             @PathVariable Double budget,
-                                            //@PathVariable long employee_id,
-                                            @PathVariable long expenseType_id
-                                           // @PathVariable long enrollCourse_id
-                                            ){
-
-        //Employee employee = employeeRepository.findById(employee_id);
+                                            @PathVariable String createdDate,
+                                            @PathVariable long createdBy_id
+                                            
+                                            ){ 
+        
         ExpenseType expenseType = expenseTypeRepository.findById(expenseType_id);
-        //EnrollCourse enrollCourse = enrollCourseRepository.findById(enrollCourse_id);
+        newRecordExpense.setExpenseType(expenseType);
+
+        EnrollCourse enrollCourse = enrollCourseRepository.findById(enrollCourse_id);
+        newRecordExpense.setEnrollCourse(enrollCourse);
+ 
+        newRecordExpense.setBudget((Double)budget);
+        
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime date = LocalDateTime.parse((String)createdDate,dateFormat);
+        newRecordExpense.setDate(date);
+        
+        Employee createdBy = employeeRepository.findById(createdBy_id);
+        newRecordExpense.setCreatedBy(createdBy);
+                                                
+        return recordExpenseRepository.save(newRecordExpense);
+    }
+
+    @PostMapping("/recordExpenseEmployee/{expenseType_id}/{employee_id}//{budget}/{createdDate}/{createdBy_id}")
+    public RecordExpense SaveRecordExpenseEmployee(RecordExpense newRecordExpense,
+                                            @PathVariable long expenseType_id,
+                                            @PathVariable long employee_id,   
+                                            @PathVariable Double budget,
+                                            @PathVariable String createdDate,
+                                            @PathVariable long createdBy_id
+                                            
+                                            ){
+        
+        ExpenseType expenseType = expenseTypeRepository.findById(expenseType_id);
+        newRecordExpense.setExpenseType(expenseType);
+        
+        Employee rec = employeeRepository.findById(employee_id);
+        newRecordExpense.setRec(rec);   
 
         newRecordExpense.setBudget((Double)budget);
-        //newRecordExpense.setEmployee(employee);
-        newRecordExpense.setExpenseType(expenseType);
-        //newRecordExpense.setEnrollCourse(enrollCourse);
+        
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime date = LocalDateTime.parse((String)createdDate,dateFormat);
+        newRecordExpense.setDate(date);
+        
+        Employee createdBy = employeeRepository.findById(createdBy_id);
+        newRecordExpense.setCreatedBy(createdBy);
 
         return recordExpenseRepository.save(newRecordExpense);
     }
