@@ -21,8 +21,8 @@
       <v-btn @click="EnrollCourse">
         <span class="mr-2">Enroll Course</span>
       </v-btn>
-      <v-btn @click="Expenses">
-        <span class="mr-2">Expenses</span>
+      <v-btn @click="RecordExpense">
+        <span class="mr-2">RecordExpense</span>
       </v-btn>
       <v-btn @click="Reviews">
         <span class="mr-2">Reviews</span>
@@ -61,8 +61,8 @@ export default {
     EnrollCourse() {
       this.$router.push("/AddEnrollCourse");
     },
-    Expenses() {
-      this.$router.push("/StudentExpenses");
+    RecordExpense() {
+      this.$router.push("/RecordExpense");
     },
     Reviews() {
       this.$router.push("/AddReviews");
