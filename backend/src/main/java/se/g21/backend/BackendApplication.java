@@ -316,7 +316,7 @@ public class BackendApplication {
 			};
 		 	for (int i = 0; i < dataExpenseType.length; i++){
 				ExpenseType expenseType = new ExpenseType();
-				expenseType.setType(dataExpenseType[0]);
+				expenseType.setType(dataExpenseType[i]);
 				expenseTypeRepository.save(expenseType);
 			 }
 			 
