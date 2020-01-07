@@ -40,4 +40,8 @@ public class RecordExpense {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
     private @NonNull LocalDateTime date;
 
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
+    @JoinColumn(name = "CREATEDBY", insertable = true)
+    private Employee createdBy;
+
 }
