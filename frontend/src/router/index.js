@@ -6,7 +6,7 @@ import AddEmployee from '../components/EmployeeManagementSystem/AddEmployee';
 import AddStudent from '../components/StudentManagemenSystem/AddStudent';
 import AddCourse from '../components/CourseManagementSystem/AddCourse';
 import AddEnrollCourse from '../components/EnrollCourseManagementSystem/AddEnrollCourse';  
-import StudentExpenses from '../components/ExpensesManagementSystem/StudentExpenses';
+import RecordExpense from '../components/RecordExpenseSystem/RecordExpense';
 import AddReviews from '../components/ReviewsManagementSystem/AddReviews';
 
 Vue.use(Router);
@@ -35,8 +35,8 @@ export default new Router({
             component: AddEnrollCourse
         },
         {
-            path: '/StudentExpenses',
-            component: StudentExpenses
+            path: '/RecordExpense',
+            component: RecordExpense
         },
         {
             path: '/AddReviews',
