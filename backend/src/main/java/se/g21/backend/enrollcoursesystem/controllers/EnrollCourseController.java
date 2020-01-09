@@ -33,6 +33,9 @@ public class EnrollCourseController {
 
     @Autowired
     private  CourseRepository courseRepository;
+    
+    @Autowired
+    ComputerRepository computerRepository;
 
     @Autowired
     private  EmployeeRepository employeeRepository;
@@ -41,12 +44,14 @@ public class EnrollCourseController {
         EnrollCourseRepository enrollCourseRepository ,
         StudentRepository studentRepository ,
         CourseRepository courseRepository ,
+        ComputerRepository computerRepository,
         EmployeeRepository employeeRepository 
         ) {
-
+        
         this.enrollCourseRepository = enrollCourseRepository;
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
+        this.computerRepository = computerRepository;
         this.employeeRepository = employeeRepository;
     }
 
@@ -55,10 +60,11 @@ public class EnrollCourseController {
         return enrollCourseRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/enrollCourse/{student_id}/{course_id}/{dateTime}/{employee_id}")
+    @PostMapping("/enrollCourse/{student_id}/{course_id}/{computer_id}/{dateTime}/{employee_id}")
     public EnrollCourse newEnrollCourse(EnrollCourse newEnrollCourse,
     @PathVariable long student_id,
     @PathVariable long course_id,
+    @PathVariable long computer_id,
     @PathVariable String dateTime,
     @PathVariable long employee_id) {
 
@@ -67,6 +73,9 @@ public class EnrollCourseController {
 
         Course course = courseRepository.findById(course_id);
         newEnrollCourse.setCourse(course);
+
+        Computer computer = computerRepository.findById(computer_id);
+		newEnrollCourse.setComputer(computer);
 
         
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
