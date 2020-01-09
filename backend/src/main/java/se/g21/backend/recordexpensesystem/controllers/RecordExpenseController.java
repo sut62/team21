@@ -88,7 +88,7 @@ public class RecordExpenseController{
         return recordExpenseRepository.save(newRecordExpense);
     }
 
-    @PostMapping("/recordExpenseEmployee/{expenseType_id}/{employee_id}//{budget}/{createdDate}/{createdBy_id}")
+    @PostMapping("/recordExpenseEmployee/{expenseType_id}/{employee_id}/{budget}/{createdDate}/{createdBy_id}")
     public RecordExpense SaveRecordExpenseEmployee(RecordExpense newRecordExpense,
                                             @PathVariable long expenseType_id,
                                             @PathVariable long employee_id,   
