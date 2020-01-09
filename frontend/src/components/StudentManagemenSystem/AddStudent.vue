@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <v-hover v-slot:default="{ hover }">
-      <v-card width="600" :elevation="hover ? 12 : 5" style="margin: auto; margin-top: 50px;">
-        <v-app-bar dark color="light-blue lighten-1">
+      <v-card width="800" :elevation="hover ? 12 : 5">
+        <v-app-bar dark color="blue darken-2">
           <v-btn icon>
             <v-icon large>mdi-label</v-icon>
           </v-btn>
@@ -10,149 +10,179 @@
           <v-toolbar-title>สมัครสมาชิก</v-toolbar-title>
 
           <v-spacer></v-spacer>
-
-          <v-btn icon>
-            <v-icon>mdi-dialpad</v-icon>
-          </v-btn>
         </v-app-bar>
 
-        <v-container style="margin-top: 50px; padding-bottom: 30px;">
-
-          <v-row>
-
-            <v-col cols="8" style="margin: auto;">
-              <v-text-field 
-              v-model="student.username"
-              :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
-                required 
-              label="กรอกUsername" outlined dense></v-text-field>
-            </v-col>
-
-          </v-row>
-
-          <v-row>
-
-            <v-col cols="8" style="margin: auto;">
-              <v-text-field 
-              v-model="student.password" :type="'password'"
-              :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
-                required 
-              label="กรอกPassword" outlined dense></v-text-field>
-            </v-col>
-
-          </v-row>
-
-          <v-row>
-
-            <v-col cols="3" style="margin: auto;">
-              <v-select 
-              v-model="student.nametitleId"
-              :items="nametitles" 
-              item-text="nametitle"
-              item-value="id"
-              :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+        <v-container style>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col cols="4" style>
+              <v-select
+                item-text="nametitle"
+                item-value="id"
+                v-model="student.nametitleId"
+                :items="nametitles"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
                 required
-              label="คำนำหน้าชื่อ" outlined></v-select>
+                label="เลือกคำนำหน้าชื่อ"
+                outlined
+              ></v-select>
             </v-col>
-
-            <v-col cols="8" style="margin: auto;">
-              <v-text-field 
-              v-model="student.fullname" 
-              :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
-                required 
-              label="กรอกชื่อ-นามสกุล" outlined dense></v-text-field>
-            </v-col>
-
-          </v-row>
-
-          <v-row>
-
-            <v-col cols="3" style="margin: auto;">
-              <v-select v-model="student.genderId"
-              :items="genders" 
-              item-text="gender"
-              item-value="id"
-              :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+            <v-col cols="8" style>
+              <v-text-field
+                v-model="student.fullname"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
-              label="เพศ" outlined></v-select>
-            </v-col>
-
-            <v-col cols="8" style="margin: auto;">
-              <v-text-field 
-              v-model="student.tel" 
-              :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
-                required 
-              label="เบอรโทรติดต่อ" outlined dense></v-text-field>
-            </v-col>
-
-          </v-row>
-
-           <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-text-field v-model="student.old"
-              :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
-                required 
-              label="กรอกอายุ" outlined dense></v-text-field>
+                label="ชื่อ-นามสกุล"
+                outlined
+                dense
+              ></v-text-field>
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-text-field v-model="student.email"
-              :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
-                required 
-              label="E-Mail" outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select v-model="student.provinceId" 
-              :items="provinces"
-               item-text="province"
-               item-value="id"
-               :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col cols="4">
+              <v-select
+                item-text="gender"
+                item-value="id"
+                v-model="student.genderId"
+                :items="genders"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
                 required
-               label="จังหวัด" outlined></v-select>
+                label="เลือกเพศ"
+                outlined
+              ></v-select>
+            </v-col>
+
+            <v-col cols="8">
+              <v-text-field
+                v-model="student.old"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="กรอกอายุ"
+                outlined
+                dense
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-text-field
+                v-model="student.username"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="๊กรอก Username"
+                outlined
+                dense
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-text-field
+                v-model="student.password"
+                :type="'password'"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="๊กรอก Password"
+                outlined
+                dense
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-select
+                item-text="province"
+                item-value="id"
+                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
+                required
+                v-model="student.provinceId"
+                :items="provinces"
+                label="เลือกจังหวัด"
+                outlined
+              ></v-select>
+            </v-col>
+          </v-row>
+
+          
+
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-text-field
+                v-model="student.tel"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="กรอกเบอร์โทร"
+                outlined
+                dense
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-text-field
+                v-model="student.email"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="กรอกอีเมล"
+                outlined
+                dense
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row md="8" style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-textarea
+                v-model="student.address"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="กรอกที่อยู่"
+                outlined
+                dense
+              ></v-textarea>
+            </v-col>
+          </v-row>
+
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-select
+                disabled
+                v-model="student.employee_id"
+                :items="employees"
+                item-text="fullname"
+                item-value="id"
+                label="CreatedBy"
+                outlined
+              ></v-select>
             </v-col>
           </v-row>
 
           <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-text-field v-model="student.address" 
-              :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
-                required 
-              label="กรอกที่อยู่เพิ่มเติม" outlined dense></v-text-field>
-            </v-col>
-          </v-row>
-
-         <v-row>
             <v-btn
               style="margin: auto;"
               large
-              color="light-blue lighten-1"
+              color="blue darken-2"
               width="300"
               dark
               @click="saveStudent"
             >บันทึก</v-btn>
           </v-row>
-
-          
         </v-container>
       </v-card>
     </v-hover>
 
-      <v-row>
+    <v-row>
       <v-snackbar v-model="snackbar">
         {{ text }}
         <v-btn color="pink" text @click="snackbar = false">Close</v-btn>
       </v-snackbar>
     </v-row>
-   
   </v-container>
 </template>
-<script>
 
+<script>
 import http from "../../http-common";
 
 export default {
@@ -169,22 +199,21 @@ export default {
         nametitleId: "",
         username: "",
         password: "",
-        provinceId: ""
-        
+        provinceId: "",
+        employee_id: ""
       },
       items: [],
-      valid : false,
-      genders : [],
-      nametitles : [],
-      provinces : [],
+      valid: false,
+      employees: [],
+      genders: [],
+      nametitles: [],
+      provinces: [],
       snackbar: false,
-    text: ""
+      text: ""
     };
   },
   methods: {
     /* eslint-disable no-console */
-
-  
     getGenders() {
       http
         .get("/gender")
@@ -196,7 +225,7 @@ export default {
           console.log(e);
         });
     },
-  
+
     getNametitles() {
       http
         .get("/nametitle")
@@ -208,7 +237,7 @@ export default {
           console.log(e);
         });
     },
- 
+
     getProvinces() {
       http
         .get("/province")
@@ -220,10 +249,8 @@ export default {
           console.log(e);
         });
     },
-    
-   
+
     saveStudent() {
-    
       http
         .post(
           "/student/" +
@@ -245,24 +272,23 @@ export default {
             "/" +
             this.student.tel +
             "/" +
-            this.student.email,
-            this.student
+            this.student.email +
+            "/" +
+            this.student.employee_id,
+          this.student
         )
         .then(response => {
           console.log(response);
           this.text = "บันทึกข้อมูลเสร็จสิ้น";
           this.snackbar = true;
           location.reload();
-       
         })
         .catch(e => {
           console.log(e);
           this.text = "กรุณาป้อนข้อมูลให้ครบ";
           this.snackbar = true;
-         
         });
       this.submitted = true;
-    
     },
 
     clear() {
@@ -273,15 +299,28 @@ export default {
       this.getGenders();
       this.getNametitles();
       this.getProvinces();
+    },
+    getEmployees() {
+      http
+        .get("/employee")
+        .then(response => {
+          this.employees = response.data;
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    setCreatedBy() {
+      this.student.employee_id = this.$session.get("userId");
     }
     /* eslint-enable no-console */
   },
   mounted() {
+    this.setCreatedBy();
+    this.getEmployees();
     this.getGenders();
     this.getNametitles();
     this.getProvinces();
   }
 };
-
 </script>
-
