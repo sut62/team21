@@ -281,7 +281,7 @@ public class BackendApplication {
 			Object[][] dataEnrollCourse = new Object[][] { { 1, 1, 1, "2019-08-12 10:12:56", 3 },
 					{ 1, 2, 15, "2019-08-13 11:30:20", 4 }, { 2, 3, 22, "2019-08-14 10:12:56", 3 },
 					{ 2, 4, 39, "2019-09-02 11:30:20", 4 }, { 3, 4, 40, "2019-09-12 10:12:56", 4 },
-					{ 3, 5, 45, "2019-09-21 11:30:20", 3 } };
+				 };
 
 			for (int i = 0; i < dataEnrollCourse.length; i++) {
 				EnrollCourse enrollCourse = new EnrollCourse();
