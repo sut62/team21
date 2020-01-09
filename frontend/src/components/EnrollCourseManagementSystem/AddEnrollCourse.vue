@@ -1,136 +1,312 @@
 <template>
   <v-container fluid>
     <v-hover v-slot:default="{ hover }">
-      <v-card width="600" :elevation="hover ? 12 : 5" style="margin: auto; margin-top: 50px;">
-        <v-app-bar dark color="light-blue lighten-1">
+      <v-card width="600" :elevation="hover ? 12 : 5">
+        <v-app-bar dark color="#1A76D2">
           <v-btn icon>
             <v-icon large>mdi-label</v-icon>
           </v-btn>
 
-          <v-toolbar-title>Enroll Course</v-toolbar-title>
+          <v-toolbar-title>ลงทะเบียนเรียน</v-toolbar-title>
 
           <v-spacer></v-spacer>
-
-          <v-btn icon>
-            <v-icon>mdi-dialpad</v-icon>
-          </v-btn>
         </v-app-bar>
 
         <v-container style="margin-top: 50px; padding-bottom: 30px;">
-
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-select v-model="enroll.students_id" :items="students" item-text="fullname" item-value="id" label="students name" @change="setCourse" outlined></v-select>
-              <span v-if="errorStudents" style="margin-left: 30px; color: red;">You have not selected combobox students.</span>
-              
+              <v-select
+                v-model="enroll.students_id"
+                :items="students"
+                item-text="fullname"
+                item-value="id"
+                label="เลือกชื่อนักเรียน"
+                @change="setCourse"
+                outlined
+              ></v-select>
+              <span
+                v-if="errorStudents"
+                style="margin-left: 30px; color: red;"
+              >คุณยังไม่ได้เลือก combobox นักเรียน</span>
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-                <v-select v-model="enroll.course_id" :items="courses" item-text="courseName" item-value="id" label="course name" @change="getSetCourseDetail" outlined></v-select>
-                <span v-if="errorCourse" style="margin-left: 30px; color: red;">You have not selected combobox course.</span>
+              <v-select
+                v-model="enroll.course_id"
+                :items="courses"
+                item-text="courseName"
+                item-value="id"
+                label="ชื่อคอร์ส"
+                @change="getCourseDetail"
+                outlined
+              ></v-select>
+              <span
+                v-if="errorCourse"
+                style="margin-left: 30px; color: red;"
+              >คุณยังไม่ได้เลือก combobox คอร์ส</span>
 
-                <div v-if="showDetail" style="margin-left: 30px;">
-                  <h2>#Course Detail</h2>
-                  <h4>Tutur: {{courseDetail.tutur}}</h4>
-                  <h4>Room: {{courseDetail.room}}</h4>
-                  <h4>Subjects: {{courseDetail.subjects}}</h4>
-                  <h4>StudyTime: {{courseDetail.studyTime}}</h4>
-                  <h4>Price: {{courseDetail.price}}</h4>
-                </div>
+              <div v-if="showDetail" style="margin-left: 30px;">
+                <h2>#รายละเอียด คอร์ส</h2>
+                <h4>ติวเตอร์: {{courseDetail.tutur}}</h4>
+                <h4>ห้องเรียน: {{courseDetail.room}}</h4>
+                <h4>วิชา: {{courseDetail.subjects}}</h4>
+                <h4>เวลาเรียน: {{courseDetail.studyTime}}</h4>
+                <h4>ราคาคอร์ส: {{courseDetail.price}}</h4>
+              </div>
             </v-col>
-
           </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field v-model="enroll.dateTime"  label="date time" outlined></v-text-field>
+              <v-select
+                v-model="enroll.computer_id"
+                :items="computers"
+                item-text="pcNumber"
+                item-value="id"
+                label="เลขที่นั่งคอมพิวเตอร์"
+                @change="errorComputer = false"
+                outlined
+              ></v-select>
+              <span
+                v-if="errorComputer"
+                style="margin-left: 30px; color: red;"
+              >คุณยังไม่ได้เลือก combobox ที่นั่งคอมพิวเตอร์</span>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols="8" style="margin: auto;">
+              <v-text-field v-model="enroll.dateTime" label="วันเวลาปัจจุปัน" outlined></v-text-field>
               <!-- disabled -->
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-select v-model="enroll.employee_id" :items="employees" item-text="fullname" item-value="id" label="employees name" @change="errorEmployee = false" outlined></v-select>
-              <span v-if="errorEmployee" style="margin-left: 30px; color: red;">You have not selected combobox employee.</span>
+              <v-select
+                disabled
+                v-model="enroll.employee_id"
+                :items="employees"
+                item-text="fullname"
+                item-value="id"
+                label="พนักงานที่บันทึก"
+                @change="errorEmployee = false"
+                outlined
+              ></v-select>
+              <span
+                v-if="errorEmployee"
+                style="margin-left: 30px; color: red;"
+              >คุณยังไม่ได้เลือก combobox พนักงานที่บันทึก</span>
             </v-col>
           </v-row>
-       
+
           <v-row>
-            <v-btn
-              style="margin: auto;"
-              large
-              color="light-blue lighten-1"
-              dark
-              @click="chackList"
-            > Enroll </v-btn>
+            <v-btn style="margin: auto;" large color="#1A76D2" dark @click="chackList">Enroll</v-btn>
           </v-row>
         </v-container>
       </v-card>
     </v-hover>
 
-    <v-row>
-      <v-snackbar v-model="snackbar">
-        {{ text }}
-        <v-btn color="pink" text @click="snackbar = false">Close</v-btn>
-        <v-btn color="blue" text @click="reloadPage">Ok</v-btn>
-      </v-snackbar>
-    </v-row>
+    <!-- popup Success -->
+
+    <template>
+      <v-row justify="center">
+        <v-dialog v-model="popup.Success" max-width="500px">
+          <v-card style="background-color: #F2F3F4">
+            <v-card-title>
+              <span class="display-1 font-weight-light">Successful process</span>
+
+              <v-spacer></v-spacer>
+
+              <v-btn icon>
+                <v-icon size="24px" @click="popup.Success = false">fas fa-times</v-icon>
+              </v-btn>
+            </v-card-title>
+
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <Label>{{popup.TextSuccess}}</Label>
+                </v-row>
+                <v-row>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    @click="popup.Success = false"
+                    class="font-weight-light"
+                    color="primary"
+                    width="100"
+                    height="20"
+                  >close</v-btn>
+                </v-row>
+              </v-container>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-row>
+    </template>
+
+    <!-- popup Error -->
+
+    <template>
+      <v-row justify="center">
+        <v-dialog v-model="popup.Error" max-width="500px">
+          <v-card style="background-color: #F2F3F4">
+            <v-card-title>
+              <span class="display-1 font-weight-light">Error process</span>
+
+              <v-spacer></v-spacer>
+
+              <v-btn icon>
+                <v-icon size="24px" @click="popup.Error = false">fas fa-times</v-icon>
+              </v-btn>
+            </v-card-title>
+
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <Label>{{popup.TextError}}</Label>
+                </v-row>
+                <v-row>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    @click="popup.Error = false"
+                    class="font-weight-light"
+                    color="error"
+                    width="100"
+                    height="20"
+                  >close</v-btn>
+                </v-row>
+              </v-container>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-row>
+    </template>
+
+
   </v-container>
 </template>
 <script>
 import http from "../../http-common";
 export default {
-  name: "EnrollCourse",
+  name: "AddEnrollCourse",
   data: () => ({
-    snackbar: false,
+    popup: {
+      TextSuccess: "TextSuccess",
+      Success: false,
+      TextError: "TextError",
+      Error: false
+    },
     showDetail: false,
     errorStudents: false,
     errorEmployee: false,
     errorCourse: false,
-    counterStaff:[],
-    text: "",
-    students:[],
-    employees:[],
-    courses:[],
-    courseDetail:{
-      tutur:"",
-      subjects:"",
-      room:"",
-      studyTime:"",
-      price:""
+    errorComputer: false,
+    students: [],
+    employees: [],
+    courses: [],
+    computers: [],
+    courseDetail: {
+      tutur: "",
+      subjects: "",
+      room: "",
+      studyTime: "",
+      price: ""
     },
-    enrollCourse:[],
-    enroll:{
-      students_id:"",
-      employee_id:"",
-      course_id:"",
-      dateTime:"",
+    enrollCourse: [],
+    enroll: {
+      students_id: "",
+      employee_id: "",
+      course_id: "",
+      computer_id: "",
+      dateTime: ""
     }
   }),
   methods: {
     /* eslint-disable no-console */
-    reloadPage(){
+    reloadPage() {
       window.location.reload(false);
     },
-    chackList(){
+    chackList() {
       this.errorStudents = this.enroll.students_id == "" ? true : false;
       this.errorEmployee = this.enroll.employee_id == "" ? true : false;
       this.errorCourse = this.enroll.course_id == "" ? true : false;
-      if(!this.errorStudents && !this.errorEmployee && !this.errorCourse){
+      this.errorComputer = this.enroll.computer_id == "" ? true : false;
+      if (!this.errorStudents && !this.errorEmployee && !this.errorCourse && !this.errorComputer) {
         this.saveEnrollCourse();
-      }else{
-        this.snackbar = true;
-        this.text = "Please select all information.";
+      } else {
+        this.popup.Error = true;
+        this.popup.TextError = "Please select all information.";
       }
+    },
+    getComputer() {
+      http
+        .get("/computer/")
+        .then(response => {
+          this.computers = response.data;
+          // find roomId
+          var roomId = 1;
+          for (let elem in this.courses) {
+            if (this.courses[elem].id == this.enroll.course_id) {
+              roomId = this.courses[elem].room.id;
+            }
+          }
+          // console.log(roomId);
+
+          // set comForRoom
+          var comForRoom = [];
+          var i = 0;
+          for (let elem in this.computers) {
+            if (this.computers[elem].room.id == roomId) {
+              comForRoom[i] = this.computers[elem];
+              i = i + 1;
+            }
+          }
+
+          this.computers = comForRoom;
+          // console.log(this.computers);
+
+          // set computer enrollCourse = null
+
+          for (let elem in this.enrollCourse) {
+
+            if (this.enrollCourse[elem].course.id == this.enroll.course_id) {
+              
+              for (let index in this.computers) {
+                if (this.computers[index].pcNumber == this.enrollCourse[elem].computer.pcNumber) {
+                  this.computers[index].pcNumber = "null";
+                }
+              }
+            }
+          }
+
+          // Delete com computer enrollCourse = null
+          comForRoom = [];
+          i = 0;
+          for (let index in this.computers) {
+            if (this.computers[index].pcNumber != "null") {
+              comForRoom[i] = this.computers[index];
+              i = i + 1;
+            }
+          }
+
+          this.computers = comForRoom;
+          // console.log(this.computers);
+
+
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
     getEnrollCourse() {
       http
         .get("/enrollCourse/")
         .then(response => {
           this.enrollCourse = response.data;
-           console.log(this.enrollCourse);
+          console.log(this.enrollCourse);
         })
         .catch(e => {
           console.log(e);
@@ -145,23 +321,22 @@ export default {
           var coursesId = [];
           var i = 0;
           for (let elem in this.enrollCourse) {
-            
-              if(this.enrollCourse[elem].student.id == this.enroll.students_id){
-                coursesId[i] = this.enrollCourse[elem].course.id - 1;
-                i=i+1;
-              }
+            if (this.enrollCourse[elem].student.id == this.enroll.students_id) {
+              coursesId[i] = this.enrollCourse[elem].course.id - 1;
+              i = i + 1;
+            }
           }
-      
+
           for (let index in coursesId) {
-              this.courses[coursesId[index]].courseName = "null";     
+            this.courses[coursesId[index]].courseName = "null";
           }
           var courses = [];
           var j = 0;
           for (let elem in this.courses) {
-              if(this.courses[elem].courseName != "null"){
-                courses[j] = this.courses[elem];
-                j=j+1;
-              }
+            if (this.courses[elem].courseName != "null") {
+              courses[j] = this.courses[elem];
+              j = j + 1;
+            }
           }
           this.courses = courses;
           console.log(this.courses);
@@ -169,8 +344,6 @@ export default {
         .catch(e => {
           console.log(e);
         });
-      
-      
     },
     saveEnrollCourse() {
       http
@@ -179,6 +352,8 @@ export default {
             this.enroll.students_id +
             "/" +
             this.enroll.course_id +
+            "/" +
+            this.enroll.computer_id +
             "/" +
             this.enroll.dateTime +
             "/" +
@@ -189,50 +364,55 @@ export default {
           console.log(response.data);
           // alert("บันทึกข้อมูล สำเร็จ!!");
           this.getResetData();
-          this.snackbar = true;
-          this.text = "OK !,Data has been saved successfully.";
+
+          this.popup.Success = true;
+          this.popup.TextSuccess = "OK !,Data has been saved successfully.";
         })
         .catch(e => {
           console.log(e);
           // alert("บันทึกข้อมูล ไม่สำเร็จ!!");
-          this.snackbar = true;
-          this.text = "The data recording failed due to" + e +".";
+
+          this.popup.Error = true;
+          this.popup.TextError = "The data recording failed due to" + e + ".";
         });
     },
-    getNowTime(){
+    getNowTime() {
       // const answer = x > 10 ? "greater than 10" : "less than 10";
       var xTime = new Date();
       var FullYear = xTime.getFullYear();
-      var Month = (xTime.getMonth()+1) > 9 ? (xTime.getMonth()+1):("0"+(xTime.getMonth()+1));
-      var Day = xTime.getDate() > 9 ? xTime.getDate():("0"+xTime.getDate());
-      var Hours = xTime.getHours() > 9 ? xTime.getHours():("0"+xTime.getHours());
-      var Minutes = xTime.getMinutes() > 9 ? xTime.getMinutes():("0"+xTime.getMinutes());
-      var Seconds = xTime.getSeconds() > 9 ? xTime.getSeconds():("0"+xTime.getSeconds());
-      this.enroll.dateTime =  FullYear +"-"+Month +"-"+Day+" "+Hours+":"+Minutes+":"+Seconds;
+      var Month =
+        xTime.getMonth() + 1 > 9
+          ? xTime.getMonth() + 1
+          : "0" + (xTime.getMonth() + 1);
+      var Day = xTime.getDate() > 9 ? xTime.getDate() : "0" + xTime.getDate();
+      var Hours =
+        xTime.getHours() > 9 ? xTime.getHours() : "0" + xTime.getHours();
+      var Minutes =
+        xTime.getMinutes() > 9 ? xTime.getMinutes() : "0" + xTime.getMinutes();
+      var Seconds =
+        xTime.getSeconds() > 9 ? xTime.getSeconds() : "0" + xTime.getSeconds();
+      this.enroll.dateTime =
+        FullYear +
+        "-" +
+        Month +
+        "-" +
+        Day +
+        " " +
+        Hours +
+        ":" +
+        Minutes +
+        ":" +
+        Seconds;
     },
     getEmployees() {
       http
         .get("/employee")
         .then(response => {
           this.employees = response.data;
-          this.setCounterStaff();
-          
         })
         .catch(e => {
           console.log(e);
         });
-    },
-    setCounterStaff(){
-      let counterStaff = [];
-      let i = 0;
-      for (let elem in this.employees) {
-          if(this.employees[elem].position.id == 2){
-            counterStaff[i] = this.employees[elem];
-            i=i+1;
-          }
-      }
-      this.employees = counterStaff;
-      console.log(this.employees);
     },
     getStudents() {
       http
@@ -249,39 +429,46 @@ export default {
       this.showDetail = false;
       this.enroll.students_id = "";
       this.enroll.course_id = "";
+      this.enroll.computer_id = "";
       this.enroll.dateTime = "";
-      this.enroll.employee_id = "";
       this.getEmployees();
       this.getStudents();
       this.getEnrollCourse();
     },
-    getSetCourseDetail() {
+    getCourseDetail() {
       this.errorCourse = false;
       for (let elem in this.courses) {
-          if(this.courses[elem].id == this.enroll.course_id){
-            this.courseDetail.tutur = this.courses[elem].employee.fullname;
-            this.courseDetail.subjects = this.courses[elem].subjects.subjectsName;
-            this.courseDetail.room = this.courses[elem].room.room;
-            this.courseDetail.studyTime = 
-                                  this.courses[elem].time.day + " " +
-                                  this.courses[elem].time.start_time+" - "+
-                                  this.courses[elem].time.end_time + " น.";
-            this.courseDetail.price = this.courses[elem].price + " บาท";
-           
-          }
+        if (this.courses[elem].id == this.enroll.course_id) {
+          this.courseDetail.tutur = this.courses[elem].employee.fullname;
+          this.courseDetail.subjects = this.courses[elem].subjects.subjectsName;
+          this.courseDetail.room = this.courses[elem].room.room;
+          this.courseDetail.studyTime =
+            this.courses[elem].time.day +
+            " " +
+            this.courses[elem].time.start_time +
+            " - " +
+            this.courses[elem].time.end_time +
+            " น.";
+          this.courseDetail.price = this.courses[elem].price + " บาท";
+        }
       }
       this.showDetail = true;
-      
+
+      this.getComputer();
     },
+    setCreatedBy() {
+      this.enroll.employee_id = this.$session.get("userId");
+    }
   },
-  created () {
-    setInterval(() => this.getNowTime())
+
+  created() {
+    setInterval(() => this.getNowTime());
   },
   mounted() {
-      this.getEmployees();
-      this.getStudents();
-      this.getEnrollCourse();
-      
+    this.setCreatedBy();
+    this.getEmployees();
+    this.getStudents();
+    this.getEnrollCourse();
   }
 };
 </script>
