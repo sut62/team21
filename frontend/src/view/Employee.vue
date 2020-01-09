@@ -195,9 +195,9 @@ export default {
     },
     navigationManager() {
       this.show.navigationEmp = true;
-      this.show.navigationStu = true;
-      this.show.navigationCourse = true;
-      this.show.navigationEnroll = true;
+      this.show.navigationStu = false;
+      this.show.navigationCourse = false;
+      this.show.navigationEnroll = false;
       this.show.navigationRecord = true;
     },
     showEmp() {
