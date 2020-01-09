@@ -30,6 +30,6 @@ public class Position {
     private @NonNull Double salary;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private Collection<Employee> rec;
+    private Collection<Employee> employee;
 
 }
