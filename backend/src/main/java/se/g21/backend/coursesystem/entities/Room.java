@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import java.util.Collection;
 
+import se.g21.backend.enrollcoursesystem.entities.Computer;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -20,5 +22,8 @@ public class Room {
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<Course> course;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	private Collection<Computer> computer;
 	
 }
