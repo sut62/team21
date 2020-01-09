@@ -68,8 +68,8 @@ public class BackendApplication {
 			CourseRepository courseRepository, // Course system
 			RoomRepository roomRepository, SubjectsRepository subjectsRepository, TimeRepository timeRepository,
 			EnrollCourseRepository enrollCourseRepository, // EnrollCourse System
-			ComputerRepository computerRepository, 
-			RecordExpenseRepository recordexpenseRepository, // RecordExpense System
+			ComputerRepository computerRepository, RecordExpenseRepository recordexpenseRepository, // RecordExpense
+																									// System
 			ExpenseTypeRepository expenseTypeRepository, RatingRepository ratingRepository, // ReviewCourse
 			ImprovementRepository improvementRepository, ReviewCourseRepository reviewCourseRepository) {
 		return args -> {
@@ -228,10 +228,9 @@ public class BackendApplication {
 				timeRepository.save(time);
 			}
 
-			Object[][] dataCourse = new Object[][] { { "Course A", 450.00, 6, 1, 1, 6 },
-					{ "Course B", 500.00, 1, 1, 5, 6 }, { "Course C", 700.00, 2, 2, 3, 7 },
-					{ "Course D", 900.00, 3, 2, 4, 7 }, { "Course E", 1000.00, 4, 3, 6, 8 },
-					{ "Course F", 2000.00, 5, 4, 10, 8 }, };
+			Object[][] dataCourse = new Object[][] { { "Course A", 450.00, 6, 1, 1, 4 },
+					{ "Course B", 500.00, 1, 1, 5, 4 }, { "Course C", 700.00, 2, 2, 3, 5 },
+					{ "Course D", 900.00, 3, 2, 4, 5 } };
 			for (int i = 0; i < dataCourse.length; i++) {
 				Course course = new Course();
 
