@@ -18,20 +18,10 @@
       </div>
 
       <div class="my-2">
-        <v-btn
-          @click="popup.Success = true"
-          text
-          class="btn-hover headline font-weight-light"
-          color="white"
-        >Reviews</v-btn>
+        <v-btn text class="btn-hover headline font-weight-light" color="white">Reviews</v-btn>
       </div>
       <div class="my-2" style="margin-right: 100px;">
-        <v-btn
-          @click="popup.Error = true"
-          text
-          class="btn-hover headline font-weight-light"
-          color="white"
-        >ABOUT US</v-btn>
+        <v-btn text class="btn-hover headline font-weight-light" color="white">ABOUT US</v-btn>
       </div>
 
       <!-- <div class="my-2">
@@ -237,81 +227,6 @@
         </v-row>
       </template>
 
-      <!-- popup Success -->
-
-      <template>
-        <v-row justify="center">
-          <v-dialog v-model="popup.Success" max-width="500px">
-            <v-card style="background-color: #F2F3F4">
-              <v-app-bar dark color="info" height="40px">
-                <v-toolbar-title>Success process</v-toolbar-title>
-
-                <v-spacer></v-spacer>
-
-                <v-btn icon>
-                  <v-icon size="24px" @click="popup.Success = false">fas fa-times</v-icon>
-                </v-btn>
-              </v-app-bar>
-
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <Label>{{popup.TextSuccess}}</Label>
-                  </v-row>
-                  <v-row>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      @click="popup.Success = false"
-                      class="font-weight-light"
-                      color="info"
-                      width="100"
-                      height="20"
-                    >close</v-btn>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
-        </v-row>
-      </template>
-
-      <!-- popup Error -->
-
-      <template>
-        <v-row justify="center">
-          <v-dialog v-model="popup.Error" max-width="500px">
-            <v-card style="background-color: #F2F3F4">
-              <v-app-bar dark color="#FF5252" height="40px">
-                <v-toolbar-title>Error process</v-toolbar-title>
-
-                <v-spacer></v-spacer>
-
-                <v-btn icon>
-                  <v-icon size="24px" @click="popup.Error = false">fas fa-times</v-icon>
-                </v-btn>
-              </v-app-bar>
-
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <Label>{{popup.TextError}}</Label>
-                  </v-row>
-                  <v-row>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      @click="popup.Error = false"
-                      class="font-weight-light"
-                      color="error"
-                      width="100"
-                      height="20"
-                    >close</v-btn>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
-        </v-row>
-      </template>
 
       <!-- Bottom sheets  Success-->
       <template>
@@ -332,7 +247,7 @@
               >OK !</v-btn>
               <div
                 class="py-3"
-              >Log in as an {{this.$session.get('position')}} using username {{this.$session.get('fullname')}} .</div>
+              > เข้าสู้ระบบเร็จเสร็จสิ้น .</div>
             </v-sheet>
           </v-bottom-sheet>
         </div>
@@ -344,7 +259,7 @@
           <v-bottom-sheet v-model="sheet.Error" persistent>
             <v-sheet class="text-center" height="200px">
               <v-btn class="mt-8" color="error" @click="sheet.Error = false">CLOSE</v-btn>
-              <div class="py-3">The user and password are incorrect .</div>
+              <div class="py-3">username หรือ password ผิด .</div>
             </v-sheet>
           </v-bottom-sheet>
         </div>
