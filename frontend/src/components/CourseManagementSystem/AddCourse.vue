@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
     <v-hover v-slot:default="{ hover }">
-      <v-card width="600" :elevation="hover ? 12 : 5" style="margin: auto; margin-top: 50px;">
-        <v-app-bar dark color="light-blue lighten-1">
+      <v-card width="600" :elevation="hover ? 12 : 5">
+        <v-app-bar dark color="#1A76D2">
           <v-btn icon>
             <v-icon large>mdi-label</v-icon>
           </v-btn>
@@ -11,40 +11,53 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn icon>
-            <v-icon>mdi-dialpad</v-icon>
-          </v-btn>
+         
         </v-app-bar>
 
         <v-container style="margin-top: 50px; padding-bottom: 30px;">
-          
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-text-field v-model="course.course_name" label="Course Name" outlined></v-text-field>
             </v-col>
           </v-row>
 
+          
+
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-select v-model="course.employee_id" :items="employees" item-text="fullname" item-value="id" label="employee name" outlined></v-select>
+              <v-select
+                v-model="course.subjects_id"
+                :items="subjects"
+                item-text="subjectsName"
+                item-value="id"
+                label="subjects name"
+                outlined
+              ></v-select>
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-select v-model="course.subjects_id" :items="subjects" item-text="subjectsName" item-value="id" label="subjects name" outlined></v-select>
+              <v-select
+                v-model="course.room_id"
+                :items="rooms"
+                item-text="room"
+                item-value="id"
+                label="room name"
+                outlined
+              ></v-select>
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-select v-model="course.room_id" :items="rooms" item-text="room" item-value="id" label="room name" outlined></v-select>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select v-model="course.dateTime" :items="timesTmp" label="time" outlined @change="getTimesTmp"></v-select>
+              <v-select
+                v-model="course.dateTime"
+                :items="timesTmp"
+                label="time"
+                outlined
+                @change="getTimesTmp"
+              ></v-select>
             </v-col>
           </v-row>
 
@@ -55,19 +68,31 @@
           </v-row>
 
           <v-row>
+            <v-col cols="8" style="margin: auto;">
+              <v-select
+                disabled
+                v-model="course.employee_id"
+                :items="employees"
+                item-text="fullname"
+                item-value="id"
+                label="CreatedBy"
+                outlined
+              ></v-select>
+            </v-col>
+          </v-row>
+
+          <v-row>
             <v-btn
               style="margin: auto;"
               large
-              color="light-blue lighten-1"
+              color="#1A76D2"
               dark
               @click="saveCourse"
-            > SAVE FROM</v-btn>
+            >SAVE FROM</v-btn>
           </v-row>
         </v-container>
       </v-card>
     </v-hover>
-
-    
   </v-container>
 </template>
 <script>
@@ -75,37 +100,43 @@ import http from "../../http-common";
 export default {
   name: "AddCourse",
   data: () => ({
-    dateTime:"",
+    dateTime: "",
     course: {
-        subjects_id: "",
-        room_id: "",
-        time_id: "",
-        employee_id: "",
-        price:"",
-        course_name:"",
-      },
-    subjects:[],
-    employees:[],
-    rooms:[],
-    times:[],
-    timesTmp:[],
-    courses:[],
-    checkroomtime:""
+      subjects_id: "",
+      room_id: "",
+      time_id: "",
+      employee_id: "",
+      price: "",
+      course_name: ""
+    },
+    subjects: [],
+    employees: [],
+    rooms: [],
+    times: [],
+    timesTmp: [],
+    courses: [],
+    checkroomtime: ""
   }),
   methods: {
     /* eslint-disable no-console */
     saveCourse() {
-       this.getCourses();
-       for (let elem in this.courses) {
-        if(this.course.room_id == this.courses[elem].room.id && this.course.time_id==this.courses[elem].time.id){
-                alert("มีคอร์สที่ใช้ห้องเรียนและเวลาเรียนนี้แล้วกรุณาเลือกใหม่");
-                this.checkroomtime=1;
-                break;
-           }
-       }
-       if(this.checkroomtime!=1){this.saveCourses(); this.getCourses();}
-       this.checkroomtime=0;
-     },
+      this.getCourses();
+      for (let elem in this.courses) {
+        if (
+          this.course.room_id == this.courses[elem].room.id &&
+          this.course.time_id == this.courses[elem].time.id
+        ) {
+          alert("มีคอร์สที่ใช้ห้องเรียนและเวลาเรียนนี้แล้วกรุณาเลือกใหม่");
+          this.checkroomtime = 1;
+          break;
+        }
+      }
+      if (this.checkroomtime != 1) {
+        this.saveCourses();
+        this.getCourses();
+      }
+      this.checkroomtime = 0;
+    },
 
     saveCourses() {
       http
@@ -117,9 +148,9 @@ export default {
             "/" +
             this.course.time_id +
             "/" +
-            this.course.employee_id+
+            this.course.employee_id +
             "/" +
-            this.course.price+
+            this.course.price +
             "/" +
             this.course.course_name,
           this.course
@@ -127,19 +158,17 @@ export default {
         .then(response => {
           console.log(response.data);
           alert("บันทึกสำเร็จ");
-        
         })
         .catch(e => {
           console.log(e);
-           alert("บันทึกไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง");
-       });
+          alert("บันทึกไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง");
+        });
     },
     getEmployees() {
       http
-        .get("/employee/")
+        .get("/employee")
         .then(response => {
           this.employees = response.data;
-          
         })
         .catch(e => {
           console.log(e);
@@ -169,11 +198,17 @@ export default {
     },
     getTimesTmp() {
       for (let elem in this.times) {
-              if(this.course.dateTime == this.times[elem].day + " " +  this.times[elem].start_time + " - " + this.times[elem].end_time){              
-                this.course.time_id = this.times[elem].id;    
-              }
+        if (
+          this.course.dateTime ==
+          this.times[elem].day +
+            " " +
+            this.times[elem].start_time +
+            " - " +
+            this.times[elem].end_time
+        ) {
+          this.course.time_id = this.times[elem].id;
+        }
       }
-
     },
     getTimes() {
       http
@@ -181,20 +216,24 @@ export default {
         .then(response => {
           this.times = response.data;
           console.log(response.data);
-        
+
           let timesTmp = [];
           for (let elem in this.times) {
-              timesTmp[elem] = this.times[elem].day + " " +  this.times[elem].start_time + " - " + this.times[elem].end_time;  
+            timesTmp[elem] =
+              this.times[elem].day +
+              " " +
+              this.times[elem].start_time +
+              " - " +
+              this.times[elem].end_time;
           }
           this.timesTmp = timesTmp;
-         
         })
         .catch(e => {
           console.log(e);
         });
     },
-     
-      getCourses() {
+
+    getCourses() {
       http
         .get("/course/")
         .then(response => {
@@ -205,15 +244,17 @@ export default {
           console.log(e);
         });
     },
-
+    setCreatedBy() {
+      this.course.employee_id = this.$session.get("userId");
+    }
   },
   mounted() {
-      this.getEmployees();
-      this.getSubjects();
-      this.getRooms(); 
-      this.getTimes();
-      this.getCourses();
-      
+    this.setCreatedBy();
+    this.getEmployees();
+    this.getSubjects();
+    this.getRooms();
+    this.getTimes();
+    this.getCourses();
   }
 };
 </script>
