@@ -56,15 +56,24 @@ public class EmployeeController {
         return employeeRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/employee/{nametitle_id}/{fullname}/{gender_id}/{position_id}/{province_id}/{address}/{username}/{password}")
+    @PostMapping("/employee/{nametitle_id}/{fullname}/{gender_id}/{position_id}/{province_id}/{address}/{username}/{password}/{datetime}")
     public Employee newEmployee(Employee newEmployee, @PathVariable long nametitle_id, @PathVariable long gender_id,
             @PathVariable long position_id, @PathVariable String fullname, @PathVariable String username,
-            @PathVariable String password, @PathVariable long province_id, @PathVariable String address) {
+            @PathVariable String password, @PathVariable long province_id, @PathVariable String address,
+            @PathVariable String datetime) {
 
         Nametitle nametitle = nametitleRepository.findById(nametitle_id);
         Gender gender = genderRepository.findById(gender_id);
         Position position = positionRepository.findById(position_id);
         Province province = provinceRepository.findById(province_id);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         newEmployee.setNametitle(nametitle);
         newEmployee.setFullname(fullname);
@@ -74,7 +83,7 @@ public class EmployeeController {
         newEmployee.setAddress(address);
         newEmployee.setUsername(username);
         newEmployee.setPassword(password);
-        newEmployee.setRecorddate(new Date());
+        newEmployee.setRecorddate(recorddate);
 
         return employeeRepository.save(newEmployee);
 
