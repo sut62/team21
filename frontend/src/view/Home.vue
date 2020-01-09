@@ -227,7 +227,6 @@
         </v-row>
       </template>
 
-
       <!-- Bottom sheets  Success-->
       <template>
         <div class="text-center">
@@ -245,9 +244,7 @@
                 color="info"
                 @click="redirectStudent"
               >OK !</v-btn>
-              <div
-                class="py-3"
-              > เข้าสู่ระบบเร็จเสร็จสิ้น .</div>
+              <div class="py-3">เข้าสู่ระบบเสร็จสิ้น .</div>
             </v-sheet>
           </v-bottom-sheet>
         </div>

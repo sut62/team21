@@ -54,7 +54,7 @@ public class Employee {
 	@Column(name = "Address")
 	private @NonNull String address;
 
-	@Column(name = "Username")
+	@Column(name = "Username", unique = true)
 	private @NonNull String username;
 
 	@Column(name = "Password")
