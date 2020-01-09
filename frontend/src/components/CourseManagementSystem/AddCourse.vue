@@ -7,7 +7,7 @@
             <v-icon large>mdi-label</v-icon>
           </v-btn>
 
-          <v-toolbar-title>AddCourse</v-toolbar-title>
+          <v-toolbar-title>เพิ่มคอร์สเรียน</v-toolbar-title>
 
           <v-spacer></v-spacer>
 
@@ -17,7 +17,7 @@
         <v-container style="margin-top: 50px; padding-bottom: 30px;">
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field v-model="course.course_name" label="Course Name" outlined></v-text-field>
+              <v-text-field v-model="course.course_name" label="กรอกชื่อคอร์ส" outlined></v-text-field>
             </v-col>
           </v-row>
 
@@ -30,7 +30,7 @@
                 :items="subjects"
                 item-text="subjectsName"
                 item-value="id"
-                label="subjects name"
+                label="เลือกวิชา"
                 outlined
               ></v-select>
             </v-col>
@@ -43,7 +43,7 @@
                 :items="rooms"
                 item-text="room"
                 item-value="id"
-                label="room name"
+                label="เลือกห้องเรียน"
                 outlined
               ></v-select>
             </v-col>
@@ -54,7 +54,7 @@
               <v-select
                 v-model="course.dateTime"
                 :items="timesTmp"
-                label="time"
+                label="เลือกเวลา"
                 outlined
                 @change="getTimesTmp"
               ></v-select>
@@ -63,7 +63,7 @@
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field v-model="course.price" label="price" outlined></v-text-field>
+              <v-text-field v-model="course.price" label="กรอกราคา" outlined></v-text-field>
             </v-col>
           </v-row>
 
@@ -75,7 +75,7 @@
                 :items="employees"
                 item-text="fullname"
                 item-value="id"
-                label="CreatedBy"
+                label="พนักงานที่บันทึก"
                 outlined
               ></v-select>
             </v-col>
@@ -88,7 +88,7 @@
               color="#1A76D2"
               dark
               @click="saveCourse"
-            >SAVE FROM</v-btn>
+            >บันทึกข้อมูล</v-btn>
           </v-row>
         </v-container>
       </v-card>
