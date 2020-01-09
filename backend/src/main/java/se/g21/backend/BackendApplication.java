@@ -149,12 +149,12 @@ public class BackendApplication {
 
 			// Student syatem
 			Object[][] dataStudent = new Object[][] {
-					{ 1, 1, "Ornthiwa Jaruensuk", "stu001", "123",
+					{ 1, 1, "อรธิวา เจริญศักดิ์", "stu001", "123",
 							"279 หอหัก KP Place หมู่10 ต.ลำเลียง อ.เวียงอิง  85110", 19, "0902654562",
 							"newler53@gmail.com", 23, 1 },
-					{ 1, 1, "Wanchanachai Thiamphak", "stu002", "123", "9 หอหัก QQplace หมู่3 ต.เวียงสาน อ.วานนา 30000",
+					{ 1, 1, "วันชนะชัย เทียมภาค", "stu002", "123", "9 หอหัก QQplace หมู่3 ต.เวียงสาน อ.วานนา 30000",
 							19, "0902654562", "newsada53@gmail.com", 55, 1 },
-					{ 1, 1, "Woravit Kaewkongkat", "stu003", "123", "13/2 หอหัก KD link หมู่9 ต.มหาหิง อ.กว 95810", 19,
+					{ 1, 1, "วรวิทย์ แก้วกองกาด", "stu003", "123", "13/2 หอหัก KD link หมู่9 ต.มหาหิง อ.กว 95810", 19,
 							"0902654562", "g23ewwq@gmail.com", 14, 1 } };
 			for (int i = 0; i < dataStudent.length; i++) {
 				Student student = new Student();
