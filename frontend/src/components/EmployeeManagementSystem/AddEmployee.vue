@@ -149,7 +149,7 @@
     <v-row>
       <v-snackbar v-model="snackbar">
         {{ text }}
-        <v-btn color="pink" text @click="snackbar = false">Close</v-btn>
+        <v-btn color="pink" text @click="ResetData">Close</v-btn>
       </v-snackbar>
     </v-row>
   </v-container>
@@ -293,6 +293,10 @@ export default {
         Minutes +
         ":" +
         Seconds;
+    },
+    ResetData() {
+      window.location.reload(false);
+      this.snackbar = false;
     }
   },
   created() {
