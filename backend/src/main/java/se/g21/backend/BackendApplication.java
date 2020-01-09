@@ -68,6 +68,7 @@ public class BackendApplication {
 			CourseRepository courseRepository, // Course system
 			RoomRepository roomRepository, SubjectsRepository subjectsRepository, TimeRepository timeRepository,
 			EnrollCourseRepository enrollCourseRepository, // EnrollCourse System
+			ComputerRepository computerRepository, 
 			RecordExpenseRepository recordexpenseRepository, // RecordExpense System
 			ExpenseTypeRepository expenseTypeRepository, RatingRepository ratingRepository, // ReviewCourse
 			ImprovementRepository improvementRepository, ReviewCourseRepository reviewCourseRepository) {
@@ -152,8 +153,8 @@ public class BackendApplication {
 					{ 1, 1, "อรธิวา เจริญศักดิ์", "stu001", "123",
 							"279 หอหัก KP Place หมู่10 ต.ลำเลียง อ.เวียงอิง  85110", 19, "0902654562",
 							"newler53@gmail.com", 23, 1 },
-					{ 1, 1, "วันชนะชัย เทียมภาค", "stu002", "123", "9 หอหัก QQplace หมู่3 ต.เวียงสาน อ.วานนา 30000",
-							19, "0902654562", "newsada53@gmail.com", 55, 1 },
+					{ 1, 1, "วันชนะชัย เทียมภาค", "stu002", "123", "9 หอหัก QQplace หมู่3 ต.เวียงสาน อ.วานนา 30000", 19,
+							"0902654562", "newsada53@gmail.com", 55, 1 },
 					{ 1, 1, "วรวิทย์ แก้วกองกาด", "stu003", "123", "13/2 หอหัก KD link หมู่9 ต.มหาหิง อ.กว 95810", 19,
 							"0902654562", "g23ewwq@gmail.com", 14, 1 } };
 			for (int i = 0; i < dataStudent.length; i++) {
@@ -253,10 +254,35 @@ public class BackendApplication {
 			}
 
 			// EnrollCourse System
-			Object[][] dataEnrollCourse = new Object[][] { { 1, 1, "2019-08-12 10:12:56", 1 },
-					{ 1, 2, "2019-08-13 11:30:20", 2 }, { 2, 1, "2019-08-14 10:12:56", 1 },
-					{ 2, 4, "2019-09-02 11:30:20", 2 }, { 3, 2, "2019-09-12 10:12:56", 1 },
-					{ 3, 5, "2019-09-21 11:30:20", 2 } };
+			for (int i = 0; i < 80; i++) {
+				int roomId = 0;
+				if (i < 20) {
+					roomId = 1;
+				} else if (i < 40) {
+					roomId = 2;
+				} else if (i < 60) {
+					roomId = 3;
+				} else if (i < 80) {
+					roomId = 4;
+				}
+
+				Computer com = new Computer();
+				String num = "";
+				if ((i + 1) > 9) {
+					num = "PC" + String.valueOf(i + 1);
+				} else {
+					num = "PC0" + String.valueOf(i + 1);
+				}
+				com.setPcNumber(num);
+				Room room = roomRepository.findById(roomId);
+				com.setRoom(room);
+				computerRepository.save(com);
+			}
+
+			Object[][] dataEnrollCourse = new Object[][] { { 1, 1, 1, "2019-08-12 10:12:56", 3 },
+					{ 1, 2, 15, "2019-08-13 11:30:20", 4 }, { 2, 3, 22, "2019-08-14 10:12:56", 3 },
+					{ 2, 4, 39, "2019-09-02 11:30:20", 4 }, { 3, 4, 40, "2019-09-12 10:12:56", 4 },
+					{ 3, 5, 45, "2019-09-21 11:30:20", 3 } };
 
 			for (int i = 0; i < dataEnrollCourse.length; i++) {
 				EnrollCourse enrollCourse = new EnrollCourse();
@@ -267,11 +293,14 @@ public class BackendApplication {
 				Course course = courseRepository.findById((int) dataEnrollCourse[i][1]);
 				enrollCourse.setCourse(course);
 
+				Computer computer = computerRepository.findById((int) dataEnrollCourse[i][2]);
+				enrollCourse.setComputer(computer);
+
 				DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-				LocalDateTime dataDate = LocalDateTime.parse((String) dataEnrollCourse[i][2], dateFormat);
+				LocalDateTime dataDate = LocalDateTime.parse((String) dataEnrollCourse[i][3], dateFormat);
 				enrollCourse.setDate(dataDate);
 
-				Employee employee = employeeRepository.findById((int) dataEnrollCourse[i][3]);
+				Employee employee = employeeRepository.findById((int) dataEnrollCourse[i][4]);
 				enrollCourse.setEmployee(employee);
 				enrollCourseRepository.save(enrollCourse);
 
