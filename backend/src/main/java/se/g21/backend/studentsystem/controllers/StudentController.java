@@ -36,6 +36,8 @@ public class StudentController {
     @Autowired
     private final StudentRepository studentRepository;
     @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
     private GenderRepository genderRepository;
     @Autowired
     private ProvinceRepository provinceRepository;
@@ -44,11 +46,13 @@ public class StudentController {
 
 
     StudentController(StudentRepository studentRepository,
+                     EmployeeRepository employeeRepository,
                      NametitleRepository nametitleRepository,
                      GenderRepository genderRepository,
                      ProvinceRepository provinceRepository) {
 
         this.studentRepository = studentRepository;
+        this.employeeRepository = employeeRepository;
         this.nametitleRepository = nametitleRepository;
         this.genderRepository = genderRepository;
         this.provinceRepository = provinceRepository;
@@ -60,7 +64,7 @@ public class StudentController {
         return studentRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/student/{nametitle_id}/{gender_id}/{fullname}/{province_id}/{address}/{username}/{password}/{old}/{tel}/{email}")
+    @PostMapping("/student/{nametitle_id}/{gender_id}/{fullname}/{province_id}/{address}/{username}/{password}/{old}/{tel}/{email}/{employee_id}")
     public Student newStudent(Student newStudent,
     @PathVariable long nametitle_id,
     @PathVariable long gender_id,
@@ -71,7 +75,8 @@ public class StudentController {
     @PathVariable String password,
     @PathVariable long old,
     @PathVariable String tel,
-    @PathVariable String email) {
+    @PathVariable String email,
+    @PathVariable long employee_id) {
 
 
     Nametitle  nametitle = nametitleRepository.findById(nametitle_id);
@@ -84,6 +89,9 @@ public class StudentController {
 
     Province   province  = provinceRepository.findById(province_id);
     newStudent.setProvince(province);
+
+    Employee   employee  = employeeRepository.findById(employee_id);
+    newStudent.setEmployee(employee);
 
     newStudent.setOld((int)old);
 
