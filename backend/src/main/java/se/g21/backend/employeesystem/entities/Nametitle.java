@@ -1,6 +1,8 @@
 package se.g21.backend.employeesystem.entities;
 
 import lombok.*;
+import se.g21.backend.studentsystem.entities.Student;
+
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +29,8 @@ public class Nametitle {
     private @NonNull String nametitle;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private Collection<Employee> rec;
+    private Collection<Employee> employee;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    private Collection<Student> student;
 }
