@@ -172,7 +172,7 @@ export default {
     enrollCourses: [],
     improvements: [],
   }),
-  
+  /* eslint-disable no-console */
   methods: {
     getEnrollCourses() {
       http
