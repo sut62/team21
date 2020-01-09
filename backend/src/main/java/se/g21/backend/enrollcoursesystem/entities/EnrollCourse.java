@@ -38,6 +38,10 @@ public class EnrollCourse {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
     @JoinColumn(name = "Course_ID", insertable = true)
     private Course course;
+
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Computer.class)
+    @JoinColumn(name = "Computer_ID", insertable = true)
+    private Computer computer;
     
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
     @JoinColumn(name = "Employee_ID", insertable = true)
