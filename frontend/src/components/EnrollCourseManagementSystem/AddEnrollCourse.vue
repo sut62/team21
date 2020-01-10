@@ -16,6 +16,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="enroll001"
                 v-model="enroll.students_id"
                 :items="students"
                 item-text="fullname"
@@ -34,6 +35,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+              id="enroll05672"
                 v-model="enroll.course_id"
                 :items="courses"
                 item-text="courseName"
@@ -61,6 +63,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+              id="enroll004543"
                 v-model="enroll.computer_id"
                 :items="computers"
                 item-text="pcNumber"
@@ -86,6 +89,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+              id="enroll051"
                 disabled
                 v-model="enroll.employee_id"
                 :items="employees"
@@ -103,7 +107,7 @@
           </v-row>
 
           <v-row>
-            <v-btn style="margin: auto;" large color="#1A76D2" dark @click="chackList">Enroll</v-btn>
+            <v-btn id="enroll304" style="margin: auto;" large color="#1A76D2" dark @click="chackList">Enroll</v-btn>
           </v-row>
         </v-container>
       </v-card>
@@ -128,11 +132,12 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <Label>{{popup.TextSuccess}}</Label>
+                  <Label id="enroll6701" >{{popup.TextSuccess}}</Label>
                 </v-row>
                 <v-row>
                   <v-spacer></v-spacer>
                   <v-btn
+                    id="enroll1201"
                     @click="popup.Success = false"
                     class="font-weight-light"
                     color="primary"
@@ -166,11 +171,12 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <Label>{{popup.TextError}}</Label>
+                  <Label id="enroll78501">{{popup.TextError}}</Label>
                 </v-row>
                 <v-row>
                   <v-spacer></v-spacer>
                   <v-btn
+                  id="enroll0231"
                     @click="popup.Error = false"
                     class="font-weight-light"
                     color="error"
