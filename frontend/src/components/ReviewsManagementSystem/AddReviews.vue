@@ -19,7 +19,8 @@
 
             <v-row>
               <v-col cols="8" style="margin: auto;">
-                <v-select 
+                <v-select
+                id = "coursename001"
                 item-text="course.courseName"
                 item-value="id"
                 v-model="reviewCourse.enrollCourse"
@@ -33,6 +34,7 @@
             <v-row>
               <v-col cols="8" style="margin: auto;">
                 <v-select 
+                id = "rating001"
                 item-text="ratingType"
                 item-value="id"
                 v-model="reviewCourse.rating"
@@ -46,6 +48,7 @@
             <v-row>
               <v-col cols="8" style="margin: auto;">
                 <v-select 
+                id= "improvement001"
                 item-text="improvementType"
                 item-value="id"
                 v-model="reviewCourse.improvement"
@@ -59,6 +62,7 @@
             <v-row>
               <v-col md="8" style="margin: auto;">
                 <v-textarea
+                  id = "comment"
                   :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                   required
                   v-model="reviewCourse.comment"
