@@ -1,0 +1,65 @@
+import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
+import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint
+import com.kms.katalon.core.checkpoint.CheckpointFactory as CheckpointFactory
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as MobileBuiltInKeywords
+import com.kms.katalon.core.model.FailureHandling as FailureHandling
+import com.kms.katalon.core.testcase.TestCase as TestCase
+import com.kms.katalon.core.testcase.TestCaseFactory as TestCaseFactory
+import com.kms.katalon.core.testdata.TestData as TestData
+import com.kms.katalon.core.testdata.TestDataFactory as TestDataFactory
+import com.kms.katalon.core.testobject.ObjectRepository as ObjectRepository
+import com.kms.katalon.core.testobject.TestObject as TestObject
+import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WSBuiltInKeywords
+import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUiBuiltInKeywords
+import internal.GlobalVariable as GlobalVariable
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
+import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
+
+import com.thoughtworks.selenium.Selenium
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.WebDriver
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium
+import static org.junit.Assert.*
+import java.util.regex.Pattern
+import static org.apache.commons.lang3.StringUtils.join
+
+WebUI.openBrowser('https://www.katalon.com/')
+def driver = DriverFactory.getWebDriver()
+String baseUrl = "https://www.katalon.com/"
+selenium = new WebDriverBackedSelenium(driver, baseUrl)
+selenium.open("http://localhost:8080/")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN'])[1]/following::span[1]")
+selenium.click("id=input-155")
+selenium.type("id=input-155", "ct001")
+selenium.type("id=input-158", "123")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::span[1]")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='เข้าสู่ระบบเสร็จสิ้น .'])[1]/preceding::button[1]")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงานเคาท์เตอร์'])[1]/following::label[1]")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]")
+selenium.click("id=นาย-list-item-245")
+selenium.click("id=input-200")
+selenium.type("id=input-200", "รวิสุทนร")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกเพศ'])[1]/following::div[1]")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='หญิง'])[1]/preceding::div[2]")
+selenium.click("id=input-210")
+selenium.type("id=input-210", "17")
+selenium.click("id=input-213")
+selenium.type("id=input-213", "wdwedweww")
+selenium.click("id=input-216")
+selenium.type("id=input-216", "weweweeww")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกจังหวัด'])[1]/following::div[1]")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='เชียงใหม่'])[1]/preceding::div[2]")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[8]/following::div[1]")
+selenium.type("id=input-226", "0999245757")
+selenium.click("id=input-229")
+selenium.type("id=input-229", "blazt@gmail.com")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[10]/following::div[1]")
+selenium.type("id=input-232", "stateplace")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='กรอกที่อยู่'])[1]/following::div[5]")
+selenium.click("xpath=(.//*[normalize-space(text()) and normalize-space(.)='ประหยัด จันทร์อังคาร'])[1]/following::button[1]")
+assertEquals("บันทึก", selenium.getText("xpath=(.//*[normalize-space(text()) and normalize-space(.)='ประหยัด จันทร์อังคาร'])[1]/following::span[1]"));
