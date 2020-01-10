@@ -32,6 +32,8 @@
       </div>
       <div class="my-2">
         <v-btn
+
+          id="showLogin"
           @click.stop="LoginStu.showDialog = true"
           text
           class="btn-hover headline font-weight-light"
@@ -82,7 +84,7 @@
                 <v-spacer></v-spacer>
 
                 <v-btn icon>
-                  <v-icon size="24px" @click="LoginStu.showDialog = false">fas fa-times</v-icon>
+                  <v-icon id="closeShowStudent" size="24px" @click="LoginStu.showDialog = false">fas fa-times</v-icon>
                 </v-btn>
               </v-card-title>
               <v-card-text>
@@ -91,6 +93,7 @@
                     <v-spacer></v-spacer>
                     <v-col cols="8">
                       <v-text-field
+                        id="usernameStu1"
                         :rules="[(v) => !!v || 'You didn\'t enter a username .']"
                         v-model="LoginStu.username"
                         class="headline font-weight-light"
@@ -108,6 +111,7 @@
                     <v-spacer></v-spacer>
                     <v-col cols="8">
                       <v-text-field
+                        id="passwordStu1"
                         :rules="[(v) => !!v || 'You didn\'t enter a password .']"
                         v-model="LoginStu.password"
                         class="headline font-weight-light"
@@ -125,6 +129,7 @@
                   <v-row>
                     <v-spacer></v-spacer>
                     <v-btn
+                      id="bin-login-stu"
                       @click="checkLoginStudent"
                       class="headline font-weight-light"
                       color="info"
@@ -137,6 +142,7 @@
                 <v-row style="margin: 200;">
                   <v-spacer></v-spacer>
                   <v-btn
+                    id="showloginAsEmp"
                     class="subtitle-2 font-weight-light"
                     text
                     color="info"
@@ -160,7 +166,7 @@
                 <v-spacer></v-spacer>
 
                 <v-btn icon>
-                  <v-icon size="24px" @click="LoginEmp.showDialog = false">fas fa-times</v-icon>
+                  <v-icon id="closeShowEmployee" size="24px" @click="LoginEmp.showDialog = false">fas fa-times</v-icon>
                 </v-btn>
               </v-card-title>
               <v-card-text>
@@ -169,6 +175,7 @@
                     <v-spacer></v-spacer>
                     <v-col cols="8">
                       <v-text-field
+                        id="usernameEmp1"
                         :rules="[(v) => !!v || 'You didn\'t enter a username .']"
                         v-model="LoginEmp.username"
                         class="headline font-weight-light"
@@ -186,6 +193,7 @@
                     <v-spacer></v-spacer>
                     <v-col cols="8">
                       <v-text-field
+                        id="passwordEmp1"
                         :rules="[(v) => !!v || 'You didn\'t enter a password .']"
                         v-model="LoginEmp.password"
                         class="headline font-weight-light"
@@ -203,6 +211,7 @@
                   <v-row>
                     <v-spacer></v-spacer>
                     <v-btn
+                      id="bin-login-emp"
                       @click="checkLoginEmployee"
                       class="headline font-weight-light"
                       color="info"
@@ -215,6 +224,7 @@
                 <v-row style="margin: 200;">
                   <v-spacer></v-spacer>
                   <v-btn
+                    id="showloginAsStu"
                     class="subtitle-2 font-weight-light"
                     text
                     color="info"
@@ -233,15 +243,19 @@
           <v-bottom-sheet v-model="sheet.Success" persistent>
             <v-sheet class="text-center" height="200px">
               <v-btn
+                id="SuccessEmp1"
                 v-if="LoginEmp.showDialog"
                 class="mt-8"
                 color="info"
+                width="100"
                 @click="redirectEmployee"
               >OK !</v-btn>
               <v-btn
+                id="SuccessStu2"
                 v-if="LoginStu.showDialog"
                 class="mt-8"
                 color="info"
+                width="100"
                 @click="redirectStudent"
               >OK !</v-btn>
               <div class="py-3">เข้าสู่ระบบเสร็จสิ้น .</div>
@@ -255,7 +269,7 @@
         <div class="text-center">
           <v-bottom-sheet v-model="sheet.Error" persistent>
             <v-sheet class="text-center" height="200px">
-              <v-btn class="mt-8" color="error" @click="sheet.Error = false">CLOSE</v-btn>
+              <v-btn id="BottomError1" class="mt-8" color="error" @click="sheet.Error = false" width="100">CLOSE</v-btn>
               <div class="py-3">username หรือ password ผิด .</div>
             </v-sheet>
           </v-bottom-sheet>
