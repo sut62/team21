@@ -16,6 +16,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col cols="4" style>
               <v-select
+                id="emp001"
                 item-text="nametitle"
                 item-value="id"
                 v-model="employee.nametitle"
@@ -29,6 +30,7 @@
             </v-col>
             <v-col cols="8" style>
               <v-text-field
+                id="emp002"
                 v-model="employee.fullname"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -42,6 +44,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col cols="4">
               <v-select
+                id="emp003"
                 item-text="gender"
                 item-value="id"
                 v-model="employee.gender"
@@ -55,6 +58,7 @@
             </v-col>
             <v-col cols="8">
               <v-select
+                id="emp004"
                 item-text="position"
                 item-value="id"
                 v-model="employee.position"
@@ -69,6 +73,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
+                id="emp005"
                 v-model="employee.username"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -81,6 +86,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
+                id="emp006"
                 v-model="employee.password"
                 :type="'password'"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
@@ -95,6 +101,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-select
+                id="emp007"
                 item-text="province"
                 item-value="id"
                 :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
@@ -110,6 +117,7 @@
           <v-row md="8" style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-textarea
+                id="emp008"
                 v-model="employee.address"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -122,6 +130,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
+                id="emp009"
                 v-model="employee.dateTime"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -134,6 +143,7 @@
           </v-row>
           <v-row>
             <v-btn
+              id="emp010"
               style="margin: auto;"
               large
               color="#1A76D2"
@@ -149,7 +159,7 @@
     <v-row>
       <v-snackbar v-model="snackbar">
         {{ text }}
-        <v-btn color="pink" text @click="ResetData">Close</v-btn>
+        <v-btn id="emp011" text-align="center" color="pink" text @click="ResetData"></v-btn>
       </v-snackbar>
     </v-row>
   </v-container>
@@ -251,7 +261,6 @@ export default {
           console.log(response);
           this.text = "บันทึกข้อมูลเสร็จสิ้น";
           this.snackbar = true;
-          location.reload();
         })
         .catch(e => {
           console.log(e);

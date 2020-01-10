@@ -21,35 +21,35 @@
 
           <v-divider></v-divider>
 
-          <v-list-item v-if="show.navigationEmp" link @change="showEmp">
+          <v-list-item v-if="show.navigationEmp" id="emp00" link @change="showEmp">
             <v-list-item-icon style="width:40px;">
               <v-icon size="24px" style="margin: auto;">fas fa-user-secret</v-icon>
             </v-list-item-icon>
             <Label class style="color: white; ">Employee</Label>
           </v-list-item>
 
-          <v-list-item v-if="show.navigationStu" link @change="showStu">
+          <v-list-item v-if="show.navigationStu" id="stu00" link @change="showStu">
             <v-list-item-icon style="width:40px;">
               <v-icon size="24px" style="margin: auto;">fas fa-user-graduate</v-icon>
             </v-list-item-icon>
             <Label class style="color: white; ">Student</Label>
           </v-list-item>
 
-          <v-list-item v-if="show.navigationCourse" link @change="showCourse">
+          <v-list-item v-if="show.navigationCourse" id="css00" link @change="showCourse">
             <v-list-item-icon style="width:40px;">
               <v-icon size="22px" style="margin: auto;">fas fa-book-open</v-icon>
             </v-list-item-icon>
             <Label class style="color: white; ">Course</Label>
           </v-list-item>
 
-          <v-list-item v-if="show.navigationEnroll" link @change="showEnroll">
+          <v-list-item v-if="show.navigationEnroll" id="enr00" link @change="showEnroll">
             <v-list-item-icon style="width:40px;">
               <v-icon size="24px" style="margin: auto;">fas fa-book-medical</v-icon>
             </v-list-item-icon>
             <Label class style="color: white; ">EnrollCourse</Label>
           </v-list-item>
 
-          <v-list-item v-if="show.navigationRecord" link @change="showRecord">
+          <v-list-item v-if="show.navigationRecord" id="rec00" link @change="showRecord">
             <v-list-item-icon style="width:40px;">
               <v-icon size="24px" style="margin: auto;">fas fa-money-check-alt</v-icon>
             </v-list-item-icon>
