@@ -16,6 +16,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="RE001"
                 label="เลือกประเภทการบันทึก"
                 v-model="RecordExpense.expenseType"
                 :items="ExpenseType"
@@ -30,6 +31,7 @@
           <v-row v-if="selete.emp">
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="RE002"
                 label="เลือกชื่อพนักงาน"
                 v-model="RecordExpense.rec"
                 :items="employee"
@@ -44,6 +46,7 @@
           <v-row v-if="selete.stu">
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="RE003"
                 label="เลือกชื่อนักเรียน"
                 v-model="RecordExpense.enrollCourse_id"
                 :items="enrollCourse"
@@ -65,13 +68,13 @@
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field disabled v-model="RecordExpense.budget" label="จำนวนเงิน" outlined dense></v-text-field>
+              <v-text-field id="RE006" disabled v-model="RecordExpense.budget" label="จำนวนเงิน" outlined dense></v-text-field>
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field disabled v-model="RecordExpense.date" label="วันที่บันทึก" outlined></v-text-field>
+              <v-text-field id="RE007" disabled v-model="RecordExpense.date" label="วันที่บันทึก" outlined></v-text-field>
               <!-- disabled -->
             </v-col>
           </v-row>
@@ -79,6 +82,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="RE004"
                 disabled
                 v-model="RecordExpense.createdBy"
                 :items="employee"
@@ -92,6 +96,7 @@
 
           <v-row>
             <v-btn
+              id="RE005"
               style="margin: auto;"
               large
               color="blue darken-2"
