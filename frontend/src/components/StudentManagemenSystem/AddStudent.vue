@@ -176,7 +176,7 @@
     <v-row>
       <v-snackbar v-model="snackbar">
         {{ text }}
-        <v-btn color="pink" text @click="snackbar = false">Close</v-btn>
+        <v-btn color="pink" text @click="snackbar = false"></v-btn>
       </v-snackbar>
     </v-row>
   </v-container>
@@ -285,7 +285,7 @@ export default {
         })
         .catch(e => {
           console.log(e);
-          this.text = "กรุณาป้อนข้อมูลให้ครบ";
+          this.text = "กรุณาป้อนข้อมูลให้ครบถ้วน";
           this.snackbar = true;
         });
       this.submitted = true;
