@@ -1,98 +1,765 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
 	<title>EmployeeManagementSystem Test Suite</title>
 </head>
+
 <body>
-<table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Success Test Case</td></tr>
-</thead>
-<tbody>
-<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='|'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='|'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ABOUT US'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Cheap price'])[1]/preceding::span[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Leading institutions'])[1]/preceding::span[3]</option><option>xpath=//*/text()[normalize-space(.)='LOGIN']/parent::*</option><option>//div[@id='app']/div/header/div/div[8]/button/span</option><option>//div[8]/button/span</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>id=input-295<datalist><option>id=input-295</option><option>//input[@id='input-295']</option><option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option><option>//input</option><option>css=#input-295</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::span[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='HOME'])[1]/preceding::span[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='NEWS'])[1]/preceding::span[4]</option><option>xpath=//*/text()[normalize-space(.)='Log in as an employee']/parent::*</option><option>//div[@id='app']/div/div/div/div[2]/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=button.subtitle-2.font-weight-light.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default.info--text &gt; span.v-btn__content</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=input-307<datalist><option>id=input-307</option><option>//input[@id='input-307']</option><option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option><option>//input</option><option>css=#input-307</option></datalist></td><td>mg001</td>
-</tr>
-<tr><td>type</td><td>id=input-310<datalist><option>id=input-310</option><option>//input[@id='input-310']</option><option>//div[@id='app']/div/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/input</option><option>//div[2]/div[2]/div/div/div/div/input</option><option>css=#input-310</option></datalist></td><td>123</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log in as an student'])[1]/preceding::span[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN AS STUDENT'])[1]/preceding::span[4]</option><option>xpath=//*/text()[normalize-space(.)='LOGIN']/parent::*</option><option>//div[@id='app']/div/div/div/div[2]/div/div[3]/button/span</option><option>//div[3]/button/span</option><option>css=button.headline.font-weight-light.v-btn.v-btn--contained.theme--light.v-size--default.info &gt; span.v-btn__content</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เข้าสู้ระบบเร็จเสร็จสิ้น .'])[1]/preceding::span[3]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เข้าสู้ระบบเร็จเสร็จสิ้น .'])[1]/preceding::span[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN AS STAFF'])[1]/preceding::span[3]</option><option>xpath=//*/text()[normalize-space(.)='OK !']/parent::*</option><option>//div[@id='app']/div/div/div/button/span</option><option>//span</option><option>css=span.v-btn__content</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ผู้จัดการ'])[1]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ผู้จัดการ'])[1]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='POSITION'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='RecordExpense'])[1]/preceding::div[3]</option><option>//div[@id='app']/div/div/nav/div/div/div[2]</option><option>//div/div[2]</option><option>css=div.v-list-item.v-list-item--link.theme--dark</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[2]/preceding::div[7]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ชื่อ-นามสกุล'])[1]/preceding::div[7]</option><option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div/div/div/div/div/div</option><option>//div/div/div/div/div/div/div/div/div/div/div/div</option><option>css=div.v-select__selections</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>id=นาย-list-item-389<datalist><option>id=นาย-list-item-389</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นางสาว'])[1]/preceding::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นาง'])[1]/preceding::div[4]</option><option>xpath=//*/text()[normalize-space(.)='นาย']/parent::*</option><option>//div[@id='นาย-list-item-389']</option><option>xpath=(//div[@id='list-343']/div/div/div)[2]</option><option>//div/div/div/div/div/div/div/div</option><option>css=#นาย-list-item-389</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=input-350<datalist><option>id=input-350</option><option>//input[@id='input-350']</option><option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-350</option></datalist></td><td>พงศกร มาประโคน</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกตำแหน่งงาน'])[1]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกตำแหน่งงาน'])[1]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[4]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[5]/preceding::div[7]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊กรอก Username'])[1]/preceding::div[7]</option><option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[2]/div[2]/div/div/div/div/div</option><option>//div[2]/div[2]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>id=ผู้จัดการ-list-item-396<datalist><option>id=ผู้จัดการ-list-item-396</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ติวเตอร์'])[1]/following::div[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงานเคาท์เตอร์'])[1]/following::div[6]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นาย'])[1]/preceding::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นางสาว'])[1]/preceding::div[4]</option><option>xpath=//*/text()[normalize-space(.)='ผู้จัดการ']/parent::*</option><option>//div[@id='ผู้จัดการ-list-item-396']</option><option>//div[@id='list-360']/div[4]/div/div</option><option>//div[4]/div/div</option><option>css=#ผู้จัดการ-list-item-396</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=input-367<datalist><option>id=input-367</option><option>//input[@id='input-367']</option><option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[3]/div/div/div/div/div/input</option><option>//div[3]/div/div/div/div/div/input</option><option>css=#input-367</option></datalist></td><td>xdxd</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[6]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[6]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊กรอก Username'])[1]/following::div[9]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[7]/preceding::div[4]</option><option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[4]/div/div/div/div/div</option><option>//div[4]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-text-field__slot</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=input-370<datalist><option>id=input-370</option><option>//input[@id='input-370']</option><option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[4]/div/div/div/div/div/input</option><option>//div[4]/div/div/div/div/div/input</option><option>css=#input-370</option></datalist></td><td>xxx</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกจังหวัด'])[1]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกจังหวัด'])[1]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[7]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[8]/preceding::div[7]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='กรอกที่อยู่'])[1]/preceding::div[7]</option><option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[5]/div/div/div/div/div/div</option><option>//div[5]/div/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>id=เชียงใหม่-list-item-402<datalist><option>id=เชียงใหม่-list-item-402</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เชียงราย'])[1]/following::div[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='น่าน'])[1]/preceding::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พะเยา'])[1]/preceding::div[4]</option><option>xpath=//*/text()[normalize-space(.)='เชียงใหม่']/parent::*</option><option>//div[@id='เชียงใหม่-list-item-402']</option><option>//div[@id='list-373']/div[2]/div/div</option><option>//div/div/div/div[2]/div/div</option><option>css=#เชียงใหม่-list-item-402</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=input-380<datalist><option>id=input-380</option><option>//textarea[@id='input-380']</option><option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[6]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-380</option></datalist></td><td>140</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[9]/following::span[1]</option><option>xpath=//*/text()[normalize-space(.)='บันทึก']/parent::*</option><option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[8]/button/span</option><option>//div[8]/button/span</option><option>css=button.v-btn.v-btn--contained.theme--dark.v-size--large &gt; span.v-btn__content</option></datalist></td><td></td>
-</tr>
-<tr><td>assertText</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::div[4]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::div[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::div[8]</option><option>xpath=//*/text()[normalize-space(.)='บันทึกข้อมูลเสร็จสิ้น']/parent::*</option><option>//div[@id='app']/div[4]/main/div/div/div/div[2]/div/div/div</option><option>//div/div/div/div[2]/div/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>บันทึกข้อมูลเสร็จสิ้น
- Close</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::span[1]</option><option>xpath=//*/text()[normalize-space(.)='Close']/parent::*</option><option>//div[@id='app']/div[4]/main/div/div/div/div[2]/div/div/div/button/span</option><option>//div[2]/div/div/div/button/span</option><option>css=button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default.pink--text &gt; span.v-btn__content</option></datalist></td><td></td>
-</tr>
-</tbody></table>
-<table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Failed Test Case</td></tr>
-</thead>
-<tbody>
-<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='|'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='|'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ABOUT US'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Cheap price'])[1]/preceding::span[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Copyright © 2020 | SUT-SE-TEAM21'])[1]/preceding::span[10]</option><option>xpath=//*/text()[normalize-space(.)='LOGIN']/parent::*</option><option>//div[@id='app']/div/header/div/div[8]/button/span</option><option>//div[8]/button/span</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN'])[1]/following::button[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='HOME'])[1]/preceding::button[1]</option><option>xpath=(//button[@type='button'])[3]</option><option>//div[@id='app']/div/div/div/div[2]/div[2]/button</option><option>//div[2]/button</option><option>css=button.subtitle-2.font-weight-light.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default.info--text</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=input-90<datalist><option>id=input-90</option><option>//input[@id='input-90']</option><option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option><option>//input</option><option>css=#input-90</option></datalist></td><td>mg001</td>
-</tr>
-<tr><td>type</td><td>id=input-93<datalist><option>id=input-93</option><option>//input[@id='input-93']</option><option>//div[@id='app']/div/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/input</option><option>//div[2]/div[2]/div/div/div/div/input</option><option>css=#input-93</option></datalist></td><td>123</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log in as an student'])[1]/preceding::span[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN AS STUDENT'])[1]/preceding::span[4]</option><option>xpath=//*/text()[normalize-space(.)='LOGIN']/parent::*</option><option>//div[@id='app']/div/div/div/div[2]/div/div[3]/button/span</option><option>//div[3]/button/span</option><option>css=button.headline.font-weight-light.v-btn.v-btn--contained.theme--light.v-size--default.info &gt; span.v-btn__content</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เข้าสู้ระบบเร็จเสร็จสิ้น .'])[1]/preceding::span[3]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เข้าสู้ระบบเร็จเสร็จสิ้น .'])[1]/preceding::span[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN AS STAFF'])[1]/preceding::span[3]</option><option>xpath=//*/text()[normalize-space(.)='OK !']/parent::*</option><option>//div[@id='app']/div/div/div/button/span</option><option>//span</option><option>css=span.v-btn__content</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ผู้จัดการ'])[1]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ผู้จัดการ'])[1]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='POSITION'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='RecordExpense'])[1]/preceding::div[3]</option><option>//div[@id='app']/div/div/nav/div/div/div[2]</option><option>//div/div[2]</option><option>css=div.v-list-item.v-list-item--link.theme--dark</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[2]/preceding::div[7]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ชื่อ-นามสกุล'])[1]/preceding::div[7]</option><option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div/div/div/div/div/div</option><option>//div/div/div/div/div/div/div/div/div/div/div/div</option><option>css=div.v-select__selections</option></datalist></td><td></td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นางสาว'])[1]/preceding::div[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นางสาว'])[1]/preceding::div[2]</option><option>xpath=(//div[@id='list-128']/div/div)[2]</option><option>//div/div/div/div/div/div/div</option><option>css=div.v-list-item__content</option></datalist></td><td></td>
-</tr>
-<tr><td>type</td><td>id=input-135<datalist><option>id=input-135</option><option>//input[@id='input-135']</option><option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-135</option></datalist></td><td>ไก่ กำเดา</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[9]/following::span[1]</option><option>xpath=//*/text()[normalize-space(.)='บันทึก']/parent::*</option><option>//div[@id='app']/div[2]/main/div/div/div/div/div/div[8]/button/span</option><option>//div[8]/button/span</option><option>css=button.v-btn.v-btn--contained.theme--dark.v-size--large &gt; span.v-btn__content</option></datalist></td><td></td>
-</tr>
-<tr><td>assertText</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::div[4]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::div[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::div[8]</option><option>xpath=//*/text()[normalize-space(.)='กรุณาป้อนข้อมูลให้ครบ']/parent::*</option><option>//div[@id='app']/div[2]/main/div/div/div/div[2]/div/div/div</option><option>//div[2]/div/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>กรุณาป้อนข้อมูลให้ครบ
- Close</td>
-</tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::span[1]</option><option>xpath=//*/text()[normalize-space(.)='Close']/parent::*</option><option>//div[@id='app']/div[2]/main/div/div/div/div[2]/div/div/div/button/span</option><option>//div[2]/div/div/div/button/span</option><option>css=button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default.pink--text &gt; span.v-btn__content</option></datalist></td><td></td>
-</tr>
-</tbody></table>
+	<table cellpadding="1" cellspacing="1" border="1">
+		<thead>
+			<tr>
+				<td rowspan="1" colspan="3">Failed Test Case</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>open</td>
+				<td>http://localhost:8080/<datalist>
+						<option>http://localhost:8080/</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=showLogin<datalist>
+						<option>id=showLogin</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='|'])[1]/following::button[1]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ABOUT
+							US'])[1]/following::button[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Cheap
+							price'])[1]/preceding::button[1]</option>
+						<option>//button[@id='showLogin']</option>
+						<option>//div[@id='app']/div/header/div/div[8]/button</option>
+						<option>//div[8]/button</option>
+						<option>css=#showLogin</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN'])[1]/following::span[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='LOGIN'])[1]/following::span[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='Password'])[1]/following::span[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='HOME'])[1]/preceding::span[3]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='NEWS'])[1]/preceding::span[4]</option>
+						<option>xpath=//*/text()[normalize-space(.)='Log in as an employee']/parent::*</option>
+						<option>//button[@id='showloginAsEmp']/span</option>
+						<option>//div[2]/button/span</option>
+						<option>css=#showloginAsEmp &gt; span.v-btn__content</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=usernameEmp1<datalist>
+						<option>id=usernameEmp1</option>
+						<option>//input[@id='usernameEmp1']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option>
+						<option>//input</option>
+						<option>css=#usernameEmp1</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=usernameEmp1<datalist>
+						<option>id=usernameEmp1</option>
+						<option>//input[@id='usernameEmp1']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option>
+						<option>//input</option>
+						<option>css=#usernameEmp1</option>
+					</datalist></td>
+				<td>mg001</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=passwordEmp1<datalist>
+						<option>id=passwordEmp1</option>
+						<option>//input[@id='passwordEmp1']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/input</option>
+						<option>//div[2]/div[2]/div/div/div/div/input</option>
+						<option>css=#passwordEmp1</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=passwordEmp1<datalist>
+						<option>id=passwordEmp1</option>
+						<option>//input[@id='passwordEmp1']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/input</option>
+						<option>//div[2]/div[2]/div/div/div/div/input</option>
+						<option>css=#passwordEmp1</option>
+					</datalist></td>
+				<td>123</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=bin-login-emp<datalist>
+						<option>id=bin-login-emp</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='Password'])[1]/following::button[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='Username'])[1]/following::button[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log in as an
+							student'])[1]/preceding::button[1]</option>
+						<option>//button[@id='bin-login-emp']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div[3]/button</option>
+						<option>//div[3]/button</option>
+						<option>css=#bin-login-emp</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=SuccessEmp1<datalist>
+						<option>id=SuccessEmp1</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เข้าสู่ระบบเสร็จสิ้น
+							.'])[1]/preceding::button[1]</option>
+						<option>//button[@id='SuccessEmp1']</option>
+						<option>//div[@id='app']/div/div/div/button</option>
+						<option>//button</option>
+						<option>css=#SuccessEmp1</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp00<datalist>
+						<option>id=emp00</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ผู้จัดการ'])[1]/following::div[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='POSITION'])[1]/following::div[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='RecordExpense'])[1]/preceding::div[3]</option>
+						<option>//div[@id='emp00']</option>
+						<option>//div[@id='app']/div/div/nav/div/div/div[2]</option>
+						<option>//div/div[2]</option>
+						<option>css=#emp00</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='ระบบจัดเก็บข้อมูลพนักงาน'])[1]/following::div[2]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ระบบจัดเก็บข้อมูลพนักงาน'])[1]/following::div[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Menu'])[1]/following::div[8]
+						</option>
+						<option>//div[@id='app']/div[2]/main/div/div/div/div/div</option>
+						<option>//main/div/div/div/div/div</option>
+						<option>css=div.v-card.v-sheet.theme--light.elevation-12 &gt; div.container</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[1]/following::div[2]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='จำเป็นต้องเลือกข้อมูล'])[1]/preceding::div[4]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[2]/preceding::div[8]
+						</option>
+						<option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div/div/div/div/div/div</option>
+						<option>//div/div/div/div/div/div/div/div/div/div/div/div</option>
+						<option>css=div.v-select__selections</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นางสาว'])[1]/preceding::div[2]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='นางสาว'])[1]/preceding::div[2]</option>
+						<option>xpath=(//div[@id='list-102']/div/div)[2]</option>
+						<option>//div/div/div/div/div/div/div</option>
+						<option>css=div.v-list-item__content</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp002<datalist>
+						<option>id=emp002</option>
+						<option>//input[@id='emp002']</option>
+						<option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div[2]/div/div/div/div/input
+						</option>
+						<option>//div[2]/div/div/div/div/input</option>
+						<option>css=#emp002</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=emp002<datalist>
+						<option>id=emp002</option>
+						<option>//input[@id='emp002']</option>
+						<option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div[2]/div/div/div/div/input
+						</option>
+						<option>//div[2]/div/div/div/div/input</option>
+						<option>css=#emp002</option>
+					</datalist></td>
+				<td>พงศกร มาประโคน</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='เลือกตำแหน่งงาน'])[1]/following::div[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='เลือกตำแหน่งงาน'])[1]/following::div[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[4]/following::div[2]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[5]/preceding::div[7]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊กรอก
+							Username'])[1]/preceding::div[7]</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[2]/div[2]/div/div/div/div/div
+						</option>
+						<option>//div[2]/div[2]/div/div/div/div/div</option>
+						<option>
+							css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text
+							&gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt;
+							div.v-select__selections</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='ติวเตอร์'])[1]/following::div[2]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ติวเตอร์'])[1]/following::div[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='พนักงานเคาท์เตอร์'])[1]/following::div[5]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นาย'])[1]/preceding::div[2]
+						</option>
+						<option>//div[@id='list-119']/div[4]/div</option>
+						<option>//div[4]/div</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp005<datalist>
+						<option>id=emp005</option>
+						<option>//input[@id='emp005']</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[3]/div/div/div/div/div/input
+						</option>
+						<option>//div[3]/div/div/div/div/div/input</option>
+						<option>css=#emp005</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=emp005<datalist>
+						<option>id=emp005</option>
+						<option>//input[@id='emp005']</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[3]/div/div/div/div/div/input
+						</option>
+						<option>//div[3]/div/div/div/div/div/input</option>
+						<option>css=#emp005</option>
+					</datalist></td>
+				<td>uioopp</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[6]/following::div[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[6]/following::div[1]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊กรอก
+							Username'])[1]/following::div[9]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[7]/preceding::div[4]
+						</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[4]/div/div/div/div/div</option>
+						<option>//div[4]/div/div/div/div/div</option>
+						<option>
+							css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.primary--text
+							&gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-text-field__slot</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=emp006<datalist>
+						<option>id=emp006</option>
+						<option>//input[@id='emp006']</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[4]/div/div/div/div/div/input
+						</option>
+						<option>//div[4]/div/div/div/div/div/input</option>
+						<option>css=#emp006</option>
+					</datalist></td>
+				<td>iop</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='เลือกจังหวัด'])[1]/following::div[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='เลือกจังหวัด'])[1]/following::div[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[7]/following::div[2]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[8]/preceding::div[7]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='กรอกที่อยู่'])[1]/preceding::div[7]</option>
+						<option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[5]/div/div/div/div/div/div</option>
+						<option>//div[5]/div/div/div/div/div/div</option>
+						<option>
+							css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text
+							&gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt;
+							div.v-select__selections</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='อุุตรดิตถ์'])[1]/following::div[2]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='อุุตรดิตถ์'])[1]/following::div[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ลำพูน'])[1]/following::div[5]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ขอนแก่น'])[1]/preceding::div[2]</option>
+						<option>//div[@id='list-132']/div[10]/div</option>
+						<option>//div[10]/div</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp010<datalist>
+						<option>id=emp010</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::button[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[9]/following::button[1]
+						</option>
+						<option>//button[@id='emp010']</option>
+						<option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[8]/button</option>
+						<option>//div[8]/button</option>
+						<option>css=#emp010</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertText</td>
+				<td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::div[4]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='บันทึก'])[1]/following::div[4]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::div[8]</option>
+						<option>xpath=//*/text()[normalize-space(.)='กรุณาป้อนข้อมูลให้ครบ']/parent::*</option>
+						<option>//div[@id='app']/div[4]/main/div/div/div/div[2]/div/div/div</option>
+						<option>//div/div/div/div[2]/div/div/div</option>
+						<option>css=div.v-snack__content</option>
+					</datalist></td>
+				<td>กรุณาป้อนข้อมูลให้ครบ</td>
+			</tr>
+		</tbody>
+	</table>
+	<table cellpadding="1" cellspacing="1" border="1">
+		<thead>
+			<tr>
+				<td rowspan="1" colspan="3">Success Test Case</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>open</td>
+				<td>http://localhost:8080/<datalist>
+						<option>http://localhost:8080/</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=showLogin<datalist>
+						<option>id=showLogin</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='|'])[1]/following::button[1]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ABOUT
+							US'])[1]/following::button[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Cheap
+							price'])[1]/preceding::button[1]</option>
+						<option>//button[@id='showLogin']</option>
+						<option>//div[@id='app']/div/header/div/div[8]/button</option>
+						<option>//div[8]/button</option>
+						<option>css=#showLogin</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='LOGIN'])[1]/following::span[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='LOGIN'])[1]/following::span[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='Password'])[1]/following::span[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='HOME'])[1]/preceding::span[3]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='NEWS'])[1]/preceding::span[4]</option>
+						<option>xpath=//*/text()[normalize-space(.)='Log in as an employee']/parent::*</option>
+						<option>//button[@id='showloginAsEmp']/span</option>
+						<option>//div[2]/button/span</option>
+						<option>css=#showloginAsEmp &gt; span.v-btn__content</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=usernameEmp1<datalist>
+						<option>id=usernameEmp1</option>
+						<option>//input[@id='usernameEmp1']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option>
+						<option>//input</option>
+						<option>css=#usernameEmp1</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=usernameEmp1<datalist>
+						<option>id=usernameEmp1</option>
+						<option>//input[@id='usernameEmp1']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option>
+						<option>//input</option>
+						<option>css=#usernameEmp1</option>
+					</datalist></td>
+				<td>mg001</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=passwordEmp1<datalist>
+						<option>id=passwordEmp1</option>
+						<option>//input[@id='passwordEmp1']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/input</option>
+						<option>//div[2]/div[2]/div/div/div/div/input</option>
+						<option>css=#passwordEmp1</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=passwordEmp1<datalist>
+						<option>id=passwordEmp1</option>
+						<option>//input[@id='passwordEmp1']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/input</option>
+						<option>//div[2]/div[2]/div/div/div/div/input</option>
+						<option>css=#passwordEmp1</option>
+					</datalist></td>
+				<td>123</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=bin-login-emp<datalist>
+						<option>id=bin-login-emp</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='Password'])[1]/following::button[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='Username'])[1]/following::button[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log in as an
+							student'])[1]/preceding::button[1]</option>
+						<option>//button[@id='bin-login-emp']</option>
+						<option>//div[@id='app']/div/div/div/div[2]/div/div[3]/button</option>
+						<option>//div[3]/button</option>
+						<option>css=#bin-login-emp</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=SuccessEmp1<datalist>
+						<option>id=SuccessEmp1</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เข้าสู่ระบบเสร็จสิ้น
+							.'])[1]/preceding::button[1]</option>
+						<option>//button[@id='SuccessEmp1']</option>
+						<option>//div[@id='app']/div/div/div/button</option>
+						<option>//button</option>
+						<option>css=#SuccessEmp1</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp00<datalist>
+						<option>id=emp00</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ผู้จัดการ'])[1]/following::div[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='POSITION'])[1]/following::div[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='RecordExpense'])[1]/preceding::div[3]</option>
+						<option>//div[@id='emp00']</option>
+						<option>//div[@id='app']/div/div/nav/div/div/div[2]</option>
+						<option>//div/div[2]</option>
+						<option>css=#emp00</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='ระบบจัดเก็บข้อมูลพนักงาน'])[1]/following::div[2]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ระบบจัดเก็บข้อมูลพนักงาน'])[1]/following::div[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Menu'])[1]/following::div[8]
+						</option>
+						<option>//div[@id='app']/div[2]/main/div/div/div/div/div</option>
+						<option>//main/div/div/div/div/div</option>
+						<option>css=div.v-card.v-sheet.theme--light.elevation-12 &gt; div.container</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='เลือกคำนำหน้าชื่อ'])[1]/following::div[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[1]/following::div[2]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='จำเป็นต้องเลือกข้อมูล'])[1]/preceding::div[4]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[2]/preceding::div[8]
+						</option>
+						<option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div/div/div/div/div/div</option>
+						<option>//div/div/div/div/div/div/div/div/div/div/div/div</option>
+						<option>css=div.v-select__selections</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นางสาว'])[1]/preceding::div[2]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='นางสาว'])[1]/preceding::div[2]</option>
+						<option>xpath=(//div[@id='list-102']/div/div)[2]</option>
+						<option>//div/div/div/div/div/div/div</option>
+						<option>css=div.v-list-item__content</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp002<datalist>
+						<option>id=emp002</option>
+						<option>//input[@id='emp002']</option>
+						<option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div[2]/div/div/div/div/input
+						</option>
+						<option>//div[2]/div/div/div/div/input</option>
+						<option>css=#emp002</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=emp002<datalist>
+						<option>id=emp002</option>
+						<option>//input[@id='emp002']</option>
+						<option>//div[@id='app']/div[2]/main/div/div/div/div/div/div/div[2]/div/div/div/div/input
+						</option>
+						<option>//div[2]/div/div/div/div/input</option>
+						<option>css=#emp002</option>
+					</datalist></td>
+				<td>พงศกร มาประโคน</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='เลือกตำแหน่งงาน'])[1]/following::div[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='เลือกตำแหน่งงาน'])[1]/following::div[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[4]/following::div[2]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[5]/preceding::div[7]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊กรอก
+							Username'])[1]/preceding::div[7]</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[2]/div[2]/div/div/div/div/div
+						</option>
+						<option>//div[2]/div[2]/div/div/div/div/div</option>
+						<option>
+							css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text
+							&gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt;
+							div.v-select__selections</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='ติวเตอร์'])[1]/following::div[2]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ติวเตอร์'])[1]/following::div[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='พนักงานเคาท์เตอร์'])[1]/following::div[5]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='นาย'])[1]/preceding::div[2]
+						</option>
+						<option>//div[@id='list-119']/div[4]/div</option>
+						<option>//div[4]/div</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp005<datalist>
+						<option>id=emp005</option>
+						<option>//input[@id='emp005']</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[3]/div/div/div/div/div/input
+						</option>
+						<option>//div[3]/div/div/div/div/div/input</option>
+						<option>css=#emp005</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=emp005<datalist>
+						<option>id=emp005</option>
+						<option>//input[@id='emp005']</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[3]/div/div/div/div/div/input
+						</option>
+						<option>//div[3]/div/div/div/div/div/input</option>
+						<option>css=#emp005</option>
+					</datalist></td>
+				<td>uioopppp</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[6]/following::div[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[6]/following::div[1]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='๊กรอก
+							Username'])[1]/following::div[9]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[7]/preceding::div[4]
+						</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[4]/div/div/div/div/div</option>
+						<option>//div[4]/div/div/div/div/div</option>
+						<option>
+							css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.primary--text
+							&gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-text-field__slot</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=emp006<datalist>
+						<option>id=emp006</option>
+						<option>//input[@id='emp006']</option>
+						<option>//div[@id='app']/div[3]/main/div/div/div/div/div/div[4]/div/div/div/div/div/input
+						</option>
+						<option>//div[4]/div/div/div/div/div/input</option>
+						<option>css=#emp006</option>
+					</datalist></td>
+				<td>iop</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='เลือกจังหวัด'])[1]/following::div[1]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='เลือกจังหวัด'])[1]/following::div[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[7]/following::div[2]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[8]/preceding::div[7]
+						</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='กรอกที่อยู่'])[1]/preceding::div[7]</option>
+						<option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[5]/div/div/div/div/div/div</option>
+						<option>//div[5]/div/div/div/div/div/div</option>
+						<option>
+							css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text
+							&gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt;
+							div.v-select__selections</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>xpath=(.//*[normalize-space(text()) and
+					normalize-space(.)='อุุตรดิตถ์'])[1]/following::div[2]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='อุุตรดิตถ์'])[1]/following::div[2]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ลำพูน'])[1]/following::div[5]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='ขอนแก่น'])[1]/preceding::div[2]</option>
+						<option>//div[@id='list-132']/div[10]/div</option>
+						<option>//div[10]/div</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp008<datalist>
+						<option>id=emp008</option>
+						<option>//textarea[@id='emp008']</option>
+						<option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[6]/div/div/div/div/div/textarea
+						</option>
+						<option>//textarea</option>
+						<option>css=#emp008</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>id=emp008<datalist>
+						<option>id=emp008</option>
+						<option>//textarea[@id='emp008']</option>
+						<option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[6]/div/div/div/div/div/textarea
+						</option>
+						<option>//textarea</option>
+						<option>css=#emp008</option>
+					</datalist></td>
+				<td>140</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>id=emp010<datalist>
+						<option>id=emp010</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::button[1]</option>
+						<option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='​'])[9]/following::button[1]
+						</option>
+						<option>//button[@id='emp010']</option>
+						<option>//div[@id='app']/div[4]/main/div/div/div/div/div/div[8]/button</option>
+						<option>//div[8]/button</option>
+						<option>css=#emp010</option>
+					</datalist></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertText</td>
+				<td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึก'])[1]/following::div[4]<datalist>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='บันทึก'])[1]/following::div[4]</option>
+						<option>xpath=(.//*[normalize-space(text()) and
+							normalize-space(.)='๊เวลาที่บันทึก'])[1]/following::div[8]</option>
+						<option>xpath=//*/text()[normalize-space(.)='บันทึกข้อมูลเสร็จสิ้น']/parent::*</option>
+						<option>//div[@id='app']/div[4]/main/div/div/div/div[2]/div/div/div</option>
+						<option>//div/div/div/div[2]/div/div/div</option>
+						<option>css=div.v-snack__content</option>
+					</datalist></td>
+				<td>บันทึกข้อมูลเสร็จสิ้น</td>
+			</tr>
+		</tbody>
+	</table>
 </body>
+
 </html>
