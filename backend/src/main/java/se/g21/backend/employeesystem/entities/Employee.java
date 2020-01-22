@@ -7,6 +7,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
@@ -32,37 +35,52 @@ public class Employee {
 	@Column(name = "Employee_ID", unique = true, nullable = true)
 	private @NonNull Long id;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Nametitle.class)
 	@JoinColumn(name = "Nametitle_ID", insertable = true)
-	private @NonNull Nametitle nametitle;
+	private Nametitle nametitle;
 
+	@NotNull
 	@Column(name = "Fullname")
-	private @NonNull String fullname;
+	private String fullname;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Gender.class)
 	@JoinColumn(name = "Gender_ID", insertable = true)
-	private @NonNull Gender gender;
+	private Gender gender;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Position.class)
 	@JoinColumn(name = "Position_ID", insertable = true)
-	private @NonNull Position position;
+	private Position position;
 
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Province.class)
 	@JoinColumn(name = "Province_ID", insertable = true)
-	private @NonNull Province province;
+	private Province province;
 
+	@NotNull
+	@Size(max = 50)
 	@Column(name = "Address")
-	private @NonNull String address;
+	private String address;
 
+	@NotNull
 	@Column(name = "Username", unique = true)
-	private @NonNull String username;
+	private String username;
 
+	@NotNull
 	@Column(name = "Password")
-	private @NonNull String password;
+	private String password;
 
+	@NotNull
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name = "RecordDate")
-	private @NonNull Date recorddate;
+	private Date recorddate;
+
+	@Email
+	@NotNull
+	@Column(name = "Email")
+	private String email;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<Course> course;
