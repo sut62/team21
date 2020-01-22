@@ -78,6 +78,7 @@ public class Employee {
 	@Column(name = "RecordDate")
 	private Date recorddate;
 
+	@NotNull
 	@Email
 	@Column(name = "Email")
 	private String email;
