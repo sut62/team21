@@ -112,12 +112,13 @@ public class BackendApplication {
 						provinceRepository.save(province);
 					});
 
-			Object[][] user = new Object[][] { { 1, 1, "มงคลกิต พิชิตใจ", "cn001", "123", 1, 16, "อำเภอบ้านกรวด" },
-					{ 1, 1, "ประหยัด จันทร์อังคาร", "ct001", "123", 2, 16, "อำเภอกระบุรี" },
-					{ 1, 2, "ประวัติ เกือบดี", "ct002", "123", 2, 18, "อำเภอดินดงเเดง" },
-					{ 1, 1, "บ็อบ บาบาดุก", "tt001", "123", 3, 51, "อำเภอบ้านบิน", },
-					{ 2, 2, "ทองกีมา บาหลี", "tt002", "123", 3, 45, "อำเภอบ้านอีสานนอก", },
-					{ 2, 2, "กอบ จำกี", "mg001", "123", 4, 16, "อำเภอบ้านกรวด" } };
+			Object[][] user = new Object[][] {
+					{ 1, 1, "มงคลกิต พิชิตใจ", "cn001", "123", 1, 16, "อำเภอบ้านกรวด", "mk@sut.ac.th" },
+					{ 1, 1, "ประหยัด จันทร์อังคาร", "ct001", "123", 2, 16, "อำเภอกระบุรี", "py@sut.ac.th" },
+					{ 1, 2, "ประวัติ เกือบดี", "ct002", "123", 2, 18, "อำเภอดินดงเเดง", "pw@sut.ac.th" },
+					{ 1, 1, "บ็อบ บาบาดุก", "tt001", "123", 3, 51, "อำเภอบ้านบิน", "bob@sut.ac.th" },
+					{ 2, 2, "ทองกีมา บาหลี", "tt002", "123", 3, 45, "อำเภอบ้านอีสานนอก", "tkm@sut.ac.th" },
+					{ 2, 2, "กอบ จำกี", "mg001", "123", 4, 16, "อำเภอบ้านกรวด", "korb@sut.ac.th" } };
 
 			for (int i = 0; i < user.length; i++) {
 
@@ -142,6 +143,8 @@ public class BackendApplication {
 				employee.setProvince(provinceusing);
 
 				employee.setAddress((String) user[i][7]);
+
+				employee.setEmail((String) user[i][8]);
 
 				employee.setRecorddate(new Date());
 
@@ -280,8 +283,7 @@ public class BackendApplication {
 
 			Object[][] dataEnrollCourse = new Object[][] { { 1, 1, 1, "2019-08-12 10:12:56", 3 },
 					{ 1, 2, 15, "2019-08-13 11:30:20", 4 }, { 2, 3, 22, "2019-08-14 10:12:56", 3 },
-					{ 2, 4, 39, "2019-09-02 11:30:20", 4 }, { 3, 4, 40, "2019-09-12 10:12:56", 4 },
-				 };
+					{ 2, 4, 39, "2019-09-02 11:30:20", 4 }, { 3, 4, 40, "2019-09-12 10:12:56", 4 }, };
 
 			for (int i = 0; i < dataEnrollCourse.length; i++) {
 				EnrollCourse enrollCourse = new EnrollCourse();
