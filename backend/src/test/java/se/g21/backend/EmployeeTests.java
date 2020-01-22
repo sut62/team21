@@ -84,6 +84,236 @@ public class EmployeeTests {
     }
 
     @Test
+    void B6005795_testEmployeeNameTitleMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(null);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opopopop");
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("nametitle", v.getPropertyPath().toString());
+
+    }
+
+    @Test
+    void B6005795_testEmployeeFullnameMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname(null);
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opopopop");
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("fullname", v.getPropertyPath().toString());
+
+    }
+
+    @Test
+    void B6005795_testEmployeeGenderMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(null);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opopopop");
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("gender", v.getPropertyPath().toString());
+
+    }
+
+    @Test
+    void B6005795_testEmployeePositionMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(null);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opopopop");
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("position", v.getPropertyPath().toString());
+
+    }
+
+    @Test
+    void B6005795_testEmployeeProvinceMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(null);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opopopop");
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("province", v.getPropertyPath().toString());
+
+    }
+
+    @Test
+    void B6005795_testEmployeeAddressMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress(null);
+        newEmployee2.setUsername("opopopop");
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("address", v.getPropertyPath().toString());
+
+    }
+
+    @Test
     void B6005795_testEmployeePasswordMustNotBeNull() {
         Employee newEmployee2 = new Employee();
         Nametitle newNametitle = nametitleRepository.findById(1);
@@ -119,6 +349,113 @@ public class EmployeeTests {
         ConstraintViolation<Employee> v = result.iterator().next();
         assertEquals("must not be null", v.getMessage());
         assertEquals("password", v.getPropertyPath().toString());
+
+    }
+
+    @Test
+    void B6005795_testEmployeeUsernameMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername(null);
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("username", v.getPropertyPath().toString());
+
+    }
+
+    @Test
+    void B6005795_testEmployeeRecordDateMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opopopop");
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+        newEmployee2.setRecorddate(null);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("recorddate", v.getPropertyPath().toString());
+
+    }
+
+    @Test
+    void B6005795_testEmployeeEmailMustNotBeNull() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opopopop");
+        newEmployee2.setPassword("opopopop");
+        newEmployee2.setEmail(null);
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("email", v.getPropertyPath().toString());
 
     }
 
