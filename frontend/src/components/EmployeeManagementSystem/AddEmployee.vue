@@ -114,6 +114,20 @@
             </v-col>
           </v-row>
 
+          <v-row style="margin-left: 50px; margin-right: 50px">
+            <v-col>
+              <v-text-field
+                id="emp011"
+                v-model="employee.email"
+                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
+                required
+                label="๊กรอก Email"
+                outlined
+                dense
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
           <v-row md="8" style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-textarea
@@ -178,7 +192,8 @@ export default {
       address: "",
       username: "",
       password: "",
-      dateTime: ""
+      dateTime: "",
+      email: ""
     },
     nametitle: [],
     gender: [],
@@ -254,7 +269,9 @@ export default {
             "/" +
             this.employee.password +
             "/" +
-            this.employee.dateTime,
+            this.employee.dateTime +
+            "/" +
+            this.employee.email,
           this.employee
         )
         .then(response => {

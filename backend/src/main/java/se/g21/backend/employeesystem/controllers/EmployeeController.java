@@ -1,25 +1,15 @@
 package se.g21.backend.employeesystem.controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JsonParseException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.net.URLDecoder;
 
 import se.g21.backend.employeesystem.entities.*;
 import se.g21.backend.employeesystem.repository.*;
@@ -56,11 +46,11 @@ public class EmployeeController {
         return employeeRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/employee/{nametitle_id}/{fullname}/{gender_id}/{position_id}/{province_id}/{address}/{username}/{password}/{datetime}")
+    @PostMapping("/employee/{nametitle_id}/{fullname}/{gender_id}/{position_id}/{province_id}/{address}/{username}/{password}/{datetime}/{email}")
     public Employee newEmployee(Employee newEmployee, @PathVariable long nametitle_id, @PathVariable long gender_id,
             @PathVariable long position_id, @PathVariable String fullname, @PathVariable String username,
             @PathVariable String password, @PathVariable long province_id, @PathVariable String address,
-            @PathVariable String datetime) {
+            @PathVariable String datetime, @PathVariable String email) {
 
         Nametitle nametitle = nametitleRepository.findById(nametitle_id);
         Gender gender = genderRepository.findById(gender_id);
@@ -84,6 +74,7 @@ public class EmployeeController {
         newEmployee.setUsername(username);
         newEmployee.setPassword(password);
         newEmployee.setRecorddate(recorddate);
+        newEmployee.setEmail(email);
 
         return employeeRepository.save(newEmployee);
 
