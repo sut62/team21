@@ -3,7 +3,7 @@ package se.g21.backend.studentsystem.entities;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
-
+import javax.validation.constraints.*;
 
 
 import se.g21.backend.employeesystem.entities.*;
@@ -24,40 +24,51 @@ public class Student {
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Nametitle.class)
 	@JoinColumn(name = "Nametitle_ID", insertable = true)
-    private @NonNull Nametitle nametitle;
+    @NotNull
+    private  Nametitle nametitle;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Gender.class)
     @JoinColumn(name = "Gender_ID", insertable = true)
-    private @NonNull Gender gender;
+    @NotNull
+    private  Gender gender;
     
     @Column(name = "fullname")
-    private @NonNull String fullname;
+    @NotNull
+    private  String fullname;
     
     @Column(name = "Username",unique = true)
-    private @NonNull String username;
+    @NotNull
+    private  String username;
 
     @Column(name = "password")
-    private @NonNull String password;
+    @NotNull
+    private  String password;
 
     @Column(name = "Address")
-    private @NonNull String address;
+    @NotNull
+    private  String address;
 
     @Column(name = "Old")
-    private @NonNull long old;
+    @NotNull
+    private  long old;
 
     @Column(name = "Tel")
-    private @NonNull String tel;
+    @NotNull
+    private  String tel;
 
     @Column(name = "Email")
-    private @NonNull String email;
+    @NotNull
+    private  String email;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Province.class)
     @JoinColumn(name = "Province_ID", insertable = true)
-    private @NonNull Province province;
+    @NotNull
+    private  Province province;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
 	@JoinColumn(name = "Employee_ID", insertable = true)
-    private @NonNull Employee employee;
+    @NotNull
+    private  Employee employee;
     
     @OneToMany(fetch = FetchType.LAZY)
 	private Collection<EnrollCourse> enrollCourse;
