@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 
 import se.g21.backend.enrollcoursesystem.entities.EnrollCourse;
@@ -53,18 +54,25 @@ public class ReviewCourseController {
     @PathVariable long enrollCourse_id,
     @PathVariable long rating_id,
     @PathVariable long improvement_id,
-    @PathVariable String comment) {
+    @PathVariable String comment,String datetime) {
 
     EnrollCourse enrollCourse = enrollCourseRepository.findById(enrollCourse_id);
     Rating rating = ratingRepository.findById(rating_id);
     Improvement improvement = improvementRepository.findById(improvement_id);
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Date recorddate = new Date();
+    try {
+        recorddate = formatter.parse((String) datetime);
+    } catch (Exception e) {
+        System.out.println(e);
+    }
     
     
     newReviewCourse.setEnrollCourse(enrollCourse);
     newReviewCourse.setRating(rating);
     newReviewCourse.setImprovement(improvement);
     newReviewCourse.setComment(comment);
-    newReviewCourse.setReviewDate(new Date());
+    newReviewCourse.setReviewDate(recorddate);
     
     
     return reviewCourseRepository.save(newReviewCourse); //บันทึก Objcet review
