@@ -7,7 +7,8 @@ import javax.persistence.*;
 import lombok.NonNull;
 import java.util.Collection;
 import com.fasterxml.jackson.annotation.*;
-import java.time.LocalDateTime; 
+import java.time.LocalDateTime;
+import javax.validation.constraints.*;
 
 @Entity
 @Data
@@ -24,9 +25,13 @@ public class RecordExpense {
     
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = ExpenseType.class)
     @JoinColumn(name = "EXPENSE_TYPE_ID", insertable = true)
+    @NotNull
     private ExpenseType expenseType;
 
     @Column(name="BUDGET",nullable = true)
+    @NotNull
+    @Max(50000)
+    @Positive
     private double budget;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
@@ -38,10 +43,12 @@ public class RecordExpense {
     private EnrollCourse enrollCourse;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
+    @NotNull
     private @NonNull LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
     @JoinColumn(name = "CREATEDBY", insertable = true)
+    @NotNull
     private Employee createdBy;
 
 }
