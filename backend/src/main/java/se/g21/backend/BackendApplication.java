@@ -299,6 +299,8 @@ public class BackendApplication {
 				LocalDateTime dataDate = LocalDateTime.parse((String) dataEnrollCourse[i][3], dateFormat);
 				enrollCourse.setDate(dataDate);
 
+				enrollCourse.setNote("-");
+
 				Employee employee = employeeRepository.findById((int) dataEnrollCourse[i][4]);
 				enrollCourse.setEmployee(employee);
 				enrollCourseRepository.save(enrollCourse);

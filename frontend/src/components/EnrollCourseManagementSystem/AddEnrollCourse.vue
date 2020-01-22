@@ -63,7 +63,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
-              id="enroll004543"
+                id="enroll004543"
                 v-model="enroll.computer_id"
                 :items="computers"
                 item-text="pcNumber"
@@ -83,6 +83,22 @@
             <v-col cols="8" style="margin: auto;">
               <v-text-field v-model="enroll.dateTime" label="วันเวลาปัจจุปัน" outlined></v-text-field>
               <!-- disabled -->
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols="8" style="margin: auto;">
+              <v-textarea
+                id="note001"
+                v-model="enroll.note"
+                label="อื่นๆ"
+                outlined
+                dense
+              ></v-textarea>
+              <span
+                v-if="errorNote"
+                style="margin-left: 30px; color: red;"
+              >คุณไม่สามารพิมพ์ข้อความเกิน 50 ตัวอักษรได้</span>
             </v-col>
           </v-row>
 
@@ -210,6 +226,7 @@ export default {
     errorEmployee: false,
     errorCourse: false,
     errorComputer: false,
+    errorNote: false,
     students: [],
     employees: [],
     courses: [],
@@ -227,7 +244,8 @@ export default {
       employee_id: "",
       course_id: "",
       computer_id: "",
-      dateTime: ""
+      dateTime: "",
+      note: ""
     }
   }),
   methods: {
@@ -240,7 +258,8 @@ export default {
       this.errorEmployee = this.enroll.employee_id == "" ? true : false;
       this.errorCourse = this.enroll.course_id == "" ? true : false;
       this.errorComputer = this.enroll.computer_id == "" ? true : false;
-      if (!this.errorStudents && !this.errorEmployee && !this.errorCourse && !this.errorComputer) {
+      this.errorNote = this.enroll.note.length > 50 ? true : false;
+      if (!this.errorStudents && !this.errorEmployee && !this.errorCourse && !this.errorComputer && !this.errorNote) {
         this.saveEnrollCourse();
       } else {
         this.popup.Error = true;
@@ -363,6 +382,8 @@ export default {
             "/" +
             this.enroll.dateTime +
             "/" +
+            (this.enroll.note == "" ? "-" : this.enroll.note) +
+            "/" +
             this.enroll.employee_id,
           this.enroll
         )
@@ -383,7 +404,10 @@ export default {
         });
     },
     getNowTime() {
-      // const answer = x > 10 ? "greater than 10" : "less than 10";
+      if(this.enroll.note.length < 51){
+        this.errorNote = false;
+      }
+
       var xTime = new Date();
       var FullYear = xTime.getFullYear();
       var Month =
@@ -437,6 +461,7 @@ export default {
       this.enroll.course_id = "";
       this.enroll.computer_id = "";
       this.enroll.dateTime = "";
+      this.enroll.note = "";
       this.getEmployees();
       this.getStudents();
       this.getEnrollCourse();

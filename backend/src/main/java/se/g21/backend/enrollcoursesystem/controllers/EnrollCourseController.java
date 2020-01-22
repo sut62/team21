@@ -60,12 +60,13 @@ public class EnrollCourseController {
         return enrollCourseRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/enrollCourse/{student_id}/{course_id}/{computer_id}/{dateTime}/{employee_id}")
+    @PostMapping("/enrollCourse/{student_id}/{course_id}/{computer_id}/{dateTime}/{note}/{employee_id}")
     public EnrollCourse newEnrollCourse(EnrollCourse newEnrollCourse,
     @PathVariable long student_id,
     @PathVariable long course_id,
     @PathVariable long computer_id,
     @PathVariable String dateTime,
+    @PathVariable String note,
     @PathVariable long employee_id) {
 
         Student student = studentRepository.findById(student_id);
@@ -77,10 +78,11 @@ public class EnrollCourseController {
         Computer computer = computerRepository.findById(computer_id);
 		newEnrollCourse.setComputer(computer);
 
-        
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dataDate = LocalDateTime.parse((String)dateTime,dateFormat);
         newEnrollCourse.setDate(dataDate);
+
+        newEnrollCourse.setNote(note);
 
         Employee employee = employeeRepository.findById(employee_id);
         newEnrollCourse.setEmployee(employee);
