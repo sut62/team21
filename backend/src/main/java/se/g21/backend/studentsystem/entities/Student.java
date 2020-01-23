@@ -5,7 +5,6 @@ import javax.persistence.*;
 import java.util.Collection;
 import javax.validation.constraints.*;
 
-
 import se.g21.backend.employeesystem.entities.*;
 
 import se.g21.backend.enrollcoursesystem.entities.EnrollCourse;
@@ -48,8 +47,9 @@ public class Student {
     @NotNull
     private  String address;
 
-    @Column(name = "Old")
+    @Positive
     @NotNull
+    @Column(name = "Old")
     private  long old;
 
     @Column(name = "Tel")
@@ -57,6 +57,7 @@ public class Student {
     private  String tel;
 
     @Column(name = "Email")
+    @Email
     @NotNull
     private  String email;
 
