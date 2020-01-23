@@ -21,18 +21,17 @@ public class RecordExpense {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="RECORD_EXPENSE_SEQ")
     
     @Column(name="RECORD_EXPENSE_ID",unique = true, nullable = true)
-    private @NonNull Long id;   
+    private Long id;   
     
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = ExpenseType.class)
     @JoinColumn(name = "EXPENSE_TYPE_ID", insertable = true)
-    @NotNull
+    @NotNull        
     private ExpenseType expenseType;
 
     @Column(name="BUDGET",nullable = true)
-    @NotNull
-    @Max(50000)
-    @Positive
-    private double budget;
+    @Max(50000)     
+    @Positive       
+    private @NonNull double budget;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID", insertable = true)
@@ -43,12 +42,12 @@ public class RecordExpense {
     private EnrollCourse enrollCourse;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
-    @NotNull
-    private @NonNull LocalDateTime date;
+    @NotNull        
+    private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
     @JoinColumn(name = "CREATEDBY", insertable = true)
-    @NotNull
+    @NotNull        
     private Employee createdBy;
 
 }
