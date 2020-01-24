@@ -67,7 +67,7 @@
                   required
                   v-model="reviewCourse.comment"
                   outlined
-                  label="แสดงความคิดเห็นเพิ่มเติม"
+                  label="แสดงความคิดเห็นเพิ่มเติม(ไม่เกิน 80 ตัวอักษร)"
                   dense
                 ></v-textarea>
               </v-col>
