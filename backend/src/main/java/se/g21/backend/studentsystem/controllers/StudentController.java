@@ -59,9 +59,15 @@ public class StudentController {
 
     }
 
-    @GetMapping("/student/")
+    @GetMapping("/student")
     public Collection<Student> Students() {
         return studentRepository.findAll().stream().collect(Collectors.toList());
+    }
+
+    @GetMapping("/student/{fullname}/")
+    public Collection<Student> Students(@PathVariable("fullname") String fullname) {
+        fullname = fullname + "%";
+        return studentRepository.findByFullname(fullname);
     }
 
     @PostMapping("/student/{nametitle_id}/{gender_id}/{fullname}/{province_id}/{address}/{username}/{password}/{old}/{tel}/{email}/{employee_id}")
