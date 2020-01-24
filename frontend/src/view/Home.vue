@@ -1,7 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="#100E17" dark height="90px">
-      <!-- <v-app-bar-nav-icon> </v-app-bar-nav-icon> -->
+    <v-app-bar color="#100E17" dark style="padding: 10px;">
       <img src="../assets/logo2.png" style="height: 80%;" />
       <!-- <v-toolbar-title style="color: white;" class="display-2 font-weight-black">THE TUTOR</v-toolbar-title> -->
 
@@ -24,9 +23,6 @@
         <v-btn text class="btn-hover headline font-weight-light" color="white">ABOUT US</v-btn>
       </div>
 
-      <!-- <div class="my-2">
-        <v-btn text class="headline font-weight-light" color="white">SING UP</v-btn>
-      </div>-->
       <div class="my-2 display-2">
         <Label style="color: white">|</Label>
       </div>
@@ -44,8 +40,7 @@
 
     <v-content>
       <template>
-        <v-carousel cycle show-arrows-on-hover hide-delimiters height="400" style>
-          <!-- <v-carousel-item v-for="(item,i) in items" :key="i" :src='item.src' ></v-carousel-item> -->
+        <v-carousel cycle show-arrows-on-hover hide-delimiters  style>
           <v-carousel-item key="1" src="../assets/carousel/img1.jpg">
             <v-row
               class="fill-height"
@@ -258,7 +253,7 @@
                 width="100"
                 @click="redirectStudent"
               >OK !</v-btn>
-              <div class="py-3">เข้าสู่ระบบเสร็จสิ้น .</div>
+              <div class="py-3">{{ popup.TextSuccess }}</div>
             </v-sheet>
           </v-bottom-sheet>
         </div>
@@ -270,14 +265,14 @@
           <v-bottom-sheet v-model="sheet.Error" persistent>
             <v-sheet class="text-center" height="200px">
               <v-btn id="BottomError1" class="mt-8" color="error" @click="sheet.Error = false" width="100">CLOSE</v-btn>
-              <div class="py-3">username หรือ password ผิด .</div>
+              <div class="py-3">{{ popup.TextError }}</div>
             </v-sheet>
           </v-bottom-sheet>
         </div>
       </template>
     </v-content>
 
-    <v-footer class="flex" flat tile style="background-color: #100E17; ">
+    <v-footer class="flex" flat tile height="200"  style="background-color: #100E17; ">
       <v-card
         flat
         tile
@@ -285,15 +280,17 @@
         style="background-color: #100E17; margin: auto;"
       >
         <v-card-text style="color: white;">
-          <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
+          <v-btn  v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
             <v-icon size="24px">{{ icon }}</v-icon>
           </v-btn>
         </v-card-text>
 
         <!-- <v-divider></v-divider> -->
-
         <v-card-text class="white--text" style="color: white;">
-          <strong>Copyright © 2020 | SUT-SE-TEAM21</strong>
+          <strong>Email: se_team21@office365.sut.ac.th</strong>
+        </v-card-text>
+        <v-card-text class="white--text" style="color: white;">
+          <strong>Copyright © 2020 | SUT#25 | CPE#22 | SE-TEAM#21 </strong>
         </v-card-text>
       </v-card>
     </v-footer>
@@ -349,12 +346,6 @@ export default {
       this.LoginEmp.errorpassword = false;
     },
     checkLoginStudent() {
-      // if (this.LoginStu.username == "") {
-      //   this.LoginStu.errorUsername = true;
-      // }
-      // if (this.LoginStu.password == "") {
-      //   this.LoginStu.errorPassword = true;
-      // }
 
       if (this.LoginStu.username != "" && this.LoginStu.password != "") {
         http
@@ -372,27 +363,34 @@ export default {
               this.$session.set("fullname", response.data[0].fullname);
               this.$session.set("position", "นักเรียน");
 
+              this.popup.TextSuccess = "เข้าสู่ระบบเสร็จสิ้น .";
               this.sheet.Success = true;
+              
+              console.log("เข้าสู่ระบบเสร็จสิ้น .");
             } else {
+
+              this.popup.TextError = "username หรือ password ผิด .";
               this.sheet.Error = true;
-              console.log("login ไม่สำเร็จ");
+              
+              console.log("username หรือ password ผิด .");
             }
           })
           .catch(e => {
-            console.log(e);
+
+            this.popup.TextError = "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ เนื่องจาก "+e;
+            this.sheet.Error = true;
+            console.log("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ เนื่องจาก "+e);
           });
       } else {
-        console.log("login ไม่สำเร็จ");
+
+        this.popup.TextError = "กรุณากรอก username เเละ password .";
         this.sheet.Error = true;
+        console.log("กรุณากรอก username เเละ password .");
+
+
       }
     },
     checkLoginEmployee() {
-      // if (this.LoginEmp.username == "") {
-      //   this.LoginEmp.errorUsername = true;
-      // }
-      // if (this.LoginEmp.password == "") {
-      //   this.LoginEmp.errorPassword = true;
-      // }
 
       if (this.LoginEmp.username != "" && this.LoginEmp.password != "") {
         http
@@ -404,9 +402,11 @@ export default {
           )
           .then(response => {
             if (response.data[0] != null) {
-              if (response.data[0].position.id == 1) {
-                console.log("position นี้เข้าสู่ระบบไม่ได้");
+              if (response.data[0].position.id == 1 || response.data[0].position.id == 3) {
+
+                this.popup.TextError = "ตำเเหน่งของคุณไม่สามารถเข้าสู่ระบบได้ .";
                 this.sheet.Error = true;
+                console.log("ตำเเหน่งของคุณไม่สามารถเข้าสู่ระบบได้ .");
               } else {
                 this.$session.start();
                 this.$session.set("userId", response.data[0].id);
@@ -418,20 +418,26 @@ export default {
                   response.data[0].position.position
                 );
 
+                this.popup.TextSuccess = "เข้าสู่ระบบเสร็จสิ้น .";
                 this.sheet.Success = true;
               }
             } else {
+              this.popup.TextError = "username หรือ password ผิด .";
               this.sheet.Error = true;
+              
+              console.log("username หรือ password ผิด .");
             }
           })
           .catch(e => {
-            console.log(e);
+            this.popup.TextError = "ไม่สามารถเชื่อมต่อฐานข้อมูลได้ เนื่องจาก "+e;
             this.sheet.Error = true;
+            console.log("ไม่สามารถเชื่อมต่อฐานข้อมูลได้ เนื่องจาก "+e);
           });
       } else {
-        console.log("login ไม่สำเร็จ");
 
+        this.popup.TextError = "กรุณากรอก username เเละ password .";
         this.sheet.Error = true;
+        console.log("กรุณากรอก username เเละ password .");
       }
     },
     showLogin(x) {
@@ -450,25 +456,8 @@ export default {
     redirectStudent() {
       this.sheet = false;
       this.$router.push("/Student");
-    },
-    checkKeybord() {
-      if (this.LoginStu.username.length > 0) {
-        this.LoginStu.errorUsername = false;
-      }
-      if (this.LoginStu.password.length > 0) {
-        this.LoginStu.errorPassword = false;
-      }
-      if (this.LoginEmp.username.length > 0) {
-        this.LoginEmp.errorUsername = false;
-      }
-      if (this.LoginEmp.password.length > 0) {
-        this.LoginEmp.errorPassword = false;
-      }
     }
   },
-  created() {
-    // setInterval(() => this.checkKeybord());
-  }
 };
 </script>
 
