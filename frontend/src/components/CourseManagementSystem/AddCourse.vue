@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <div>
     <v-hover v-slot:default="{ hover }">
       <v-card width="600" :elevation="hover ? 12 : 5">
         <v-app-bar dark color="#1A76D2">
@@ -93,7 +93,7 @@
         </v-container>
       </v-card>
     </v-hover>
-  </v-container>
+  </div>
 </template>
 <script>
 import http from "../../http-common";

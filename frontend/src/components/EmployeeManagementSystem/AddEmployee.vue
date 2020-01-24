@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-hover v-slot:default="{ hover }">
       <v-card width="800" :elevation="hover ? 12 : 5">
         <v-app-bar dark color="#1A76D2">
@@ -176,7 +176,7 @@
         <v-btn id="emp011" text-align="center" color="pink" text @click="ResetData"></v-btn>
       </v-snackbar>
     </v-row>
-  </v-container>
+  </div>
 </template>
 <script>
 import http from "../../http-common";
