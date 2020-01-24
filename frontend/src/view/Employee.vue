@@ -20,40 +20,84 @@
           </v-list-item-content>
 
           <v-divider></v-divider>
+          <v-list-item-title class="title" style="margin-top: 30px; margin-boottom: 10px;margin-left:20px;">
+              <Label text class=" title font-weight-light" color="white">Page Add information</Label>
+          </v-list-item-title>
 
           <v-list-item v-if="show.navigationEmp" id="emp00" link @change="showEmp">
-            <v-list-item-icon style="width:40px;">
+            <v-list-item-icon style="width:20px;">
               <v-icon size="24px" style="margin: auto;">fas fa-user-secret</v-icon>
             </v-list-item-icon>
-            <Label class style="color: white; ">Employee</Label>
+            <Label class style="color: white; ">AddEmployee</Label>
           </v-list-item>
 
           <v-list-item v-if="show.navigationStu" id="stu00" link @change="showStu">
-            <v-list-item-icon style="width:40px;">
+            <v-list-item-icon style="width:20px;">
               <v-icon size="24px" style="margin: auto;">fas fa-user-graduate</v-icon>
             </v-list-item-icon>
-            <Label class style="color: white; ">Student</Label>
+            <Label class style="color: white; ">AddStudent</Label>
           </v-list-item>
 
           <v-list-item v-if="show.navigationCourse" id="css00" link @change="showCourse">
-            <v-list-item-icon style="width:40px;">
+            <v-list-item-icon style="width:20px;">
               <v-icon size="22px" style="margin: auto;">fas fa-book-open</v-icon>
             </v-list-item-icon>
-            <Label class style="color: white; ">Course</Label>
+            <Label class style="color: white; ">AddCourse</Label>
           </v-list-item>
 
           <v-list-item v-if="show.navigationEnroll" id="enr00" link @change="showEnroll">
-            <v-list-item-icon style="width:40px;">
+            <v-list-item-icon style="width:20px;">
               <v-icon size="24px" style="margin: auto;">fas fa-book-medical</v-icon>
             </v-list-item-icon>
-            <Label class style="color: white; ">EnrollCourse</Label>
+            <Label class style="color: white; ">AddEnrollCourse</Label>
           </v-list-item>
 
           <v-list-item v-if="show.navigationRecord" id="rec00" link @change="showRecord">
-            <v-list-item-icon style="width:40px;">
+            <v-list-item-icon style="width:20px;">
               <v-icon size="24px" style="margin: auto;">fas fa-money-check-alt</v-icon>
             </v-list-item-icon>
-            <Label class style="color: white; ">RecordExpense</Label>
+            <Label class style="color: white; ">AddRecordExpense</Label>
+          </v-list-item>
+
+          <v-divider style="margin-top: 30px; margin-boottom: 10px;"></v-divider>
+        
+          <v-list-item-title class="title" style="margin-top: 30px; margin-boottom: 10px;margin-left:20px;">
+              <Label text class=" title font-weight-light" color="white">Page View information</Label>
+          </v-list-item-title>
+     
+          <v-list-item v-if="show.navigationEmp" id="viemp00" link @change="showEmp">
+            <v-list-item-icon style="width:20px;">
+              <v-icon size="24px" style="margin: auto;">fas fa-user-secret</v-icon>
+            </v-list-item-icon>
+            <Label class style="color: white; ">ViewEmployee</Label>
+          </v-list-item>
+
+          <v-list-item v-if="show.navigationStu" id="vistu00" link @change="showStu">
+            <v-list-item-icon style="width:20px;">
+              <v-icon size="24px" style="margin: auto;">fas fa-user-graduate</v-icon>
+            </v-list-item-icon>
+            <Label class style="color: white; ">ViewStudent</Label>
+          </v-list-item>
+
+          <v-list-item v-if="show.navigationCourse" id="vicss00" link @change="showCourse">
+            <v-list-item-icon style="width:20px;">
+              <v-icon size="22px" style="margin: auto;">fas fa-book-open</v-icon>
+            </v-list-item-icon>
+            <Label class style="color: white; ">ViewCourse</Label>
+          </v-list-item>
+
+          <v-list-item v-if="show.navigationEnroll" id="vienr00" link @change="showEnroll">
+            <v-list-item-icon style="width:20px;">
+              <v-icon size="24px" style="margin: auto;">fas fa-book-medical</v-icon>
+            </v-list-item-icon>
+            <Label class style="color: white; ">ViewEnrollCourse</Label>
+          </v-list-item>
+
+          <v-list-item v-if="show.navigationRecord" id="virec00" link @change="showRecord">
+            <v-list-item-icon style="width:20px;">
+              <v-icon size="24px" style="margin: auto;">fas fa-money-check-alt</v-icon>
+            </v-list-item-icon>
+            <Label class style="color: white; ">ViewRecordExpense</Label>
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
@@ -69,7 +113,7 @@
         text
         class="headline font-weight-light"
         color="white"
-      >NAME : {{this.$session.get('fullname')}}</v-btn>
+      >ชื่อ : {{this.$session.get('fullname')}}</v-btn>
 
       <div class="my-2 display-2" style="margin-right: 20px;">
         <Label style="color: white ">|</Label>
@@ -83,14 +127,6 @@
         </template>
 
         <v-list style="background-color: #1A76D2;">
-          <v-list-item>
-            <v-list-item-title style="color: white;">
-              <v-icon
-                size="24px"
-                style="margin-right: 10px; color: white; width:30px;"
-              >fas fa-user-cog</v-icon>SETTINGS PROFILE
-            </v-list-item-title>
-          </v-list-item>
           <v-list-item @click="logOut">
             <v-list-item-title style="color: white;">
               <v-icon
@@ -102,9 +138,6 @@
         </v-list>
       </v-menu>
 
-      <!-- <Label class="my-2 display-2" style="color: white; margin-left: 20px;">|</Label>
-
-      <v-btn @click="logOut" text class="headline font-weight-light" color="white">LOGOUT</v-btn>-->
     </v-app-bar>
 
     <!-- Sizes your content based upon application components -->
@@ -186,30 +219,23 @@ export default {
       this.show.navigationEnroll = true;
       this.show.navigationRecord = false;
     },
-    navigationTutor() {
-      this.show.navigationEmp = false;
-      this.show.navigationStu = false;
-      this.show.navigationCourse = true;
-      this.show.navigationEnroll = false;
-      this.show.navigationRecord = false;
-    },
     navigationManager() {
       this.show.navigationEmp = true;
       this.show.navigationStu = false;
-      this.show.navigationCourse = false;
+      this.show.navigationCourse = true;
       this.show.navigationEnroll = false;
       this.show.navigationRecord = true;
     },
     showEmp() {
-      this.componentName = "Employee";
+      this.componentName = "Add Employee";
       this.show.stu = false;
-      this.show.course = false;
+      this.show.course = true;
       this.show.enroll = false;
       this.show.record = false;
       this.show.emp = true;
     },
     showStu() {
-      this.componentName = "Student";
+      this.componentName = "Add Student";
       this.show.emp = false;
       this.show.course = false;
       this.show.enroll = false;
@@ -217,7 +243,7 @@ export default {
       this.show.stu = true;
     },
     showCourse() {
-      this.componentName = "Course";
+      this.componentName = "Add Course";
       this.show.stu = false;
       this.show.enroll = false;
       this.show.record = false;
@@ -225,15 +251,14 @@ export default {
       this.show.course = true;
     },
     showEnroll() {
-      this.componentName = "Enroll Course";
-      this.show.emp = false;
+      this.componentName = "Add Enroll Course";
       this.show.course = false;
       this.show.record = false;
       this.show.stu = false;
       this.show.enroll = true;
     },
     showRecord() {
-      this.componentName = "Record Expense";
+      this.componentName = "Add Record Expense";
       this.show.emp = false;
       this.show.course = false;
       this.show.enroll = false;
