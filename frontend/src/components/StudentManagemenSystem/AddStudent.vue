@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-hover v-slot:default="{ hover }">
       <v-card width="800" :elevation="hover ? 12 : 5">
         <v-app-bar dark color="blue darken-2">
@@ -179,7 +179,7 @@
         <v-btn color="pink" text @click="snackbar = false"></v-btn>
       </v-snackbar>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
