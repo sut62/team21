@@ -349,9 +349,7 @@ export default {
     showNavigation(x) {
       if (x == 2) {
         this.navigationCounterStaff();
-      } else if (x == 3) {
-        this.navigationTutor();
-      } else if (x == 4) {
+      }else{
         this.navigationManager();
       }
     },
@@ -361,6 +359,7 @@ export default {
       this.show.navigationCourse = false;
       this.show.navigationEnroll = true;
       this.show.navigationRecord = false;
+      this.show.navigationReviews = true;
     },
     navigationManager() {
       this.show.navigationEmp = true;
@@ -368,6 +367,7 @@ export default {
       this.show.navigationCourse = true;
       this.show.navigationEnroll = false;
       this.show.navigationRecord = true;
+      this.show.navigationReviews = false;
     },
     showEmp() {
       this.componentName = "Add Employee";
