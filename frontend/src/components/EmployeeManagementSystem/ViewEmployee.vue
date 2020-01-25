@@ -1,7 +1,7 @@
 <template>
   <div>
     <div align="center" justify="center">
-      <v-card width="1000" style="margin: 40px;">
+      <v-card width="1200" style="margin: 40px;">
         <v-card-title>
           <label style="margin-bottom: 30px;margin-left: 20px;">ตารางเเสดงข้อมูลพนักงาน</label>
           <v-spacer></v-spacer>
@@ -62,8 +62,9 @@
             color="rgb(24,103,193)"
             style="margin-right: 20px;"
             @click="getEmployeeAll"
-          >view all</v-btn>
-          <Label style="margin-right: 20px;">Rows all page: {{ employee.length }}</Label>
+          >ดูข้อมูลทั้งหมด</v-btn>
+          <Label v-if="employee.length < 1" style="margin-right: 20px;">ไม่พบข้อมูล</Label>
+          <Label v-if="employee.length > 0" style="margin-right: 20px;">พบข้อมูล</Label>
         </v-card-actions>
       </v-card>
     </div>
