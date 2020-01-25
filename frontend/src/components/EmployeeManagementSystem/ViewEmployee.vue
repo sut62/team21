@@ -13,7 +13,7 @@
             rounded
           ></v-text-field>
           <v-btn icon style="position: relative;right: 50px;bottom:15px; margin: 0;">
-            <v-icon size="24px" @click="getEmployeeByEmployeeFullname">fas fa-search</v-icon>
+            <v-icon size="24px" @click="getEmployeeByFullname">fas fa-search</v-icon>
           </v-btn>
         </v-card-title>
 
@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     /* eslint-disable no-console */
-    getEmployeeByEmployeeFullname() {
+    getEmployeeByFullname() {
       this.view.data = false;
       this.view.loading = true;
 
