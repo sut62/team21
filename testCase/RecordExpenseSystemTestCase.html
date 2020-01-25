@@ -3,12 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-	<title>RecordExpense</title>
+	<title>RecordExpenseSystem Test Case</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Can login</td></tr>
+<tr><td rowspan="1" colspan="3">Successed RecordExpense</td></tr>
 </thead>
 <tbody>
 <tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
@@ -43,12 +43,10 @@
 </tr>
 <tr><td>assertText</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Successful process'])[1]/following::label[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Successful process'])[1]/following::label[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='close'])[1]/preceding::label[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='รับเงินจากนักเรียน'])[1]/preceding::label[1]</option><option>xpath=//*/text()[normalize-space(.)='บันทึกข้อมูลเสร็จสิ้น']/parent::*</option><option>//div[@id='app']/div/div/div/div[2]/div/div/label</option><option>//label</option><option>css=label</option></datalist></td><td>บันทึกข้อมูลเสร็จสิ้น</td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึกข้อมูลเสร็จสิ้น'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='บันทึกข้อมูลเสร็จสิ้น'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Successful process'])[1]/following::span[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='รับเงินจากนักเรียน'])[1]/preceding::span[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='จ่ายเงินให้พนักงาน'])[1]/preceding::span[3]</option><option>xpath=//*/text()[normalize-space(.)='close']/parent::*</option><option>//div[@id='app']/div/div/div/div[2]/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=button.font-weight-light.v-btn.v-btn--contained.theme--light.v-size--default.primary &gt; span.v-btn__content</option></datalist></td><td></td>
-</tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Can't login</td></tr>
+<tr><td rowspan="1" colspan="3">Unsuccessed RecordExpense</td></tr>
 </thead>
 <tbody>
 <tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
@@ -81,7 +79,33 @@
 </tr>
 <tr><td>assertText</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Error process'])[1]/following::label[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Error process'])[1]/following::label[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='close'])[1]/preceding::label[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='รับเงินจากนักเรียน'])[1]/preceding::label[1]</option><option>xpath=//*/text()[normalize-space(.)='กรุณาเลือกข้อมูลให้ครบ']/parent::*</option><option>//div[@id='app']/div/div/div/div[2]/div/div/label</option><option>//label</option><option>css=label</option></datalist></td><td>กรุณาเลือกข้อมูลให้ครบ</td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='กรุณาเลือกข้อมูลให้ครบ'])[1]/following::button[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='กรุณาเลือกข้อมูลให้ครบ'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Error process'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='รับเงินจากนักเรียน'])[1]/preceding::button[1]</option><option>xpath=(//button[@type='button'])[2]</option><option>//div[@id='app']/div/div/div/div[2]/div/div[2]/button</option><option>//div[2]/button</option><option>css=button.font-weight-light.v-btn.v-btn--contained.theme--light.v-size--default.error</option></datalist></td><td></td>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">View RecordExpense</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:8080/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=showLogin<datalist><option>id=showLogin</option><option>//button[@id='showLogin']</option><option>//div[@id='app']/div/header/div/div[8]/button</option><option>//div[8]/button</option><option>css=#showLogin</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=showloginAsEmp<datalist><option>id=showloginAsEmp</option><option>//button[@id='showloginAsEmp']</option><option>//div[@id='app']/div/div/div/div[2]/div[2]/button</option><option>//div[2]/button</option><option>css=#showloginAsEmp</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=usernameEmp1<datalist><option>id=usernameEmp1</option><option>//input[@id='usernameEmp1']</option><option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option><option>//input</option><option>css=#usernameEmp1</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=usernameEmp1<datalist><option>id=usernameEmp1</option><option>//input[@id='usernameEmp1']</option><option>//div[@id='app']/div/div/div/div[2]/div/div/div[2]/div/div/div/div/input</option><option>//input</option><option>css=#usernameEmp1</option></datalist></td><td>mg001</td>
+</tr>
+<tr><td>click</td><td>id=passwordEmp1<datalist><option>id=passwordEmp1</option><option>//input[@id='passwordEmp1']</option><option>//div[@id='app']/div/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/input</option><option>//div[2]/div[2]/div/div/div/div/input</option><option>css=#passwordEmp1</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=passwordEmp1<datalist><option>id=passwordEmp1</option><option>//input[@id='passwordEmp1']</option><option>//div[@id='app']/div/div/div/div[2]/div/div[2]/div[2]/div/div/div/div/input</option><option>//div[2]/div[2]/div/div/div/div/input</option><option>css=#passwordEmp1</option></datalist></td><td>123</td>
+</tr>
+<tr><td>click</td><td>id=bin-login-emp<datalist><option>id=bin-login-emp</option><option>//button[@id='bin-login-emp']</option><option>//div[@id='app']/div/div/div/div[2]/div/div[3]/button</option><option>//div[3]/button</option><option>css=#bin-login-emp</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=SuccessEmp1<datalist><option>id=SuccessEmp1</option><option>//button[@id='SuccessEmp1']</option><option>//div[@id='app']/div/div/div/button</option><option>//button</option><option>css=#SuccessEmp1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=virec00<datalist><option>id=virec00</option><option>//div[@id='virec00']</option><option>//div[@id='app']/div/nav/div/div/div[9]</option><option>//div[9]</option><option>css=#virec00</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='app']/div/main/div/div/div[2]/div/div/div/div/label<datalist><option>//div[@id='app']/div/main/div/div/div[2]/div/div/div/div/label</option><option>//div[2]/div/div/div/div/label</option><option>css=div.v-card__title &gt; label</option></datalist></td><td>ตารางเเสดงประวัติการใช้จ่าย</td>
 </tr>
 </tbody></table>
 </body>
