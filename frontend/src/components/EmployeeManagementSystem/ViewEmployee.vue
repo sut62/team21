@@ -6,13 +6,15 @@
           <label style="margin-bottom: 30px;margin-left: 20px;">ตารางเเสดงข้อมูลพนักงาน</label>
           <v-spacer></v-spacer>
           <v-text-field
+            id="search_emp001"
             v-model="field_search"
-            append-icon="fas fa-search"
             label="ค้นหาจากชื่อพนักงาน"
             solo
             rounded
-            @keyup.enter.native="getEmployeeByEmployeeFullname"
           ></v-text-field>
+          <v-btn icon style="position: relative;right: 50px;bottom:15px; margin: 0;">
+            <v-icon size="24px" @click="getEmployeeByEmployeeFullname">fas fa-search</v-icon>
+          </v-btn>
         </v-card-title>
 
         <v-simple-table>
