@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-hover v-slot:default="{ hover }">
       <v-card width="600" :elevation="hover ? 12 : 5">
         <v-app-bar dark color="#1A76D2">
@@ -21,7 +20,17 @@
             </v-col>
           </v-row>
 
-          
+          <v-row>
+            <v-col cols="8" style="margin: auto;">
+              <v-select
+                v-model="course.teacher"
+                :items="teacher"
+                label="เลือกครูผู้สอน"
+                outlined
+                @change="getTeacher"
+              ></v-select>
+            </v-col>
+          </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
@@ -66,21 +75,7 @@
               <v-text-field v-model="course.price" label="กรอกราคา" outlined></v-text-field>
             </v-col>
           </v-row>
-
-          <v-row>
-            <v-col cols="8" style="margin: auto;">
-              <v-select
-                disabled
-                v-model="course.employee_id"
-                :items="employees"
-                item-text="fullname"
-                item-value="id"
-                label="พนักงานที่บันทึก"
-                outlined
-              ></v-select>
-            </v-col>
-          </v-row>
-
+          
           <v-row>
             <v-btn
               style="margin: auto;"
@@ -90,12 +85,82 @@
               @click="saveCourse"
             >บันทึกข้อมูล</v-btn>
           </v-row>
+
+          <v-row justify="center">
+        <v-dialog v-model="popup.Success" max-width="500px">
+          <v-card style="background-color: #F2F3F4">
+            <v-card-title>
+              <span class="display-1 font-weight-light">Successful process</span>
+
+              <v-spacer></v-spacer>
+
+              <v-btn icon>
+                <v-icon size="24px" @click="popup.Success = false">fas fa-times</v-icon>
+              </v-btn>
+            </v-card-title>
+
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <Label>{{popup.TextSuccess}}</Label>
+                </v-row>
+                <v-row>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    @click="popup.Success = false"
+                    class="font-weight-light"
+                    color="primary"
+                    width="100"
+                    height="20"
+                  >close</v-btn>
+                </v-row>
+              </v-container>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-row>
+
+      <v-row justify="center">
+        <v-dialog v-model="popup.Error" max-width="500px">
+          <v-card style="background-color: #F2F3F4">
+            <v-card-title>
+              <span class="display-1 font-weight-light">Error process</span>
+
+              <v-spacer></v-spacer>
+
+              <v-btn icon>
+                <v-icon size="24px" @click="popup.Error = false">fas fa-times</v-icon>
+              </v-btn>
+            </v-card-title>
+
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <Label>{{popup.TextError}}</Label>
+                </v-row>
+                <v-row>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    @click="popup.Error = false"
+                    class="font-weight-light"
+                    color="error"
+                    width="100"
+                    height="20"
+                  >close</v-btn>
+                </v-row>
+              </v-container>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-row>
+
+
+
         </v-container>
       </v-card>
-    </v-hover>
-  </div>
+  </v-hover>
 </template>
-<script>
+<script> 
 import http from "../../http-common";
 export default {
   name: "AddCourse",
@@ -105,17 +170,25 @@ export default {
       subjects_id: "",
       room_id: "",
       time_id: "",
-      employee_id: "",
       price: "",
-      course_name: ""
+      course_name: "",
+      teacher:"",
+      employee_id:""
     },
     subjects: [],
+    teacher:[],
     employees: [],
     rooms: [],
     times: [],
     timesTmp: [],
     courses: [],
-    checkroomtime: ""
+    checkroomtime: "",
+    popup: {
+      TextSuccess: "TextSuccess",
+      Success: false,
+      TextError: "TextError",
+      Error: false
+    },
   }),
   methods: {
     /* eslint-disable no-console */
@@ -126,9 +199,9 @@ export default {
           this.course.room_id == this.courses[elem].room.id &&
           this.course.time_id == this.courses[elem].time.id
         ) {
-          alert("มีคอร์สที่ใช้ห้องเรียนและเวลาเรียนนี้แล้วกรุณาเลือกใหม่");
+          this.popup.Error = true;
+          this.popup.TextError = "มีคอร์สที่ใช้ห้องเรียนและเวลาเรียนนี้แล้วกรุณาเลือกใหม่";
           this.checkroomtime = 1;
-          break;
         }
       }
       if (this.checkroomtime != 1) {
@@ -137,7 +210,7 @@ export default {
       }
       this.checkroomtime = 0;
     },
-
+    
     saveCourses() {
       http
         .post(
@@ -157,23 +230,54 @@ export default {
         )
         .then(response => {
           console.log(response.data);
-          alert("บันทึกสำเร็จ");
+          this.resetData();
+          this.popup.Success = true;
+          this.popup.TextSuccess = "บันทึกสำเร็จ";
         })
         .catch(e => {
           console.log(e);
-          alert("บันทึกไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง");
+          this.popup.Success = true;
+          this.popup.TextSuccess = "บันทึกไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง";
         });
     },
+    resetData() {
+        
+        this.getSubjects();
+        this.getRooms();
+        this.getTimes();
+        this.getCourses();
+      this.course.course_name= ""
+      this.course.subjects_id= "",
+      this.course.room_id= "",
+      this.course.dateTime= "",
+      this.course.price= "",
+      this.course.teacher= ""
+      
+    },
+
     getEmployees() {
       http
         .get("/employee")
         .then(response => {
           this.employees = response.data;
+          console.log(response.data);
+          
+          let teacher = [];
+          var z=0;
+          for (let elem in this.employees) {
+          if(this.employees[elem].position.id == 3 ){
+            teacher[z] = this.employees[elem].fullname
+            z++;
+          }
+          this.teacher = teacher;
+          }
+          
         })
         .catch(e => {
           console.log(e);
         });
     },
+    
     getSubjects() {
       http
         .get("/subjects/")
@@ -195,6 +299,13 @@ export default {
         .catch(e => {
           console.log(e);
         });
+    },
+    getTeacher(){
+        for (let elem in this.employees) {
+        if (this.course.teacher == this.employees[elem].fullname){
+            this.course.employee_id = this.employees[elem].id;
+        }
+      }
     },
     getTimesTmp() {
       for (let elem in this.times) {
@@ -232,8 +343,7 @@ export default {
           console.log(e);
         });
     },
-
-    getCourses() {
+      getCourses() {
       http
         .get("/course/")
         .then(response => {
@@ -244,12 +354,9 @@ export default {
           console.log(e);
         });
     },
-    setCreatedBy() {
-      this.course.employee_id = this.$session.get("userId");
-    }
+    
   },
   mounted() {
-    this.setCreatedBy();
     this.getEmployees();
     this.getSubjects();
     this.getRooms();

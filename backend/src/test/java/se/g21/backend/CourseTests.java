@@ -143,6 +143,63 @@ public class CourseTests {
         assertEquals("courseName", v.getPropertyPath().toString());
     }
 
+    @Test
+    void b6014728_testEmployeeMustNotBeNull() {
+        Course newCourse = new Course();
+        Subjects subjects = subjectsRepository.findById(1);
+        Room room = roomRepository.findById(1);
+        Time time = timeRepository.findById(1);
+        Employee employee = employeeRepository.findById(1);
+        newCourse.setCourseName("kaikaikai");
+        newCourse.setSubjects(subjects);
+        newCourse.setRoom(room);
+        newCourse.setTime(time);
+        newCourse.setEmployee(null);
+        newCourse.setPrice((double)999);
+    
+        Set<ConstraintViolation<Course>> result = validator.validate(newCourse);
+
+        assertEquals(1, result.size());
+        ConstraintViolation<Course> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("employee", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6014728_testTimeMustNotBeNull() {
+        Course newCourse = new Course();
+        Subjects subjects = subjectsRepository.findById(1);
+        Room room = roomRepository.findById(1);
+        Time time = timeRepository.findById(1);
+        Employee employee = employeeRepository.findById(1);
+        newCourse.setCourseName("kaikaikai");
+        newCourse.setSubjects(subjects);
+        newCourse.setRoom(room);
+        newCourse.setTime(null);
+        newCourse.setEmployee(employee);
+        newCourse.setPrice((double)999);
+    
+        Set<ConstraintViolation<Course>> result = validator.validate(newCourse);
+
+        assertEquals(1, result.size());
+        ConstraintViolation<Course> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("time", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6014728_testRoomIsPatternCharacter() {
+       
+        Room room = new Room();
+        room.setRoom("G005");
+        Set<ConstraintViolation<Room>> result = validator.validate(room);
+
+        assertEquals(1, result.size());
+        ConstraintViolation<Room> v = result.iterator().next();
+        assertEquals("must match \"[R][0-9][0-9][0-9]\"", v.getMessage());
+        assertEquals("room", v.getPropertyPath().toString());
+    }
+
 
 }
 
