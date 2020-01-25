@@ -471,7 +471,8 @@ public class EmployeeTests {
         newEmployee2.setGender(newGender);
         newEmployee2.setPosition(newPosition);
         newEmployee2.setProvince(newProvince);
-        newEmployee2.setAddress("บ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวด");
+        newEmployee2.setAddress(
+                "บ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวดบ้านกรวด");
         newEmployee2.setUsername("opopopop");
         newEmployee2.setPassword("opopop");
         newEmployee2.setEmail("gg@sut.ac.th");
@@ -493,7 +494,7 @@ public class EmployeeTests {
 
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Employee> v = result.iterator().next();
-        assertEquals("size must be between 0 and 50", v.getMessage());
+        assertEquals("size must be between 0 and 100", v.getMessage());
         assertEquals("address", v.getPropertyPath().toString());
     }
 
@@ -534,4 +535,81 @@ public class EmployeeTests {
         assertEquals("must be a well-formed email address", v.getMessage());
         assertEquals("email", v.getPropertyPath().toString());
     }
+
+    @Test
+    void B6005795_testEmployeeIsUsernameStringLongerThanMaxSize() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opopopopopopopopopopopop");
+        newEmployee2.setPassword("opopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("size must be between 4 and 20", v.getMessage());
+        assertEquals("username", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void B6005795_testEmployeeIsUsernameStringShorterThanMinSize() {
+        Employee newEmployee2 = new Employee();
+        Nametitle newNametitle = nametitleRepository.findById(1);
+        Gender newGender = genderRepository.findById(1);
+        Position newPosition = positionRepository.findById(4);
+        Province newProvince = provinceRepository.findById(16);
+        newEmployee2.setNametitle(newNametitle);
+        newEmployee2.setFullname("พงศกร มาประโคน");
+        newEmployee2.setGender(newGender);
+        newEmployee2.setPosition(newPosition);
+        newEmployee2.setProvince(newProvince);
+        newEmployee2.setAddress("บ้านกรวด");
+        newEmployee2.setUsername("opo");
+        newEmployee2.setPassword("opopop");
+        newEmployee2.setEmail("gg@sut.ac.th");
+
+        String datetime = "2019-08-12 10:12:56";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date recorddate = new Date();
+        try {
+            recorddate = formatter.parse((String) datetime);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        newEmployee2.setRecorddate(recorddate);
+
+        Set<ConstraintViolation<Employee>> result = validator.validate(newEmployee2);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Employee> v = result.iterator().next();
+        assertEquals("size must be between 4 and 20", v.getMessage());
+        assertEquals("username", v.getPropertyPath().toString());
+    }
+
 }

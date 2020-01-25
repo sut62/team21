@@ -60,12 +60,12 @@ public class Employee {
 	private Province province;
 
 	@NotNull
-	@Size(max = 50)
+	@Size(max = 100)
 	@Column(name = "Address")
 	private String address;
 
 	@NotNull
-	@Size(min=4,max=20)
+	@Size(min = 4, max = 20)
 	@Column(name = "Username", unique = true)
 	private String username;
 
