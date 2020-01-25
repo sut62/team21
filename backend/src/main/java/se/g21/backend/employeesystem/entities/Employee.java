@@ -65,6 +65,7 @@ public class Employee {
 	private String address;
 
 	@NotNull
+	@Size(min=4,max=20)
 	@Column(name = "Username", unique = true)
 	private String username;
 
