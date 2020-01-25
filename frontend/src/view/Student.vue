@@ -28,16 +28,6 @@
         </template>
 
         <v-list style="background-color: #1A76D2;">
-          <v-list-item >
-            <v-list-item-title style="color: white;">
-              <v-icon size="24px" style="margin-right: 10px; color: white; width:30px;">fas fa-book-open</v-icon>SHOW COURSE
-            </v-list-item-title>
-          </v-list-item>
-          <v-list-item >
-            <v-list-item-title style="color: white;">
-              <v-icon size="24px" style="margin-right: 10px; color: white; width:30px;">mdi-message-text</v-icon>REVIEWS COURSE
-            </v-list-item-title>
-          </v-list-item>
           <v-list-item @click="logOut">
             <v-list-item-title style="color: white;">
               <v-icon size="24px" style="margin-right: 10px; color: white; width:30px;">fas fa-door-open</v-icon>LOGOUT

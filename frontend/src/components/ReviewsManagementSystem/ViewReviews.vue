@@ -7,6 +7,20 @@
         </v-card-title>
 
         <v-data-table
+          id="table"
+          :headers="headers"
+          :items="review"
+          :page.sync="page"
+          :items-per-page="itemsPerPage"
+          hide-default-footer
+          class="elevation-1"
+          v-if="view.loading"
+          loading loading-text="กำลังโหลดข้อมูล รอสักครู่. . . "
+        >
+        </v-data-table>
+
+        <v-data-table
+          id="table2"
           :headers="headers"
           :items="review"
           :page.sync="page"
@@ -14,8 +28,10 @@
           hide-default-footer
           class="elevation-1"
           @page-count="pageCount = $event"
-          id="table"
-        ></v-data-table>
+          v-else-if="view.data"
+        >
+        </v-data-table>
+        
         
         <div class="text-center pt-2">
           <v-pagination v-model="page" :length="pageCount"></v-pagination>
@@ -32,37 +48,46 @@ export default {
   name: "ViewReviews",
   data() {
     return {
+      view: {
+        data: false,
+        loading: false
+      },
       page: 1,
-        pageCount: 0,
-        itemsPerPage: 10,
-        headers: [
-          {
-            text: 'ลำดับที่',
-            align: 'left',
-            sortable: false,
-            value: 'id',
-          },
-          { text: 'ชื่อคอร์สเรียน', value: 'enrollCourse.course.courseName', width: '110px' },
-          { text: 'ระดับความพึงพอใจ', value: 'rating.ratingType', width: '140px'},
-          { text: 'ประเภทที่อยากให้ปรับปรุง', value: 'improvement.improvementType' ,width: '170px'},
-          { text: 'วันที่รีวิว', value: 'reviewDate', width: '100px' },
-          { text: 'ความคิดเห็น', value: 'comment', width: '300px' },
-        ],
-      
+      pageCount: 0,
+      itemsPerPage: 10,
+      headers: [
+        {
+          text: 'ลำดับที่',
+          align: 'left',
+          sortable: false,
+          value: 'id',
+        },
+        { text: 'ชื่อคอร์สเรียน', value: 'enrollCourse.course.courseName', width: '110px' },
+        { text: 'ระดับความพึงพอใจ', value: 'rating.ratingType', width: '140px'},
+        { text: 'ประเภทที่อยากให้ปรับปรุง', value: 'improvement.improvementType' ,width: '170px'},
+        { text: 'วันที่รีวิว', value: 'reviewDate', width: '150px' },
+        { text: 'ความคิดเห็น', value: 'comment', width: '300px' },
+      ],
       review:[]
     };
   },
   methods: {
     /* eslint-disable no-console */
     getReviews() {
+      this.view.data = false;
+      this.view.loading = true;
       http
         .get("/reviewCourse/")
         .then(response => {
           this.review = response.data;
           console.log(this.review);
+          this.view.loading = false;
+          this.view.data = true;
         })
         .catch(e => {
           console.log(e);
+          this.view.loading = false;
+          this.view.data = true;
         });
     }
   },
@@ -74,8 +99,7 @@ export default {
 
 <style scoped lang="scss">
 .card-table {
-    margin: 40px;
-    width: 900px;
+    width: 950px;
     border-style: solid;
     border-color: rgb(0, 0, 0);
 }
