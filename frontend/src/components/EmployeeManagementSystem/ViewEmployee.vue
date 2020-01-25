@@ -3,12 +3,12 @@
     <div align="center" justify="center">
       <v-card width="1000" style="margin: 40px;">
         <v-card-title>
-          <label style="margin-bottom: 30px;margin-left: 20px;">ตารางเเสดงผลการลงทะเบียนเรียน</label>
+          <label style="margin-bottom: 30px;margin-left: 20px;">ตารางเเสดงข้อมูลพนักงาน</label>
           <v-spacer></v-spacer>
           <v-text-field
             v-model="field_search"
             append-icon="fas fa-search"
-            label="ค้นหาชื่อนักเรียน"
+            label="ค้นหาจากชื่อพนักงาน"
             solo
             rounded
             @keyup.enter.native="getEmployeeByEmployeeFullname"
@@ -21,7 +21,7 @@
               <tr>
                 <th class="text-left">เลขที่</th>
                 <th class="text-left">คำนำหน้าชื่อ</th>
-                <th class="text-left">ชื่อ-นายสกุล</th>
+                <th class="text-left">ชื่อ-นามสกุล</th>
                 <th class="text-left">เพศ</th>
                 <th class="text-left">ตำแหน่ง</th>
                 <th class="text-left">ที่อยู่</th>
