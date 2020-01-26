@@ -123,7 +123,7 @@
           </v-row>
 
           <v-row>
-            <v-btn id="enroll304" style="margin: auto;" large color="#1A76D2" dark @click="chackList">Enroll</v-btn>
+            <v-btn id="enroll304" style="margin: auto;" large color="#1A76D2" dark @click="chackList">ลงทะเบียนเรียน</v-btn>
           </v-row>
         </v-container>
       </v-card>
