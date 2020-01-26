@@ -21,18 +21,16 @@
                 item-value="id"
                 v-model="student.nametitleId"
                 :items="nametitles"
-                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
                 required
                 label="เลือกคำนำหน้าชื่อ"
                 outlined
               ></v-select>
             </v-col>
-            
+
             <v-col cols="8" style>
               <v-text-field
-              id="stu002"
+                id="stu002"
                 v-model="student.fullname"
-                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
                 label="ชื่อ-นามสกุล"
                 outlined
@@ -49,7 +47,6 @@
                 item-value="id"
                 v-model="student.genderId"
                 :items="genders"
-                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
                 required
                 label="เลือกเพศ"
                 outlined
@@ -58,9 +55,8 @@
 
             <v-col cols="8">
               <v-text-field
-              id="stu004"
+                id="stu004"
                 v-model="student.old"
-                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
                 label="กรอกอายุ"
                 outlined
@@ -71,9 +67,8 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
-              id="stu005"
+                id="stu005"
                 v-model="student.username"
-                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
                 label="กรอก Username"
                 outlined
@@ -84,10 +79,9 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
-              id="stu006"
+                id="stu006"
                 v-model="student.password"
                 :type="'password'"
-                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
                 label="กรอก Password"
                 outlined
@@ -102,7 +96,6 @@
                 id="stucb03"
                 item-text="province"
                 item-value="id"
-                :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
                 required
                 v-model="student.provinceId"
                 :items="provinces"
@@ -112,14 +105,11 @@
             </v-col>
           </v-row>
 
-          
-
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
-              id="stu008"
+                id="stu008"
                 v-model="student.tel"
-                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
                 label="กรอกเบอร์โทร"
                 outlined
@@ -131,9 +121,8 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
-              id="stu009"
+                id="stu009"
                 v-model="student.email"
-                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
                 label="กรอกอีเมล"
                 outlined
@@ -145,9 +134,8 @@
           <v-row md="8" style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-textarea
-              id="stu010"
+                id="stu010"
                 v-model="student.address"
-                :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
                 label="กรอกที่อยู่"
                 outlined
@@ -172,7 +160,7 @@
 
           <v-row>
             <v-btn
-            id="stu011"
+              id="stu011"
               style="margin: auto;"
               large
               color="blue darken-2"
@@ -293,7 +281,8 @@ export default {
           console.log(response);
           this.text = "บันทึกข้อมูลเสร็จสิ้น";
           this.snackbar = true;
-          location.reload();
+          // location.reload();
+          this.resetData();
         })
         .catch(e => {
           console.log(e);
@@ -302,15 +291,24 @@ export default {
         });
       this.submitted = true;
     },
-
-    clear() {
-      this.$refs.form.reset();
-    },
-
-    refreshList() {
+    resetData() {
+      this.student.nametitleId = "";
+      this.student.genderId = "";
+      this.student.fullname = "";
+      this.student.provinceId = "";
+      this.student.address = "";
+      this.student.username = "";
+      this.student.password = "";
+      this.student.old = "";
+      this.student.tel = "";
+      this.student.email = "";
+      this.getEmployees();
       this.getGenders();
       this.getNametitles();
       this.getProvinces();
+    },
+    clear() {
+      this.$refs.form.reset();
     },
     getEmployees() {
       http
