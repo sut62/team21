@@ -16,13 +16,14 @@
         <v-container style="margin-top: 50px; padding-bottom: 30px;">
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field v-model="course.course_name" label="กรอกชื่อคอร์ส" outlined></v-text-field>
+              <v-text-field id="ad001" v-model="course.course_name" label="กรอกชื่อคอร์ส" outlined></v-text-field>
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="ad002"
                 v-model="course.teacher"
                 :items="teacher"
                 label="เลือกครูผู้สอน"
@@ -35,6 +36,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="ad003"
                 v-model="course.subjects_id"
                 :items="subjects"
                 item-text="subjectsName"
@@ -48,6 +50,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="ad004"
                 v-model="course.room_id"
                 :items="rooms"
                 item-text="room"
@@ -61,6 +64,7 @@
           <v-row>
             <v-col cols="8" style="margin: auto;">
               <v-select
+                id="ad005"
                 v-model="course.dateTime"
                 :items="timesTmp"
                 label="เลือกเวลา"
@@ -72,7 +76,7 @@
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field v-model="course.price" label="กรอกราคา" outlined></v-text-field>
+              <v-text-field  id="ad006" v-model="course.price" label="กรอกราคา" outlined></v-text-field>
             </v-col>
           </v-row>
           
@@ -236,8 +240,8 @@ export default {
         })
         .catch(e => {
           console.log(e);
-          this.popup.Success = true;
-          this.popup.TextSuccess = "บันทึกไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง";
+          this.popup.Error = true;
+          this.popup.TextError = "บันทึกไม่สำเร็จ กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง";
         });
     },
     resetData() {
