@@ -1,25 +1,27 @@
 <template>
   <div>
     <div align="center" justify="center">
-      <v-card width="1000" style="margin: 40px;">
+      <v-card width="1200" style="margin: 40px;">
         <v-card-title>
-          <label style="margin-bottom: 30px;margin-left: 20px;">ตารางเเสดงผลการสมัครสมาชิก</label>
+          <label style="margin-bottom: 30px;margin-left: 20px;">ตารางเเสดงข้อมูลสมาชิก</label>
           <v-spacer></v-spacer>
           <v-text-field
+            id="search_emp001"
             v-model="field_search"
-            append-icon="fas fa-search"
             label="ค้นหาชื่อนักเรียน"
             solo
             rounded
-            @keyup.enter.native="getStudentByStudentFullname"
           ></v-text-field>
+          <v-btn icon style="position: relative;right: 50px;bottom:15px; margin: 0;">
+            <v-icon size="24px" @click="getStudentByStudentFullname">fas fa-search</v-icon>
+          </v-btn>
         </v-card-title>
 
         <v-simple-table>
           <template v-slot:default>
             <thead>
               <tr>
-                <th class="text-left">เลขที่</th>
+                 <th class="text-left">เลขที่</th>
                 <th class="text-left">คำนำหน้าชื่อ</th>
                 <th class="text-left">ชื่อ-นามสกุล</th>
                 <th class="text-left"> เพศ </th>
@@ -62,8 +64,9 @@
             color="rgb(24,103,193)"
             style="margin-right: 20px;"
             @click="getStudentAll"
-          >view all</v-btn>
-          <Label style="margin-right: 20px;">Rows all page: {{ student.length }}</Label>
+          >ดูข้อมูลทั้งหมด</v-btn>
+          <Label v-if="student.length > 0" style="margin-right: 20px;">พบข้อมูล</Label>
+          <Label v-if="student.length < 1" style="margin-right: 20px;">ไม่พบข้อมูล</Label>
         </v-card-actions>
       </v-card>
     </div>
