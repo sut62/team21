@@ -66,8 +66,9 @@
             color="rgb(24,103,193)"
             style="margin-right: 20px;"
             @click="getEnrollCourseAll"
+           
           >ดูข้อมูลทั้งหมด</v-btn>
-
+       
           <Label id="ass001" v-if="viewEnrollCourse.length < 1" style="margin-right: 20px;">ไม่พบข้อมูล</Label>
           <Label id="ass002" v-if="viewEnrollCourse.length > 0" style="margin-right: 20px;">พบข้อมูล</Label>
         </v-card-actions>
@@ -244,7 +245,7 @@ export default {
       this.RowId.EmpDatail.fullname = item.employee.fullname;
     },
     getEnrollCourseByStudentName() {
-      if (this.field_search.trim() != "") {
+      if (this.field_search != "") {
         this.view.data = false;
         this.view.loading = true;
         http
