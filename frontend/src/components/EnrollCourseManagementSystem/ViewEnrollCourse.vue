@@ -12,7 +12,6 @@
             label="ค้นหาชื่อนักเรียน"
             solo
             rounded
-            @keyup.enter.native="getEnrollCourseByStudentName"
           ></v-text-field>
           <v-btn icon style="position: relative;right: 50px;bottom:15px; margin: 0;">
             <v-icon id="search_btn_enroll001" size="24px" @click="getEnrollCourseByStudentName">fas fa-search</v-icon>
@@ -69,8 +68,8 @@
             @click="getEnrollCourseAll"
           >ดูข้อมูลทั้งหมด</v-btn>
 
-          <Label v-if="viewEnrollCourse.length < 1" style="margin-right: 20px;">ไม่พบข้อมูล</Label>
-          <Label v-if="viewEnrollCourse.length > 0" style="margin-right: 20px;">พบข้อมูล</Label>
+          <Label id="ass001" v-if="viewEnrollCourse.length < 1" style="margin-right: 20px;">ไม่พบข้อมูล</Label>
+          <Label id="ass002" v-if="viewEnrollCourse.length > 0" style="margin-right: 20px;">พบข้อมูล</Label>
         </v-card-actions>
       </v-card>
     </div>
