@@ -16,6 +16,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col cols="4" style>
               <v-select
+                id="stucb01"
                 item-text="nametitle"
                 item-value="id"
                 v-model="student.nametitleId"
@@ -26,8 +27,10 @@
                 outlined
               ></v-select>
             </v-col>
+            
             <v-col cols="8" style>
               <v-text-field
+              id="stu002"
                 v-model="student.fullname"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -41,6 +44,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col cols="4">
               <v-select
+                id="stucb02"
                 item-text="gender"
                 item-value="id"
                 v-model="student.genderId"
@@ -54,6 +58,7 @@
 
             <v-col cols="8">
               <v-text-field
+              id="stu004"
                 v-model="student.old"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -66,10 +71,11 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
+              id="stu005"
                 v-model="student.username"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
-                label="๊กรอก Username"
+                label="กรอก Username"
                 outlined
                 dense
               ></v-text-field>
@@ -78,11 +84,12 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
+              id="stu006"
                 v-model="student.password"
                 :type="'password'"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
-                label="๊กรอก Password"
+                label="กรอก Password"
                 outlined
                 dense
               ></v-text-field>
@@ -92,6 +99,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-select
+                id="stucb03"
                 item-text="province"
                 item-value="id"
                 :rules="[(v) => !!v || 'จำเป็นต้องเลือกข้อมูล']"
@@ -109,6 +117,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
+              id="stu008"
                 v-model="student.tel"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -122,6 +131,7 @@
           <v-row style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-text-field
+              id="stu009"
                 v-model="student.email"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -135,6 +145,7 @@
           <v-row md="8" style="margin-left: 50px; margin-right: 50px">
             <v-col>
               <v-textarea
+              id="stu010"
                 v-model="student.address"
                 :rules="[(v) => !!v || 'จำเป็นต้องกรอกข้อมูล']"
                 required
@@ -161,6 +172,7 @@
 
           <v-row>
             <v-btn
+            id="stu011"
               style="margin: auto;"
               large
               color="blue darken-2"
