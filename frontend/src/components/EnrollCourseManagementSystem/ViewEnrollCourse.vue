@@ -29,8 +29,6 @@
                 <th class="text-left">หมายเหตุ</th>
                 <th class="text-left">เลขที่นั่งคอมพิวเตอร์</th>
                 <th class="text-left">คอร์สที่ลงทะเบียน</th>
-                <!-- <th class="text-left">วิชา</th>
-                <th class="text-left">ราคา</th>-->
                 <th class="text-left">ผู้บันทึกข้อมูล</th>
               </tr>
             </thead>
@@ -43,12 +41,10 @@
                 <td>{{ item.note }}</td>
                 <td>{{ item.computer.pcNumber }}</td>
                 <td>{{ item.course.courseName }}</td>
-                <!-- <td>{{ item.course.subjects.subjectsName }}</td>
-                <td>{{ item.course.price }} บาท.</td>-->
                 <td>{{ item.employee.fullname }}</td>
               </tr>
               <tr v-if="viewEnrollCourse.length < 1">
-                <td colspan="8" class="text-center">
+                <td colspan="7" class="text-center">
                   <h5>ไม่พบข้อมูล</h5>
                 </td>
               </tr>
@@ -79,14 +75,13 @@
       </v-card>
     </div>
 
-    <!-- popup Success -->
+    <!-- popup Row Deatil -->
 
     <template>
       <v-row justify="center">
         <v-dialog v-model="popup.RowDetail" max-width="700px">
           <v-card style="background-color: #F2F3F4">
             <v-app-bar dark color="#1A76D2">
-              
               <v-toolbar-title>ข้อมูลการลงทะเบียนเรียน</v-toolbar-title>
 
               <v-spacer></v-spacer>
@@ -97,27 +92,65 @@
 
             <v-card-text>
               <v-container style="color: black;">
-                <h2>เลขที่: <span class="font-weight-light"> {{RowId.EnrollDetail.id}}</span></h2>
+                <h2>
+                  เลขที่:
+                  <span class="font-weight-light">{{RowId.EnrollDetail.id}}</span>
+                </h2>
                 <br />
-                <h2>นักเรียนที่ลงทะเบียน: <span class="font-weight-light"> {{RowId.StuDetail.fullname}}</span> </h2>
+                <h2>
+                  นักเรียนที่ลงทะเบียน:
+                  <span class="font-weight-light">{{RowId.StuDetail.fullname}}</span>
+                </h2>
                 <br />
-                <h2>วันเวลา: <span class="font-weight-light"> {{RowId.EnrollDetail.date}}</span></h2>
+                <h2>
+                  วันเวลา:
+                  <span class="font-weight-light">{{RowId.EnrollDetail.date}}</span>
+                </h2>
                 <br />
-                <h2>หมายเหตุ: <span class="font-weight-light"> {{RowId.EnrollDetail.note}}</span></h2>
+                <h2>
+                  หมายเหตุ:
+                  <span class="font-weight-light">{{RowId.EnrollDetail.note}}</span>
+                </h2>
                 <br />
-                <h2>เลขที่นั่งคอมพิวเตอร์: <span class="font-weight-light"> {{RowId.ComDetail.pcNumber}}</span></h2>
+                <h2>
+                  เลขที่นั่งคอมพิวเตอร์:
+                  <span class="font-weight-light">{{RowId.ComDetail.pcNumber}}</span>
+                </h2>
                 <br />
-                <h2>คอร์สที่ลงทะเบียน: <span class="font-weight-light"> {{RowId.CourseDetail.courseName}}</span></h2>
+                <h2>
+                  คอร์สที่ลงทะเบียน:
+                  <span
+                    class="font-weight-light"
+                  >{{RowId.CourseDetail.courseName}}</span>
+                </h2>
                 <br />
                 <div style="margin-left: 30px;">
-                  <h3>ติวเตอร์: <span class="font-weight-light">{{RowId.CourseDetail.tutur}}</span></h3>
-                  <h3>ห้องเรียน: <span class="font-weight-light">{{RowId.CourseDetail.room}}</span></h3>
-                  <h3>วิชา: <span class="font-weight-light">{{RowId.CourseDetail.subjectsName}}</span></h3>
-                  <h3>เวลาเรียน: <span class="font-weight-light">{{RowId.CourseDetail.studyTime}}</span></h3>
-                  <h3>ราคาคอร์ส: <span class="font-weight-light">{{RowId.CourseDetail.price}}</span></h3>
+                  <h3>
+                    ติวเตอร์:
+                    <span class="font-weight-light">{{RowId.CourseDetail.tutur}}</span>
+                  </h3>
+                  <h3>
+                    ห้องเรียน:
+                    <span class="font-weight-light">{{RowId.CourseDetail.room}}</span>
+                  </h3>
+                  <h3>
+                    วิชา:
+                    <span class="font-weight-light">{{RowId.CourseDetail.subjectsName}}</span>
+                  </h3>
+                  <h3>
+                    เวลาเรียน:
+                    <span class="font-weight-light">{{RowId.CourseDetail.studyTime}}</span>
+                  </h3>
+                  <h3>
+                    ราคาคอร์ส:
+                    <span class="font-weight-light">{{RowId.CourseDetail.price}}</span>
+                  </h3>
                 </div>
                 <br />
-                <h2>ผู้บันทึกข้อมูล: <span class="font-weight-light">{{RowId.EmpDatail.fullname}}</span></h2>
+                <h2>
+                  ผู้บันทึกข้อมูล:
+                  <span class="font-weight-light">{{RowId.EmpDatail.fullname}}</span>
+                </h2>
                 <br />
 
                 <v-row>
@@ -212,32 +245,33 @@ export default {
       this.RowId.EmpDatail.fullname = item.employee.fullname;
     },
     getEnrollCourseByStudentName() {
-      this.view.data = false;
-      this.view.loading = true;
+      if (this.field_search.trim() != "") {
+        this.view.data = false;
+        this.view.loading = true;
+        http
+          .get("/viewEnrollCourse/" + this.field_search.trim() + "/")
+          .then(response => {
+            this.viewEnrollCourse = response.data;
+            console.log(this.viewEnrollCourse);
 
-      http
-        .get("/viewEnrollCourse/" + this.field_search.trim() + "/")
-        .then(response => {
-          this.viewEnrollCourse = response.data;
-          console.log(this.viewEnrollCourse);
+            if (this.viewEnrollCourse.length > 0) {
+              this.snackbar = true;
+              this.text = "พบข้อมูล";
+            } else {
+              this.snackbar = true;
+              this.text = "ไม่พบข้อมูล";
+            }
 
-          if (this.viewEnrollCourse.length > 0) {
-            this.snackbar = true;
-            this.text = "พบข้อมูล";
-          } else {
-            this.snackbar = true;
-            this.text = "ไม่พบข้อมูล";
-          }
+            this.view.loading = false;
+            this.view.data = true;
+          })
+          .catch(e => {
+            console.log(e);
 
-          this.view.loading = false;
-          this.view.data = true;
-        })
-        .catch(e => {
-          console.log(e);
-
-          this.view.loading = false;
-          this.view.data = true;
-        });
+            this.view.loading = false;
+            this.view.data = true;
+          });
+      }
     },
     getEnrollCourseAll() {
       this.view.data = false;
