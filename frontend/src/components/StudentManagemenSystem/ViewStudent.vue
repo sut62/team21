@@ -6,7 +6,7 @@
           <label style="margin-bottom: 30px;margin-left: 20px;">ตารางเเสดงข้อมูลสมาชิก</label>
           <v-spacer></v-spacer>
           <v-text-field
-            id="search_emp001"
+            id="search_stu001"
             v-model="field_search"
             label="ค้นหาชื่อนักเรียน"
             solo
