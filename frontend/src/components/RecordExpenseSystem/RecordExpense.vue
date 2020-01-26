@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div>
     <v-hover v-slot:default="{ hover }">
       <v-card width="600" :elevation="hover ? 12 : 5">
@@ -68,13 +68,26 @@
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field id="RE006" disabled v-model="RecordExpense.budget" label="จำนวนเงิน" outlined dense></v-text-field>
+              <v-text-field
+                id="RE006"
+                disabled
+                v-model="RecordExpense.budget"
+                label="จำนวนเงิน"
+                outlined
+                dense
+              ></v-text-field>
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="8" style="margin: auto;">
-              <v-text-field id="RE007" disabled v-model="RecordExpense.date" label="วันที่บันทึก" outlined></v-text-field>
+              <v-text-field
+                id="RE007"
+                disabled
+                v-model="RecordExpense.date"
+                label="วันที่บันทึก"
+                outlined
+              ></v-text-field>
               <!-- disabled -->
             </v-col>
           </v-row>
@@ -221,7 +234,6 @@ export default {
     ExpenseType: [],
     employee: [],
     enrollCourse: [],
-    recordExpense: [],
     student: []
   }),
   methods: {
@@ -232,10 +244,11 @@ export default {
 
       // reset data get from database
 
-      this.getEnrollCourse();
       this.setCreatedBy();
       this.getExpenseType();
       this.getEmployees();
+
+      this.getEnrollCourse();
 
       // reset data combobox
 
@@ -343,6 +356,7 @@ export default {
           )
           .then(response => {
             console.log(response.data);
+
             this.resetData();
             this.popup.Success = true;
             this.popup.TextSuccess = "บันทึกข้อมูลเสร็จสิ้น";
@@ -428,43 +442,49 @@ export default {
         });
     },
     getEnrollCourse() {
+      console.log("getEnrollCourse");
       http
         .get("/enrollCourse/")
         .then(response => {
-          this.enrollCourse = response.data;
-          this.getRecordExpense();
+          this.getRecordExpense(response.data);
         })
         .catch(e => {
           console.log(e);
         });
     },
-    getRecordExpense() {
+    getRecordExpense(enrollCourse) {
+      console.log("getRecordExpense");
       http
         .get("/recordExpense")
         .then(response => {
-          this.recordExpense = response.data;
+          var recordExpense = response.data;
+          // console.log(recordExpense);
 
-          for (var elem in this.recordExpense) {
-            for (var index in this.enrollCourse) {
-              if (
-                this.enrollCourse[index].id ==
-                this.recordExpense[elem].enrollCourse.id
-              ) {
-                this.enrollCourse[index].student.fullname = "null";
+          for (var elem in recordExpense) {
+
+            if (recordExpense[elem].enrollCourse != null) {
+              for (var index in enrollCourse) {
+                if (
+                  enrollCourse[index].id == recordExpense[elem].enrollCourse.id
+                ) {
+                  enrollCourse[index].student.fullname = "null";
+                }
               }
             }
           }
 
           var temp = [];
           var i = 0;
-          for (var k in this.enrollCourse) {
-            if (this.enrollCourse[k].student.fullname != "null") {
-              temp[i] = this.enrollCourse[k];
+          for (var k in enrollCourse) {
+            if (enrollCourse[k].student.fullname != "null") {
+              temp[i] = enrollCourse[k];
               i = i + 1;
             }
           }
 
           this.enrollCourse = temp;
+          console.log(this.enrollCourse);
+          console.log("Reset Student Success");
         })
         .catch(e => {
           console.log(e);
