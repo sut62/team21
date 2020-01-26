@@ -15,7 +15,7 @@
             @keyup.enter.native="getEnrollCourseByStudentName"
           ></v-text-field>
           <v-btn icon style="position: relative;right: 50px;bottom:15px; margin: 0;">
-            <v-icon size="24px" @click="getEnrollCourseByStudentName">fas fa-search</v-icon>
+            <v-icon id="search_btn_enroll001" size="24px" @click="getEnrollCourseByStudentName">fas fa-search</v-icon>
           </v-btn>
         </v-card-title>
 
