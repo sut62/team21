@@ -338,6 +338,12 @@ export default {
         });
     },
     setCourse() {
+      this.showDetail = false;
+      this.enroll.course_id = "";
+      this.enroll.computer_id = "";
+      this.enroll.dateTime = "";
+      this.enroll.note = "";
+
       this.errorStudents = false;
       http
         .get("/course/")
