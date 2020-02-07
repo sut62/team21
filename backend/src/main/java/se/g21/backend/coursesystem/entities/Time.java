@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.*;
 import java.time.LocalTime;
 // import javax.persistence.*;
 import java.util.Collection;
+import javax.validation.constraints.*;
 
 @Data
 @Entity
@@ -19,13 +20,16 @@ public class Time {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Time_seq")
 	@Column(name="Time_ID",unique = true, nullable = true)
 	private @NonNull Long id;
-	private @NonNull String day;
+	@NotNull
+	private  String day;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "GMT+7")
-    private @NonNull LocalTime start_time;
+	@NotNull
+    private  LocalTime start_time;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "GMT+7")
-    private @NonNull LocalTime end_time;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "GMT+7")
+	@NotNull
+    private  LocalTime end_time;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<Course> course;
