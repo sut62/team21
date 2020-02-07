@@ -3,9 +3,10 @@
     <div align="center" justify="center">
       <v-card width="1000" style="margin: 40px;">
         <v-card-title>
-          <label style="margin-bottom: 10px;margin-left: 20px;">ตารางเเสดงข้อมูลคอร์สเรียน</label>
+          <label >ตารางเเสดงข้อมูลคอร์สเรียน</label>
           <v-spacer></v-spacer>
-      </v-card-title>
+          <!-- append-icon="fas fa-search" -->
+        </v-card-title>
 
         <v-simple-table>
           <template v-slot:default>
@@ -18,11 +19,12 @@
                 <th class="text-left">ห้องเรียน</th>
                 <th class="text-left">เวลา</th>
                 <th class="text-left">ราคา</th>
-               </tr>
+                
+              </tr>
             </thead>
 
             <tbody v-if="view.data">
-              <tr v-for="item in course" :key="item.id">
+              <tr v-for="item in course" :key="item.id" >
                 <td>{{ item.id }}</td>
                 <td>{{ item.courseName }}</td>
                 <td>{{ item.employee.fullname }}</td>
@@ -31,11 +33,17 @@
                 <td>{{ item.time.day+" "+item.time.start_time+"-"+item.time.end_time }}</td>
                 <td>{{ item.price}}</td>
               </tr>
+
+              <tr v-if="course.length < 1">
+                <td colspan="8" class="text-center">
+                  <h5>ไม่พบข้อมูล</h5>
+                </td>
+              </tr>
             </tbody>
 
             <tbody v-if="view.loading">
               <tr v-if="view.loading">
-                <td colspan="11">
+                <td colspan="8">
                   <v-text-field color="rgb(24,103,193)" loading disabled></v-text-field>
                 </td>
               </tr>
@@ -45,10 +53,19 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <Label style="margin-right: 20px;">Rows all page: {{ course.length }}</Label>
+          <v-btn
+            text
+            color="rgb(24,103,193)"
+            style="margin-right: 20px;"
+            @click="ViewCourse"
+          >ดูข้อมูลทั้งหมด</v-btn>
+
+          <Label v-if="course.length < 1" style="margin-right: 20px;">ไม่พบข้อมูล</Label>
+          <Label v-if="course.length > 0" style="margin-right: 20px;">พบข้อมูล</Label>
         </v-card-actions>
       </v-card>
     </div>
+
   </div>
 </template>
 
@@ -62,33 +79,35 @@ export default {
         data: false,
         loading: false
       },
+      field_search: "",
       course: []
     };
   },
   methods: {
     /* eslint-disable no-console */
-    
-   getCourse() {
-       this.view.data = false;
+    ViewCourse() {
+      this.view.data = false;
       this.view.loading = true;
-       http
+
+      http
         .get("/course/")
         .then(response => {
           this.course = response.data;
-          console.log(this.employee);
+          console.log(this.course);
 
           this.view.loading = false;
           this.view.data = true;
         })
         .catch(e => {
           console.log(e);
-        this.view.loading = false;
+
+          this.view.loading = false;
           this.view.data = true;
         });
     }
   },
   mounted() {
-    this.getCourse();
+    this.ViewCourse();
   }
 };
 </script>
