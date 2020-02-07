@@ -317,7 +317,7 @@ public class BackendApplication {
 				expenseTypeRepository.save(expenseType);
 			}
 
-			// ReviewCoursRepositorySystem
+			// ReviewCourseSystem
 			// Rating Entity
 			Object[] dataRating = new Object[] { "มากที่สุด", "มาก", "ปานกลาง", "น้อย", "น้อยที่สุด" };
 			for (int i = 0; i < dataRating.length; i++) {
@@ -333,41 +333,6 @@ public class BackendApplication {
 				Improvement improvement = new Improvement();
 				improvement.setImprovementType((String) dataImprovement[i]);
 				improvementRepository.save(improvement);
-			}
-
-			// ReviewCourse Entiry
-			Object[][] dataReviewCourse = new Object[][] { { 1, 1, 1, "คนสอนหล่อมาก", "2018-02-01 06:07:59" },
-					{ 2, 2, 2, "สอนอิหยังหนิ", "2018-02-01 06:07:59" }, { 3, 3, 3, "เดอะเบส", "2018-02-01 06:07:59" },
-					{ 1, 2, 3, "พี่เกคนสอนได้มั่วมากจ้า", "2018-05-17 06:07:59" },{ 2, 1, 3, "ZA WARUDO!!!", "2019-02-01 06:07:59" },
-					{ 3, 2, 1, "Ora Ora Ora Ora", "2019-07-01 06:07:59" },{ 1, 1, 2, "Star platinum เดอะเบส", "2019-02-01 06:07:59" },
-					{ 1, 1, 3, "Gioruno Giovanna", "2019-10-01 06:07:59" },{ 3, 3, 1, "Ore Ore Ore Ore Ore Ore", "2019-10-28 06:07:59" },
-					{ 3, 3, 1, "Golden Experience", "2020-01-01 06:07:59" }
-				};
-			for (int i = 0; i < dataReviewCourse.length; i++) {
-				ReviewCourse reviewcourse = new ReviewCourse();
-
-				EnrollCourse enrollCourse = enrollCourseRepository.findById((int) dataReviewCourse[i][0]);
-				reviewcourse.setEnrollCourse(enrollCourse);
-
-				Rating rating = ratingRepository.findById((int) dataReviewCourse[i][1]);
-				reviewcourse.setRating(rating);
-
-				Improvement improvement = improvementRepository.findById((int) dataReviewCourse[i][2]);
-				reviewcourse.setImprovement(improvement);
-
-				reviewcourse.setComment((String) dataReviewCourse[i][3]);
-
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				Date dateRec = new Date();
-				try {
-					dateRec = formatter.parse((String) dataReviewCourse[i][4]);
-
-				} catch (Exception e) {
-				}
-
-				reviewcourse.setReviewDate(dateRec);
-
-				reviewCourseRepository.save(reviewcourse);
 			}
 
 		};
