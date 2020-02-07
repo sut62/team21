@@ -20,6 +20,9 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Optional;
 import java.util.Set;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -198,6 +201,68 @@ public class CourseTests {
         ConstraintViolation<Room> v = result.iterator().next();
         assertEquals("must match \"[R][0-9][0-9][0-9]\"", v.getMessage());
         assertEquals("room", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6014728_testSubjectsMustBeNotNull() {
+       
+        Subjects s = new Subjects();
+        s.setSubjectsName(null);
+        Set<ConstraintViolation<Subjects>> result = validator.validate(s);
+
+        assertEquals(1, result.size());
+        ConstraintViolation<Subjects> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("subjectsName", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6014728_testDayMustBeNotNull() {
+       
+        Time time = new Time();
+        time.setDay(null);
+        LocalTime start_time = LocalTime.parse("16:00");
+		LocalTime end_time = LocalTime.parse("18:00");
+        time.setStart_time(start_time);
+        time.setEnd_time(end_time);
+        Set<ConstraintViolation<Time>> result = validator.validate(time);
+
+        assertEquals(1, result.size());
+        ConstraintViolation<Time> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("day", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6014728_testStartTimeMustBeNotNull() {
+       
+        Time time = new Time();
+        time.setDay("Monday");
+        time.setStart_time(null);
+        LocalTime end_time = LocalTime.parse("18:00");
+        time.setEnd_time(end_time);
+        Set<ConstraintViolation<Time>> result = validator.validate(time);
+
+        assertEquals(1, result.size());
+        ConstraintViolation<Time> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("start_time", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void b6014728_testEndTimeBeNotNull() {
+       
+        Time time = new Time();
+        time.setDay("Monday");
+        LocalTime start_time = LocalTime.parse("16:00");
+        time.setStart_time(start_time);
+        time.setEnd_time(null);
+        Set<ConstraintViolation<Time>> result = validator.validate(time);
+
+        assertEquals(1, result.size());
+        ConstraintViolation<Time> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("end_time", v.getPropertyPath().toString());
     }
 
 

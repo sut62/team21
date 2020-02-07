@@ -3,7 +3,7 @@ package se.g21.backend.coursesystem.entities;
 import lombok.*;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.*;
 import java.util.Collection;
 
 @Data
@@ -16,7 +16,8 @@ public class Subjects {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Subjects_seq")
 	@Column(name="Subjects_ID",unique = true, nullable = true)
 	private @NonNull Long id;
-	private @NonNull String subjectsName;
+	@NotNull
+	private String subjectsName;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<Course> course;
