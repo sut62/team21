@@ -231,30 +231,7 @@ public class BackendApplication {
 				timeRepository.save(time);
 			}
 
-			Object[][] dataCourse = new Object[][] { { "Course A", 450.00, 6, 1, 1, 4 },
-					{ "Course B", 500.00, 1, 1, 5, 4 }, { "Course C", 700.00, 2, 2, 3, 5 },
-					{ "Course D", 900.00, 3, 2, 4, 5 } };
-			for (int i = 0; i < dataCourse.length; i++) {
-				Course course = new Course();
-
-				course.setCourseName((String) dataCourse[i][0]);
-				course.setPrice((Double) dataCourse[i][1]);
-
-				Subjects subjects = subjectsRepository.findById((int) dataCourse[i][2]);
-				course.setSubjects(subjects);
-
-				Room room = roomRepository.findById((int) dataCourse[i][3]);
-				course.setRoom(room);
-
-				Time time = timeRepository.findById((int) dataCourse[i][4]);
-				course.setTime(time);
-
-				Employee employee = employeeRepository.findById((int) dataCourse[i][5]);
-				course.setEmployee(employee);
-
-				courseRepository.save(course);
-			}
-
+			
 			// EnrollCourse System
 			for (int i = 0; i < 80; i++) {
 				int roomId = 0;
@@ -281,33 +258,7 @@ public class BackendApplication {
 				computerRepository.save(com);
 			}
 
-			Object[][] dataEnrollCourse = new Object[][] { { 1, 1, 1, "2019-08-12 10:12:56", 3 },
-					{ 1, 2, 15, "2019-08-13 11:30:20", 4 }, { 2, 3, 22, "2019-08-14 10:12:56", 3 },
-					{ 2, 4, 39, "2019-09-02 11:30:20", 4 }, { 3, 4, 40, "2019-09-12 10:12:56", 4 }, };
-
-			for (int i = 0; i < dataEnrollCourse.length; i++) {
-				EnrollCourse enrollCourse = new EnrollCourse();
-
-				Student student = studentRepository.findById((int) dataEnrollCourse[i][0]);
-				enrollCourse.setStudent(student);
-
-				Course course = courseRepository.findById((int) dataEnrollCourse[i][1]);
-				enrollCourse.setCourse(course);
-
-				Computer computer = computerRepository.findById((int) dataEnrollCourse[i][2]);
-				enrollCourse.setComputer(computer);
-
-				DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-				LocalDateTime dataDate = LocalDateTime.parse((String) dataEnrollCourse[i][3], dateFormat);
-				enrollCourse.setDate(dataDate);
-
-				enrollCourse.setNote("-");
-
-				Employee employee = employeeRepository.findById((int) dataEnrollCourse[i][4]);
-				enrollCourse.setEmployee(employee);
-				enrollCourseRepository.save(enrollCourse);
-
-			}
+			
 
 			// RecordExpense System
 			String[] dataExpenseType = new String[] { "รับเงินจากนักเรียน", "จ่ายเงินให้พนักงาน" };
