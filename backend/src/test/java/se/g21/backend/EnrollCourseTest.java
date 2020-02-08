@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -15,7 +13,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.text.ParseException;
@@ -48,13 +45,23 @@ public class EnrollCourseTest {
     private StudentRepository studentRepository;
 
     @Autowired
-    private CourseRepository courseRepository;
-
-    @Autowired
     ComputerRepository computerRepository;
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    //Course Repository
+    @Autowired
+    private CourseRepository courseRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
+
+    @Autowired
+    private TimeRepository timeRepository;
+
+    @Autowired
+    private SubjectsRepository subjectsRepository;
 
     @BeforeEach
     public void setup() {
@@ -72,7 +79,19 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         Computer computer = computerRepository.findById(5);
@@ -131,7 +150,19 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         Computer computer = computerRepository.findById(5);
@@ -170,7 +201,19 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         Computer computer = computerRepository.findById(5);
@@ -208,7 +251,19 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         Computer computer = computerRepository.findById(5);
@@ -246,7 +301,19 @@ public class EnrollCourseTest {
         // Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(null);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         Computer computer = computerRepository.findById(5);
@@ -283,7 +350,6 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
         newEnrollCourse.setCourse(null);
 
         Computer computer = computerRepository.findById(5);
@@ -320,7 +386,19 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         // Computer computer = computerRepository.findById(5);
@@ -356,16 +434,24 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         Computer computer = computerRepository.findById(5);
         newEnrollCourse.setComputer(computer);
 
-        // DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd
-        // HH:mm:ss");
-        // LocalDateTime dataDate = LocalDateTime.parse((String) "2019-08-12 10:12:56",
-        // dateFormat);
         newEnrollCourse.setDate(null);
 
         newEnrollCourse.setNote("-");
@@ -394,7 +480,19 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         Computer computer = computerRepository.findById(5);
@@ -431,7 +529,19 @@ public class EnrollCourseTest {
         Student student = studentRepository.findById(2);
         newEnrollCourse.setStudent(student);
 
-        Course course = courseRepository.findById(1);
+        //set Course
+        Course course = new Course();
+        Subjects subjectsCourse = subjectsRepository.findById(1);
+        Room roomCourse = roomRepository.findById(1);
+        Time timeCourse = timeRepository.findById(1);
+        Employee employeeCourse = employeeRepository.findById(1);
+        course.setPrice((double)999);
+        course.setCourseName("Course A");
+        course.setSubjects(subjectsCourse);
+        course.setRoom(roomCourse);
+        course.setTime(timeCourse);
+        course.setEmployee(employeeCourse);
+        course = courseRepository.saveAndFlush(course);
         newEnrollCourse.setCourse(course);
 
         Computer computer = computerRepository.findById(5);
