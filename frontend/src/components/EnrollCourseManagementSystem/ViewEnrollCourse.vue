@@ -278,7 +278,7 @@ export default {
       this.view.loading = true;
 
       http
-        .get("/viewEnrollCourse/all/")
+        .get("/enrollCourse/")
         .then(response => {
           this.viewEnrollCourse = response.data;
           console.log(this.viewEnrollCourse);
