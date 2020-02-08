@@ -165,10 +165,25 @@
       </v-menu>
     </v-app-bar>
 
-    
-    <v-content style="margin: 0px;padding: 0px;padding-top: 120px;">
+    <v-content v-if="show.dashboard" style="margin: 0px;padding: 0px;">
+      <v-row v-if="show.dashboard">
+        <v-col cols="2" style="margin: 0px;padding: 0px;"></v-col>
+        <v-col
+          cols="10"
+        >
+          <v-img style="position: absolute; width: 100%;height: 100%;" src="../assets/dashboard.jpg" aspect-ratio="1.7"></v-img>
+          <label style="font-size: 120px;font-weight: 1000px;color: white;position: absolute;top: 500px;left: 800px;">
+            ยินดีต้อนรับ
+          </label>
+        </v-col>
+      </v-row>
+    </v-content >
+
+    <v-content v-if="!show.dashboard" style="margin: 0px;padding: 0px; margin-top: 120px;">
 
       <!-- Add data components -->
+      
+
       <v-row v-if="show.emp">
         <v-col cols="2" style="margin: 0px;padding: 0px;"></v-col>
         <v-col
@@ -319,8 +334,9 @@ export default {
   },
   data() {
     return {
-      componentName: "Dashboard",
+      componentName: "MAIN MENU",
       show: {
+        dashboard: false,
         navigationEmp: false,
         emp: false,
         viemp: false,
@@ -371,6 +387,7 @@ export default {
     },
     showEmp() {
       this.componentName = "Add Employee";
+      this.show.dashboard = false;
       this.show.stu = false;
       this.show.course = false;
       this.show.enroll = false;
@@ -386,6 +403,7 @@ export default {
     },
     showVEmp() {
       this.componentName = "View Employee";
+      this.show.dashboard = false;
       this.show.stu = false;
       this.show.course = false;
       this.show.enroll = false;
@@ -401,6 +419,7 @@ export default {
     },
     showStu() {
       this.componentName = "Add Student";
+      this.show.dashboard = false;
       this.show.emp = false;
       this.show.course = false;
       this.show.enroll = false;
@@ -416,6 +435,7 @@ export default {
     },
     showVStu() {
       this.componentName = "View Student";
+      this.show.dashboard = false;
       this.show.emp = false;
       this.show.course = false;
       this.show.enroll = false;
@@ -431,6 +451,7 @@ export default {
     },
     showCourse() {
       this.componentName = "Add Course";
+      this.show.dashboard = false;
       this.show.stu = false;
       this.show.enroll = false;
       this.show.record = false;
@@ -446,6 +467,7 @@ export default {
     },
     showVCourse() {
       this.componentName = "View Course";
+      this.show.dashboard = false;
       this.show.stu = false;
       this.show.enroll = false;
       this.show.record = false;
@@ -460,6 +482,7 @@ export default {
     },
     showEnroll() {
       this.componentName = "Add Enroll Course";
+      this.show.dashboard = false;
       this.show.emp = false;
       this.show.course = false;
       this.show.record = false;
@@ -475,6 +498,7 @@ export default {
     },
     showVEnroll() {
       this.componentName = "View Enroll Course";
+      this.show.dashboard = false;
       this.show.emp = false;
       this.show.course = false;
       this.show.record = false;
@@ -490,6 +514,7 @@ export default {
     },
     showRecord() {
       this.componentName = "Add Record Expense";
+      this.show.dashboard = false;
       this.show.emp = false;
       this.show.course = false;
       this.show.enroll = false;
@@ -506,6 +531,7 @@ export default {
     },
     showVRecord() {
       this.componentName = "View Record Expense";
+      this.show.dashboard = false;
       this.show.emp = false;
       this.show.course = false;
       this.show.enroll = false;
@@ -521,6 +547,7 @@ export default {
     },
     showVReviews(){
       this.componentName = "View Reviews";
+      this.show.dashboard = false;
       this.show.emp = false;
       this.show.course = false;
       this.show.enroll = false;
@@ -547,7 +574,7 @@ export default {
   },
   mounted() {
     this.showNavigation(this.$session.get("positionId"));
-    this.show.emp = true;
+    this.show.dashboard = true;
   }
 };
 </script>
