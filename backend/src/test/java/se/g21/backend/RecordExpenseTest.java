@@ -1,645 +1,645 @@
-package se.g21.backend;
+// package se.g21.backend;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.*;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.context.SpringBootTest;
+// import org.springframework.dao.DataIntegrityViolationException;
+// import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import java.util.Optional;
-import java.util.Set;
+// import javax.validation.ConstraintViolation;
+// import javax.validation.Validation;
+// import javax.validation.Validator;
+// import javax.validation.ValidatorFactory;
+// import java.util.Optional;
+// import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertThrows;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+// import java.text.ParseException;
+// import java.text.SimpleDateFormat;
+// import java.time.LocalDateTime;
+// import java.time.format.DateTimeFormatter;
 
-import se.g21.backend.enrollcoursesystem.entities.*;
-import se.g21.backend.enrollcoursesystem.repository.*;
+// import se.g21.backend.enrollcoursesystem.entities.*;
+// import se.g21.backend.enrollcoursesystem.repository.*;
 
-import se.g21.backend.employeesystem.entities.*;
-import se.g21.backend.employeesystem.repository.*;
+// import se.g21.backend.employeesystem.entities.*;
+// import se.g21.backend.employeesystem.repository.*;
 
-import se.g21.backend.recordexpensesystem.entities.*;
-import se.g21.backend.recordexpensesystem.repository.*;
+// import se.g21.backend.recordexpensesystem.entities.*;
+// import se.g21.backend.recordexpensesystem.repository.*;
 
-import se.g21.backend.studentsystem.entities.*;
-import se.g21.backend.studentsystem.repository.*;
+// import se.g21.backend.studentsystem.entities.*;
+// import se.g21.backend.studentsystem.repository.*;
 
-import se.g21.backend.coursesystem.entities.*;
-import se.g21.backend.coursesystem.repository.*;
+// import se.g21.backend.coursesystem.entities.*;
+// import se.g21.backend.coursesystem.repository.*;
 
-//@DataJpaTest
-@SpringBootTest
-public class RecordExpenseTest {
+// //@DataJpaTest
+// @SpringBootTest
+// public class RecordExpenseTest {
 
-    private Validator validator;
+//     private Validator validator;
 
-    @Autowired
-    private EnrollCourseRepository enrollCourseRepository;
+//     @Autowired
+//     private EnrollCourseRepository enrollCourseRepository;
 
-    @Autowired
-    private StudentRepository studentRepository;
+//     @Autowired
+//     private StudentRepository studentRepository;
 
-    @Autowired
-    ComputerRepository computerRepository;
+//     @Autowired
+//     ComputerRepository computerRepository;
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+//     @Autowired
+//     private EmployeeRepository employeeRepository;
 
-    //Course Repository
-    @Autowired
-    private CourseRepository courseRepository;
+//     //Course Repository
+//     @Autowired
+//     private CourseRepository courseRepository;
 
-    @Autowired
-    private RoomRepository roomRepository;
+//     @Autowired
+//     private RoomRepository roomRepository;
 
-    @Autowired
-    private TimeRepository timeRepository;
+//     @Autowired
+//     private TimeRepository timeRepository;
 
-    @Autowired
-    private SubjectsRepository subjectsRepository;
+//     @Autowired
+//     private SubjectsRepository subjectsRepository;
 
-    @Autowired
-    private RecordExpenseRepository recordExpenseRepository;
+//     @Autowired
+//     private RecordExpenseRepository recordExpenseRepository;
 
-    @Autowired
-    private ExpenseTypeRepository expenseTypeRepository;
+//     @Autowired
+//     private ExpenseTypeRepository expenseTypeRepository;
 
-    @BeforeEach
-    public void setup() {
-        final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
-    }
+//     @BeforeEach
+//     public void setup() {
+//         final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//         validator = factory.getValidator();
+//     }
 
-    void creatEnrollCourse(){
-        EnrollCourse newEnrollCourse = new EnrollCourse();
+//     void creatEnrollCourse(){
+//         EnrollCourse newEnrollCourse = new EnrollCourse();
 
-        Student student = studentRepository.findById(2);
-        newEnrollCourse.setStudent(student);
+//         Student student = studentRepository.findById(2);
+//         newEnrollCourse.setStudent(student);
 
-        //set Course
-        Course course = new Course();
-        Subjects subjectsCourse = subjectsRepository.findById(1);
-        Room roomCourse = roomRepository.findById(1);
-        Time timeCourse = timeRepository.findById(1);
-        Employee employeeCourse = employeeRepository.findById(1);
-        course.setPrice((double)999);
-        course.setCourseName("Course A");
-        course.setSubjects(subjectsCourse);
-        course.setRoom(roomCourse);
-        course.setTime(timeCourse);
-        course.setEmployee(employeeCourse);
-        course = courseRepository.saveAndFlush(course);
-        newEnrollCourse.setCourse(course);
+//         //set Course
+//         Course course = new Course();
+//         Subjects subjectsCourse = subjectsRepository.findById(1);
+//         Room roomCourse = roomRepository.findById(1);
+//         Time timeCourse = timeRepository.findById(1);
+//         Employee employeeCourse = employeeRepository.findById(1);
+//         course.setPrice((double)999);
+//         course.setCourseName("Course A");
+//         course.setSubjects(subjectsCourse);
+//         course.setRoom(roomCourse);
+//         course.setTime(timeCourse);
+//         course.setEmployee(employeeCourse);
+//         course = courseRepository.saveAndFlush(course);
+//         newEnrollCourse.setCourse(course);
 
-        Computer computer = computerRepository.findById(5);
-        newEnrollCourse.setComputer(computer);
+//         Computer computer = computerRepository.findById(5);
+//         newEnrollCourse.setComputer(computer);
 
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dataDate = LocalDateTime.parse((String) "2019-08-12 10:12:56", dateFormat);
-        newEnrollCourse.setDate(dataDate);
+//         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dataDate = LocalDateTime.parse((String) "2019-08-12 10:12:56", dateFormat);
+//         newEnrollCourse.setDate(dataDate);
 
-        newEnrollCourse.setNote("-");
+//         newEnrollCourse.setNote("-");
 
-        Employee employee = employeeRepository.findById(3);
-        newEnrollCourse.setEmployee(employee);
+//         Employee employee = employeeRepository.findById(3);
+//         newEnrollCourse.setEmployee(employee);
 
-        enrollCourseRepository.saveAndFlush(newEnrollCourse);
-    }
+//         enrollCourseRepository.saveAndFlush(newEnrollCourse);
+//     }
 
-    @Test
-    void b6010331_testRecordExpenseSuccess() {
-        System.out.println("========== b6010331_testRecordExpenseSuccess ==========");
+//     @Test
+//     void b6010331_testRecordExpenseSuccess() {
+//         System.out.println("========== b6010331_testRecordExpenseSuccess ==========");
 
-// ---- SAVE Student --- 
-        RecordExpense newRecordStu =  new RecordExpense();
+// // ---- SAVE Student --- 
+//         RecordExpense newRecordStu =  new RecordExpense();
 
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
-        newRecordStu.setExpenseType(expenseTypeStu);
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
+//         newRecordStu.setExpenseType(expenseTypeStu);
 
-        newRecordStu.setRec(null);  
+//         newRecordStu.setRec(null);  
 
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
 
-        Double budget = enrollCourse.getCourse().getPrice();
+//         Double budget = enrollCourse.getCourse().getPrice();
  
-        newRecordStu.setBudget(budget);
+//         newRecordStu.setBudget(budget);
         
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(dateStu);
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(dateStu);
         
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(createdByStu);
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(createdByStu);
 
-        recordExpenseRepository.saveAndFlush(newRecordStu);
+//         recordExpenseRepository.saveAndFlush(newRecordStu);
 
         
-        Optional<RecordExpense> FindnewRecordStu = recordExpenseRepository.findById(newRecordStu.getId());
+//         Optional<RecordExpense> FindnewRecordStu = recordExpenseRepository.findById(newRecordStu.getId());
 
-        assertEquals(expenseTypeStu.getType(),  FindnewRecordStu.get().getExpenseType().getType());
-        assertEquals(enrollCourse.getId(),FindnewRecordStu.get().getEnrollCourse().getId());
-        assertEquals(null,  FindnewRecordStu.get().getRec());
-        assertEquals(enrollCourse.getCourse().getPrice(),  FindnewRecordStu.get().getBudget());
-        assertEquals(dateStu.format(dateFormatStu),  FindnewRecordStu.get().getDate().format(dateFormatStu));
-        assertEquals(createdByStu.getFullname(), FindnewRecordStu.get().getCreatedBy().getFullname());
+//         assertEquals(expenseTypeStu.getType(),  FindnewRecordStu.get().getExpenseType().getType());
+//         assertEquals(enrollCourse.getId(),FindnewRecordStu.get().getEnrollCourse().getId());
+//         assertEquals(null,  FindnewRecordStu.get().getRec());
+//         assertEquals(enrollCourse.getCourse().getPrice(),  FindnewRecordStu.get().getBudget());
+//         assertEquals(dateStu.format(dateFormatStu),  FindnewRecordStu.get().getDate().format(dateFormatStu));
+//         assertEquals(createdByStu.getFullname(), FindnewRecordStu.get().getCreatedBy().getFullname());
 
-// ---- SAVE Employee --- 
-        RecordExpense newRecordEmp =  new RecordExpense();
+// // ---- SAVE Employee --- 
+//         RecordExpense newRecordEmp =  new RecordExpense();
 
-        ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
-        newRecordEmp.setExpenseType(expenseTypeEmp);
+//         ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
+//         newRecordEmp.setExpenseType(expenseTypeEmp);
 
-        Employee rec = employeeRepository.findById(5);
-        newRecordEmp.setRec(rec);  
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordEmp.setRec(rec);  
 
-        newRecordEmp.setEnrollCourse(null);
+//         newRecordEmp.setEnrollCourse(null);
         
-        newRecordEmp.setBudget(rec.getPosition().getSalary());
+//         newRecordEmp.setBudget(rec.getPosition().getSalary());
         
-        DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
-        newRecordEmp.setDate(dateEmp);
+//         DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
+//         newRecordEmp.setDate(dateEmp);
         
-        Employee createdByEmp = employeeRepository.findById(6);
-        newRecordEmp.setCreatedBy(createdByEmp);
+//         Employee createdByEmp = employeeRepository.findById(6);
+//         newRecordEmp.setCreatedBy(createdByEmp);
 
-        recordExpenseRepository.saveAndFlush(newRecordEmp);
+//         recordExpenseRepository.saveAndFlush(newRecordEmp);
         
 
-        Optional<RecordExpense> FindnewRecordEmp = recordExpenseRepository.findById(newRecordEmp.getId());
+//         Optional<RecordExpense> FindnewRecordEmp = recordExpenseRepository.findById(newRecordEmp.getId());
 
-        assertEquals(expenseTypeEmp.getType(),FindnewRecordEmp.get().getExpenseType().getType());
-        assertEquals(null,FindnewRecordEmp.get().getEnrollCourse());
-        assertEquals(rec.getFullname(),FindnewRecordEmp.get().getRec().getFullname());
-        assertEquals(rec.getPosition().getSalary(),FindnewRecordEmp.get().getBudget());
-        assertEquals(dateEmp.format(dateFormatEmp),FindnewRecordEmp.get().getDate().format(dateFormatEmp));
-        assertEquals(createdByEmp.getFullname(),FindnewRecordEmp.get().getCreatedBy().getFullname());       
-
-
-    }
-
-    @Test
-    void b6010331_testPrePersistRecordExpenseSetBothButType1() {
-        System.out.println("========== b6010331_testPrePersistRecordExpenseSetBothButType1 ==========");
-
-// ---- SAVE Student ---
-        RecordExpense newRecordStu =  new RecordExpense();
-
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
-        newRecordStu.setExpenseType(expenseTypeStu);
-
-        Employee rec = employeeRepository.findById(5);
-        newRecordStu.setRec(rec);
-
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
-
-        Double budget = enrollCourse.getCourse().getPrice();
-
-        newRecordStu.setBudget(budget);
-
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(dateStu);
-
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(createdByStu);
-
-        recordExpenseRepository.saveAndFlush(newRecordStu);
+//         assertEquals(expenseTypeEmp.getType(),FindnewRecordEmp.get().getExpenseType().getType());
+//         assertEquals(null,FindnewRecordEmp.get().getEnrollCourse());
+//         assertEquals(rec.getFullname(),FindnewRecordEmp.get().getRec().getFullname());
+//         assertEquals(rec.getPosition().getSalary(),FindnewRecordEmp.get().getBudget());
+//         assertEquals(dateEmp.format(dateFormatEmp),FindnewRecordEmp.get().getDate().format(dateFormatEmp));
+//         assertEquals(createdByEmp.getFullname(),FindnewRecordEmp.get().getCreatedBy().getFullname());       
 
 
-        Optional<RecordExpense> FindnewRecordStu = recordExpenseRepository.findById(newRecordStu.getId());
+//     }
 
-        assertEquals(enrollCourse.getId(),FindnewRecordStu.get().getEnrollCourse().getId());
-        assertEquals(null,FindnewRecordStu.get().getRec());
-        assertEquals(expenseTypeStu.getType(),  FindnewRecordStu.get().getExpenseType().getType());
-        assertEquals(enrollCourse.getCourse().getPrice(),  FindnewRecordStu.get().getBudget());
-        assertEquals(dateStu.format(dateFormatStu),  FindnewRecordStu.get().getDate().format(dateFormatStu));
-        assertEquals(createdByStu.getFullname(), FindnewRecordStu.get().getCreatedBy().getFullname());
-    }
-    @Test
-    void b6010331_testPrePersistRecordExpenseSetBothButType2() {
-        System.out.println("========== b6010331_testPrePersistRecordExpenseSetBothButType2 ==========");
+//     @Test
+//     void b6010331_testPrePersistRecordExpenseSetBothButType1() {
+//         System.out.println("========== b6010331_testPrePersistRecordExpenseSetBothButType1 ==========");
 
-// ---- SAVE Student ---
-        RecordExpense newRecordStu =  new RecordExpense();
+// // ---- SAVE Student ---
+//         RecordExpense newRecordStu =  new RecordExpense();
 
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(2);
-        newRecordStu.setExpenseType(expenseTypeStu);
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
+//         newRecordStu.setExpenseType(expenseTypeStu);
 
-        Employee rec = employeeRepository.findById(5);
-        newRecordStu.setRec(rec);
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordStu.setRec(rec);
 
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
 
-        Double budget = enrollCourse.getCourse().getPrice();
+//         Double budget = enrollCourse.getCourse().getPrice();
 
-        newRecordStu.setBudget(budget);
+//         newRecordStu.setBudget(budget);
 
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(dateStu);
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(dateStu);
 
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(createdByStu);
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(createdByStu);
 
-        recordExpenseRepository.saveAndFlush(newRecordStu);
+//         recordExpenseRepository.saveAndFlush(newRecordStu);
 
 
-        Optional<RecordExpense> FindnewRecordStu = recordExpenseRepository.findById(newRecordStu.getId());
+//         Optional<RecordExpense> FindnewRecordStu = recordExpenseRepository.findById(newRecordStu.getId());
 
-        assertEquals(null,FindnewRecordStu.get().getEnrollCourse());
-        assertEquals(rec.getId(),FindnewRecordStu.get().getRec().getId());
-        assertEquals(expenseTypeStu.getType(),  FindnewRecordStu.get().getExpenseType().getType());
-        assertEquals(enrollCourse.getCourse().getPrice(),  FindnewRecordStu.get().getBudget());
-        assertEquals(dateStu.format(dateFormatStu),  FindnewRecordStu.get().getDate().format(dateFormatStu));
-        assertEquals(createdByStu.getFullname(), FindnewRecordStu.get().getCreatedBy().getFullname());
-    }
+//         assertEquals(enrollCourse.getId(),FindnewRecordStu.get().getEnrollCourse().getId());
+//         assertEquals(null,FindnewRecordStu.get().getRec());
+//         assertEquals(expenseTypeStu.getType(),  FindnewRecordStu.get().getExpenseType().getType());
+//         assertEquals(enrollCourse.getCourse().getPrice(),  FindnewRecordStu.get().getBudget());
+//         assertEquals(dateStu.format(dateFormatStu),  FindnewRecordStu.get().getDate().format(dateFormatStu));
+//         assertEquals(createdByStu.getFullname(), FindnewRecordStu.get().getCreatedBy().getFullname());
+//     }
+//     @Test
+//     void b6010331_testPrePersistRecordExpenseSetBothButType2() {
+//         System.out.println("========== b6010331_testPrePersistRecordExpenseSetBothButType2 ==========");
 
-    boolean isValidDateForMat(String date) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            df.setLenient(false);
-            try {
-               df.parse(date);
-            } catch (ParseException e) {
-               return false;
-            }
-            return true;
-    }
+// // ---- SAVE Student ---
+//         RecordExpense newRecordStu =  new RecordExpense();
 
-    @Test
-    void b6010331_testDateFormat() {
-        System.out.println("========== b6010331_testDateFormat ==========");
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(2);
+//         newRecordStu.setExpenseType(expenseTypeStu);
 
-// ---- SAVE Student --- 
-        RecordExpense newRecordStu =  new RecordExpense();
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordStu.setRec(rec);
 
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
-        newRecordStu.setExpenseType(expenseTypeStu);
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
 
-        newRecordStu.setRec(null);  
+//         Double budget = enrollCourse.getCourse().getPrice();
 
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
+//         newRecordStu.setBudget(budget);
+
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(dateStu);
+
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(createdByStu);
+
+//         recordExpenseRepository.saveAndFlush(newRecordStu);
+
+
+//         Optional<RecordExpense> FindnewRecordStu = recordExpenseRepository.findById(newRecordStu.getId());
+
+//         assertEquals(null,FindnewRecordStu.get().getEnrollCourse());
+//         assertEquals(rec.getId(),FindnewRecordStu.get().getRec().getId());
+//         assertEquals(expenseTypeStu.getType(),  FindnewRecordStu.get().getExpenseType().getType());
+//         assertEquals(enrollCourse.getCourse().getPrice(),  FindnewRecordStu.get().getBudget());
+//         assertEquals(dateStu.format(dateFormatStu),  FindnewRecordStu.get().getDate().format(dateFormatStu));
+//         assertEquals(createdByStu.getFullname(), FindnewRecordStu.get().getCreatedBy().getFullname());
+//     }
+
+//     boolean isValidDateForMat(String date) {
+//             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//             df.setLenient(false);
+//             try {
+//                df.parse(date);
+//             } catch (ParseException e) {
+//                return false;
+//             }
+//             return true;
+//     }
+
+//     @Test
+//     void b6010331_testDateFormat() {
+//         System.out.println("========== b6010331_testDateFormat ==========");
+
+// // ---- SAVE Student --- 
+//         RecordExpense newRecordStu =  new RecordExpense();
+
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
+//         newRecordStu.setExpenseType(expenseTypeStu);
+
+//         newRecordStu.setRec(null);  
+
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
  
-        newRecordStu.setBudget(enrollCourse.getCourse().getPrice());
+//         newRecordStu.setBudget(enrollCourse.getCourse().getPrice());
         
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(dateStu);
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(dateStu);
         
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(createdByStu);
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(createdByStu);
 
-        recordExpenseRepository.saveAndFlush(newRecordStu);
+//         recordExpenseRepository.saveAndFlush(newRecordStu);
 
-// ---- SAVE Employee --- 
-        RecordExpense newRecordEmp =  new RecordExpense();
+// // ---- SAVE Employee --- 
+//         RecordExpense newRecordEmp =  new RecordExpense();
 
-        ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
-        newRecordEmp.setExpenseType(expenseTypeEmp);
+//         ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
+//         newRecordEmp.setExpenseType(expenseTypeEmp);
 
-        Employee rec = employeeRepository.findById(5);
-        newRecordEmp.setRec(rec);  
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordEmp.setRec(rec);  
         
-        newRecordEmp.setEnrollCourse(null);
+//         newRecordEmp.setEnrollCourse(null);
         
-        newRecordEmp.setBudget(rec.getPosition().getSalary());
+//         newRecordEmp.setBudget(rec.getPosition().getSalary());
         
-        DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
-        newRecordEmp.setDate(dateEmp);
+//         DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
+//         newRecordEmp.setDate(dateEmp);
         
-        Employee createdByEmp = employeeRepository.findById(6);
-        newRecordEmp.setCreatedBy(createdByEmp);
+//         Employee createdByEmp = employeeRepository.findById(6);
+//         newRecordEmp.setCreatedBy(createdByEmp);
 
-        recordExpenseRepository.saveAndFlush(newRecordEmp);
+//         recordExpenseRepository.saveAndFlush(newRecordEmp);
 
 
-        Optional<RecordExpense> FindnewRecordStu = recordExpenseRepository.findById(newRecordStu.getId());
+//         Optional<RecordExpense> FindnewRecordStu = recordExpenseRepository.findById(newRecordStu.getId());
 
-        assertEquals(expenseTypeStu.getType(),  FindnewRecordStu.get().getExpenseType().getType());
-        assertEquals(enrollCourse.getId(),FindnewRecordStu.get().getEnrollCourse().getId());
-        assertEquals(null,  FindnewRecordStu.get().getRec());
-        assertEquals(enrollCourse.getCourse().getPrice(),  FindnewRecordStu.get().getBudget());
-        assertTrue(isValidDateForMat(FindnewRecordStu.get().getDate().format(dateFormatStu)));
-        assertEquals(createdByStu.getFullname(), FindnewRecordStu.get().getCreatedBy().getFullname());
+//         assertEquals(expenseTypeStu.getType(),  FindnewRecordStu.get().getExpenseType().getType());
+//         assertEquals(enrollCourse.getId(),FindnewRecordStu.get().getEnrollCourse().getId());
+//         assertEquals(null,  FindnewRecordStu.get().getRec());
+//         assertEquals(enrollCourse.getCourse().getPrice(),  FindnewRecordStu.get().getBudget());
+//         assertTrue(isValidDateForMat(FindnewRecordStu.get().getDate().format(dateFormatStu)));
+//         assertEquals(createdByStu.getFullname(), FindnewRecordStu.get().getCreatedBy().getFullname());
         
 
-       Optional<RecordExpense> FindnewRecordEmp = recordExpenseRepository.findById(newRecordEmp.getId());
+//        Optional<RecordExpense> FindnewRecordEmp = recordExpenseRepository.findById(newRecordEmp.getId());
 
-        assertEquals(expenseTypeEmp.getType(),FindnewRecordEmp.get().getExpenseType().getType());
-        assertEquals(null,FindnewRecordEmp.get().getEnrollCourse());
-        assertEquals(rec.getFullname(),FindnewRecordEmp.get().getRec().getFullname());
-        assertEquals(rec.getPosition().getSalary(),FindnewRecordEmp.get().getBudget());
-        assertTrue(isValidDateForMat(FindnewRecordEmp.get().getDate().format(dateFormatEmp)));
-        assertEquals(createdByEmp.getFullname(),FindnewRecordEmp.get().getCreatedBy().getFullname());       
-    }
+//         assertEquals(expenseTypeEmp.getType(),FindnewRecordEmp.get().getExpenseType().getType());
+//         assertEquals(null,FindnewRecordEmp.get().getEnrollCourse());
+//         assertEquals(rec.getFullname(),FindnewRecordEmp.get().getRec().getFullname());
+//         assertEquals(rec.getPosition().getSalary(),FindnewRecordEmp.get().getBudget());
+//         assertTrue(isValidDateForMat(FindnewRecordEmp.get().getDate().format(dateFormatEmp)));
+//         assertEquals(createdByEmp.getFullname(),FindnewRecordEmp.get().getCreatedBy().getFullname());       
+//     }
     
-    @Test
-    void b6010331_testCreatedByNotBeNull() {
-        System.out.println(
-                "========== b6010331_testCreatedByNotBeNull ==========");
+//     @Test
+//     void b6010331_testCreatedByNotBeNull() {
+//         System.out.println(
+//                 "========== b6010331_testCreatedByNotBeNull ==========");
 
-// ---- SAVE Student --- 
-        RecordExpense newRecordStu =  new RecordExpense();
+// // ---- SAVE Student --- 
+//         RecordExpense newRecordStu =  new RecordExpense();
 
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
-        newRecordStu.setExpenseType(expenseTypeStu);
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
+//         newRecordStu.setExpenseType(expenseTypeStu);
 
-        newRecordStu.setRec(null);  
+//         newRecordStu.setRec(null);  
 
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
  
-        newRecordStu.setBudget(enrollCourse.getCourse().getPrice());
+//         newRecordStu.setBudget(enrollCourse.getCourse().getPrice());
         
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(dateStu);
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(dateStu);
         
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(null);      
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(null);      
 
-// ---- SAVE Employee --- 
-        RecordExpense newRecordEmp =  new RecordExpense();
+// // ---- SAVE Employee --- 
+//         RecordExpense newRecordEmp =  new RecordExpense();
 
-        ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
-        newRecordEmp.setExpenseType(expenseTypeEmp);
+//         ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
+//         newRecordEmp.setExpenseType(expenseTypeEmp);
 
-        Employee rec = employeeRepository.findById(5);
-        newRecordEmp.setRec(rec);  
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordEmp.setRec(rec);  
 
-        newRecordEmp.setEnrollCourse(null);
+//         newRecordEmp.setEnrollCourse(null);
  
-        newRecordEmp.setBudget(rec.getPosition().getSalary());
+//         newRecordEmp.setBudget(rec.getPosition().getSalary());
         
-        DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
-        newRecordEmp.setDate(dateEmp);
+//         DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
+//         newRecordEmp.setDate(dateEmp);
         
-        Employee createdByEmp = employeeRepository.findById(6);
-        newRecordEmp.setCreatedBy(null);
+//         Employee createdByEmp = employeeRepository.findById(6);
+//         newRecordEmp.setCreatedBy(null);
     
-        Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
-        assertEquals(1, resultStu.size());
-        ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
-        assertEquals("must not be null", vStu.getMessage());
-        assertEquals("createdBy", vStu.getPropertyPath().toString());
+//         Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
+//         assertEquals(1, resultStu.size());
+//         ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
+//         assertEquals("must not be null", vStu.getMessage());
+//         assertEquals("createdBy", vStu.getPropertyPath().toString());
 
-        Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
-        assertEquals(1, resultEmp.size());
-        ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
-        assertEquals("must not be null", vEmp.getMessage());
-        assertEquals("createdBy", vEmp.getPropertyPath().toString());
-    }
+//         Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
+//         assertEquals(1, resultEmp.size());
+//         ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
+//         assertEquals("must not be null", vEmp.getMessage());
+//         assertEquals("createdBy", vEmp.getPropertyPath().toString());
+//     }
    
-    @Test
-    void b6010331_testDateNotBeNull() {
-        System.out.println(
-                "========== b6010331_testDateNotBeNull ==========");
+//     @Test
+//     void b6010331_testDateNotBeNull() {
+//         System.out.println(
+//                 "========== b6010331_testDateNotBeNull ==========");
 
-// ---- SAVE Student --- 
-        RecordExpense newRecordStu =  new RecordExpense();
+// // ---- SAVE Student --- 
+//         RecordExpense newRecordStu =  new RecordExpense();
 
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
-        newRecordStu.setExpenseType(expenseTypeStu);
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
+//         newRecordStu.setExpenseType(expenseTypeStu);
 
-        newRecordStu.setRec(null);  
+//         newRecordStu.setRec(null);  
 
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
  
-        newRecordStu.setBudget(enrollCourse.getCourse().getPrice());
+//         newRecordStu.setBudget(enrollCourse.getCourse().getPrice());
         
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(null);
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(null);
         
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(createdByStu);    
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(createdByStu);    
 
-// ---- SAVE Employee --- 
-        RecordExpense newRecordEmp =  new RecordExpense();
+// // ---- SAVE Employee --- 
+//         RecordExpense newRecordEmp =  new RecordExpense();
 
-        ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
-        newRecordEmp.setExpenseType(expenseTypeEmp);
+//         ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
+//         newRecordEmp.setExpenseType(expenseTypeEmp);
 
-        Employee rec = employeeRepository.findById(5);
-        newRecordEmp.setRec(rec);  
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordEmp.setRec(rec);  
 
-        newRecordEmp.setEnrollCourse(null);
+//         newRecordEmp.setEnrollCourse(null);
  
-        newRecordEmp.setBudget(rec.getPosition().getSalary());
+//         newRecordEmp.setBudget(rec.getPosition().getSalary());
         
-        DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
-        newRecordEmp.setDate(null);
+//         DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
+//         newRecordEmp.setDate(null);
         
-        Employee createdByEmp = employeeRepository.findById(6);
-        newRecordEmp.setCreatedBy(createdByEmp);
+//         Employee createdByEmp = employeeRepository.findById(6);
+//         newRecordEmp.setCreatedBy(createdByEmp);
     
-        Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
-        assertEquals(1, resultStu.size());
-        ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
-        assertEquals("must not be null", vStu.getMessage());
-        assertEquals("date", vStu.getPropertyPath().toString());
+//         Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
+//         assertEquals(1, resultStu.size());
+//         ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
+//         assertEquals("must not be null", vStu.getMessage());
+//         assertEquals("date", vStu.getPropertyPath().toString());
 
-        Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
-        assertEquals(1, resultEmp.size());
-        ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
-        assertEquals("must not be null", vEmp.getMessage());
-        assertEquals("date", vEmp.getPropertyPath().toString());
-    }
+//         Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
+//         assertEquals(1, resultEmp.size());
+//         ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
+//         assertEquals("must not be null", vEmp.getMessage());
+//         assertEquals("date", vEmp.getPropertyPath().toString());
+//     }
 
-    @Test
-    void b6010331_testExpenseTypeNotBeNull() {
-        System.out.println(
-                "========== b6010331_testExpenseTypeNotBeNull ==========");
+//     @Test
+//     void b6010331_testExpenseTypeNotBeNull() {
+//         System.out.println(
+//                 "========== b6010331_testExpenseTypeNotBeNull ==========");
 
-// ---- SAVE Student --- 
-        RecordExpense newRecordStu =  new RecordExpense();
+// // ---- SAVE Student --- 
+//         RecordExpense newRecordStu =  new RecordExpense();
 
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
-        newRecordStu.setExpenseType(null);
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
+//         newRecordStu.setExpenseType(null);
 
-        newRecordStu.setRec(null);  
+//         newRecordStu.setRec(null);  
 
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
  
-        newRecordStu.setBudget(enrollCourse.getCourse().getPrice());
+//         newRecordStu.setBudget(enrollCourse.getCourse().getPrice());
         
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(dateStu);
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(dateStu);
         
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(createdByStu);
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(createdByStu);
 
-// ---- SAVE Employee --- 
-        RecordExpense newRecordEmp =  new RecordExpense();
+// // ---- SAVE Employee --- 
+//         RecordExpense newRecordEmp =  new RecordExpense();
 
-        ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
-        newRecordEmp.setExpenseType(null);
+//         ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
+//         newRecordEmp.setExpenseType(null);
 
-        Employee rec = employeeRepository.findById(5);
-        newRecordEmp.setRec(rec);  
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordEmp.setRec(rec);  
 
-        newRecordEmp.setEnrollCourse(null);
+//         newRecordEmp.setEnrollCourse(null);
  
-        newRecordEmp.setBudget(rec.getPosition().getSalary());
+//         newRecordEmp.setBudget(rec.getPosition().getSalary());
         
-        DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
-        newRecordEmp.setDate(dateEmp);
+//         DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
+//         newRecordEmp.setDate(dateEmp);
         
-        Employee createdByEmp = employeeRepository.findById(6);
-        newRecordEmp.setCreatedBy(createdByEmp);
+//         Employee createdByEmp = employeeRepository.findById(6);
+//         newRecordEmp.setCreatedBy(createdByEmp);
     
-        Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
-        assertEquals(1, resultStu.size());
-        ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
-        assertEquals("must not be null", vStu.getMessage());
-        assertEquals("expenseType", vStu.getPropertyPath().toString());
+//         Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
+//         assertEquals(1, resultStu.size());
+//         ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
+//         assertEquals("must not be null", vStu.getMessage());
+//         assertEquals("expenseType", vStu.getPropertyPath().toString());
 
-        Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
-        assertEquals(1, resultEmp.size());
-        ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
-        assertEquals("must not be null", vEmp.getMessage());
-        assertEquals("expenseType", vEmp.getPropertyPath().toString());
-    }
+//         Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
+//         assertEquals(1, resultEmp.size());
+//         ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
+//         assertEquals("must not be null", vEmp.getMessage());
+//         assertEquals("expenseType", vEmp.getPropertyPath().toString());
+//     }
 
-    @Test
-    void b6010331_testBudgetMustBeLessThanOrEqualTo50k() {
-        System.out.println(
-                "========== b6010331_testBudgetMustBeLessThanOrEqualTo50k ==========");
+//     @Test
+//     void b6010331_testBudgetMustBeLessThanOrEqualTo50k() {
+//         System.out.println(
+//                 "========== b6010331_testBudgetMustBeLessThanOrEqualTo50k ==========");
 
-// ---- SAVE Student --- 
-        RecordExpense newRecordStu =  new RecordExpense();
+// // ---- SAVE Student --- 
+//         RecordExpense newRecordStu =  new RecordExpense();
 
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
-        newRecordStu.setExpenseType(expenseTypeStu);
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
+//         newRecordStu.setExpenseType(expenseTypeStu);
 
-        newRecordStu.setRec(null);  
+//         newRecordStu.setRec(null);  
 
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
  
-        newRecordStu.setBudget(50001);
+//         newRecordStu.setBudget(50001);
         
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(dateStu);
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(dateStu);
         
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(createdByStu);
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(createdByStu);
 
        
 
-// ---- SAVE Employee --- 
-        RecordExpense newRecordEmp =  new RecordExpense();
+// // ---- SAVE Employee --- 
+//         RecordExpense newRecordEmp =  new RecordExpense();
 
-        ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
-        newRecordEmp.setExpenseType(expenseTypeEmp);
+//         ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
+//         newRecordEmp.setExpenseType(expenseTypeEmp);
 
-        Employee rec = employeeRepository.findById(5);
-        newRecordEmp.setRec(rec);  
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordEmp.setRec(rec);  
 
-        newRecordEmp.setEnrollCourse(null);
+//         newRecordEmp.setEnrollCourse(null);
  
-        newRecordEmp.setBudget(50001);
+//         newRecordEmp.setBudget(50001);
         
-        DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
-        newRecordEmp.setDate(dateEmp);
+//         DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
+//         newRecordEmp.setDate(dateEmp);
         
-        Employee createdByEmp = employeeRepository.findById(6);
-        newRecordEmp.setCreatedBy(createdByEmp);
+//         Employee createdByEmp = employeeRepository.findById(6);
+//         newRecordEmp.setCreatedBy(createdByEmp);
     
-        Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
-        assertEquals(1, resultStu.size());
-        ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
-        assertEquals("must be less than or equal to 50000", vStu.getMessage());
-        assertEquals("budget", vStu.getPropertyPath().toString());
+//         Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
+//         assertEquals(1, resultStu.size());
+//         ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
+//         assertEquals("must be less than or equal to 50000", vStu.getMessage());
+//         assertEquals("budget", vStu.getPropertyPath().toString());
 
-        Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
-        assertEquals(1, resultEmp.size());
-        ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
-        assertEquals("must be less than or equal to 50000", vEmp.getMessage());
-        assertEquals("budget", vEmp.getPropertyPath().toString());
-    }
+//         Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
+//         assertEquals(1, resultEmp.size());
+//         ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
+//         assertEquals("must be less than or equal to 50000", vEmp.getMessage());
+//         assertEquals("budget", vEmp.getPropertyPath().toString());
+//     }
 
-    @Test
-    void b6010331_testBudgetMustBeGreaterThanZero() {
-        System.out.println("========== b6010331_testBudgetMustBeGreaterThanZero ==========");
+//     @Test
+//     void b6010331_testBudgetMustBeGreaterThanZero() {
+//         System.out.println("========== b6010331_testBudgetMustBeGreaterThanZero ==========");
 
-// ---- SAVE Student --- 
-        RecordExpense newRecordStu =  new RecordExpense();
+// // ---- SAVE Student --- 
+//         RecordExpense newRecordStu =  new RecordExpense();
 
-        ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
-        newRecordStu.setExpenseType(expenseTypeStu);
+//         ExpenseType expenseTypeStu = expenseTypeRepository.findById(1);
+//         newRecordStu.setExpenseType(expenseTypeStu);
 
-        newRecordStu.setRec(null);  
+//         newRecordStu.setRec(null);  
 
-        EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
-        newRecordStu.setEnrollCourse(enrollCourse);
+//         EnrollCourse enrollCourse = enrollCourseRepository.findById(1);
+//         newRecordStu.setEnrollCourse(enrollCourse);
  
-        newRecordStu.setBudget(0);
+//         newRecordStu.setBudget(0);
         
-        DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
-        newRecordStu.setDate(dateStu);
+//         DateTimeFormatter dateFormatStu = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateStu = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatStu);
+//         newRecordStu.setDate(dateStu);
         
-        Employee createdByStu = employeeRepository.findById(6);
-        newRecordStu.setCreatedBy(createdByStu);
+//         Employee createdByStu = employeeRepository.findById(6);
+//         newRecordStu.setCreatedBy(createdByStu);
 
        
 
-// ---- SAVE Employee --- 
-        RecordExpense newRecordEmp =  new RecordExpense();
+// // ---- SAVE Employee --- 
+//         RecordExpense newRecordEmp =  new RecordExpense();
 
-        ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
-        newRecordEmp.setExpenseType(expenseTypeEmp);
+//         ExpenseType expenseTypeEmp = expenseTypeRepository.findById(2);
+//         newRecordEmp.setExpenseType(expenseTypeEmp);
 
-        Employee rec = employeeRepository.findById(5);
-        newRecordEmp.setRec(rec);  
+//         Employee rec = employeeRepository.findById(5);
+//         newRecordEmp.setRec(rec);  
 
-        newRecordEmp.setEnrollCourse(null);
+//         newRecordEmp.setEnrollCourse(null);
  
-        newRecordEmp.setBudget(0);
+//         newRecordEmp.setBudget(0);
         
-        DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
-        newRecordEmp.setDate(dateEmp);
+//         DateTimeFormatter dateFormatEmp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         LocalDateTime dateEmp = LocalDateTime.parse((String)"2019-08-12 10:12:56",dateFormatEmp);
+//         newRecordEmp.setDate(dateEmp);
         
-        Employee createdByEmp = employeeRepository.findById(6);
-        newRecordEmp.setCreatedBy(createdByEmp);
+//         Employee createdByEmp = employeeRepository.findById(6);
+//         newRecordEmp.setCreatedBy(createdByEmp);
     
-        Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
-        assertEquals(1, resultStu.size());
-        ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
-        assertEquals("must be greater than 0", vStu.getMessage());
-        assertEquals("budget", vStu.getPropertyPath().toString());
+//         Set<ConstraintViolation<RecordExpense>> resultStu = validator.validate(newRecordStu);
+//         assertEquals(1, resultStu.size());
+//         ConstraintViolation<RecordExpense> vStu = resultStu.iterator().next();
+//         assertEquals("must be greater than 0", vStu.getMessage());
+//         assertEquals("budget", vStu.getPropertyPath().toString());
 
-        Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
-        assertEquals(1, resultEmp.size());
-        ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
-        assertEquals("must be greater than 0", vEmp.getMessage());
-        assertEquals("budget", vEmp.getPropertyPath().toString());
-    }
+//         Set<ConstraintViolation<RecordExpense>> resultEmp = validator.validate(newRecordEmp);
+//         assertEquals(1, resultEmp.size());
+//         ConstraintViolation<RecordExpense> vEmp = resultEmp.iterator().next();
+//         assertEquals("must be greater than 0", vEmp.getMessage());
+//         assertEquals("budget", vEmp.getPropertyPath().toString());
+//     }
 
-}
+// }

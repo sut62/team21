@@ -60,6 +60,13 @@ public class EnrollCourseController {
         return enrollCourseRepository.findAll().stream().collect(Collectors.toList());
     }
 
+    @GetMapping("/viewEnrollCourse/{fullname}/")
+    public Collection<EnrollCourse> findByStudentName(@PathVariable("fullname") String fullname) {
+        // SQL LIKE
+        fullname = fullname + "%";
+        return enrollCourseRepository.findByStudentName(fullname);
+    }
+
     @PostMapping("/enrollCourse/{student_id}/{course_id}/{computer_id}/{dateTime}/{note}/{employee_id}")
     public EnrollCourse newEnrollCourse(EnrollCourse newEnrollCourse,
     @PathVariable long student_id,
