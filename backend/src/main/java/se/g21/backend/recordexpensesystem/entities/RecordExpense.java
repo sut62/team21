@@ -1,4 +1,5 @@
 package se.g21.backend.recordexpensesystem.entities;
+import org.springframework.beans.factory.annotation.Autowired;
 import se.g21.backend.employeesystem.entities.Employee;
 import se.g21.backend.enrollcoursesystem.entities.EnrollCourse;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 import lombok.NonNull;
 import java.util.Collection;
 import com.fasterxml.jackson.annotation.*;
+import se.g21.backend.recordexpensesystem.repository.ExpenseTypeRepository;
+
 import java.time.LocalDateTime;
 import javax.validation.constraints.*;
 
@@ -15,7 +18,6 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @Table(name="RECORD_EXPENSE")
 public class RecordExpense {
-
     @Id
     @SequenceGenerator(name="RECORD_EXPENSE_SEQ",sequenceName="RECORD_EXPENSE_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="RECORD_EXPENSE_SEQ")
@@ -30,8 +32,9 @@ public class RecordExpense {
 
     @Column(name="BUDGET",nullable = true)
     @Max(50000)     
-    @Positive       
-    private @NonNull double budget;
+    @Positive
+    @NotNull
+    private double budget;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID", insertable = true)
@@ -50,4 +53,12 @@ public class RecordExpense {
     @NotNull        
     private Employee createdBy;
 
+    @PrePersist
+    void prePersist(){
+       if(this.expenseType.getId() == 1){
+           this.rec = null;
+       }else if(this.expenseType.getId() == 2){
+           this.enrollCourse = null;
+       }
+    }
 }
