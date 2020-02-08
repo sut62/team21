@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -13,11 +11,8 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Optional;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import se.g21.backend.enrollcoursesystem.entities.*;
 import se.g21.backend.enrollcoursesystem.repository.*;
@@ -66,7 +61,7 @@ public class ComputerTest {
     @Test
     void b6015695_testPcNumberPatternCharacterCP() {
         System.out.println(
-                "=============================== b6015695_testPcNumberFirstCharacterA ===============================");
+                "=============================== b6015695_testPcNumberPatternCharacterCP ===============================");
         Computer com = new Computer();
         com.setPcNumber("CP81");
         Room room = roomRepository.findById(4);
@@ -87,7 +82,7 @@ public class ComputerTest {
     @Test
     void b6015695_testPcNumberPatternCharacterPE() {
         System.out.println(
-                "=============================== b6015695_testPcNumberFirstCharacterA ===============================");
+                "=============================== b6015695_testPcNumberPatternCharacterPE ===============================");
         Computer com = new Computer();
         com.setPcNumber("PE81");
         Room room = roomRepository.findById(4);
