@@ -8,6 +8,9 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,11 +26,14 @@ public class Position {
     @Column(name = "Position_ID", unique = true, nullable = true)
     private @NonNull Long id;
 
+    @NotNull
     @Column(name = "Position")
-    private @NonNull String position;
+    private String position;
 
+    @NotNull
+    @Min(0)
     @Column(name = "Salary")
-    private @NonNull Double salary;
+    private Double salary;
 
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<Employee> employee;

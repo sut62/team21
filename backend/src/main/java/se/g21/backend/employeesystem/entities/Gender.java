@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,8 +26,9 @@ public class Gender {
     @Column(name = "Gender_ID", unique = true, nullable = true)
     private @NonNull Long id;
 
+    @NotNull
     @Column(name = "Gender")
-    private @NonNull String gender;
+    private String gender;
 
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<Employee> employee;
