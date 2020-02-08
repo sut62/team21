@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 @Data
 @Entity
 @Getter 
@@ -28,7 +29,8 @@ public class Rating {
     @Column(name="RATING_ID",unique = true, nullable = true)
     private @NonNull Long id;
 
-    private @NonNull String ratingType;
+    @NotNull
+    private String ratingType;
 
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<ReviewCourse> reviewCourse;
