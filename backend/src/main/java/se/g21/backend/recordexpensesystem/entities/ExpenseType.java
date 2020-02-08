@@ -2,6 +2,8 @@ package se.g21.backend.recordexpensesystem.entities;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.Collection;
 
 @Entity
@@ -16,7 +18,8 @@ public class ExpenseType {
     @Column(name="EXPENSE_TYPE_ID",unique = true, nullable = true)
     private @NonNull Long id;
 
-    private @NonNull String type;
+    @NotNull
+    private String type;
 
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<RecordExpense> recordExpense;
