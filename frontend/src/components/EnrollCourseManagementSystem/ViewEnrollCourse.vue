@@ -42,11 +42,11 @@
                 <td>{{ item.course.courseName }}</td>
                 <td>{{ item.employee.fullname }}</td>
               </tr>
-              <tr v-if="viewEnrollCourse.length < 1">
+              <!-- <tr v-if="viewEnrollCourse.length < 1">
                 <td colspan="7" class="text-center">
                   <h5>ไม่พบข้อมูล</h5>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
 
             <tbody v-if="view.loading">
